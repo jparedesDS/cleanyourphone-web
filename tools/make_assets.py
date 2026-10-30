@@ -24,9 +24,9 @@ ACCENT = (100, 244, 196)
 ACCENT_2 = (94, 200, 255)
 WARM = (255, 184, 107)
 TILE_COLORS = [
-    (100, 244, 196), (94, 200, 255), (255, 212, 121), (246, 166, 193),
-    (195, 181, 255), (158, 240, 168), (255, 176, 138), (184, 198, 207),
-    (255, 156, 156), (142, 232, 224), (94, 200, 255), (100, 244, 196),
+    (74, 222, 128), (96, 165, 250), (129, 140, 248), (244, 114, 182),
+    (52, 211, 153), (56, 189, 248), (251, 191, 36), (52, 211, 153),
+    (148, 163, 184), (142, 232, 224), (94, 200, 255), (100, 244, 196),
     (255, 212, 121), (246, 166, 193), (195, 181, 255), (158, 240, 168),
 ]
 
@@ -105,9 +105,11 @@ def phone_panel(width: int, height: int, scale: int) -> Image.Image:
     # header
     draw.text((24 * s, 56 * s), "Home", font=font(17 * s, bold=True), fill=TEXT)
     draw.text((width * s - 88 * s, 60 * s), "9 apps", font=font(9 * s, mono=True), fill=ACCENT)
-    # app grid: a clean 3x3 home screen
+    # app grid: a clean 3x3 home screen with the same marks as the site
     cols, rows = 3, 3
     labels = ["Ph", "Ms", "Ca", "Fo", "Ma", "Cl", "Fi", "Pl", "Se"]
+    icons = ["phone", "googlemessages", "camera", "googlephotos", "googlemaps",
+             "clock", "files", "googleplay", "settings"]
     left, top = 30 * s, 100 * s
     gap_x = 14 * s
     tile = (width * s - left * 2 - gap_x * (cols - 1)) // cols
@@ -118,8 +120,15 @@ def phone_panel(width: int, height: int, scale: int) -> Image.Image:
         ty = top + row * (tile + gap_y)
         color = TILE_COLORS[index % len(TILE_COLORS)]
         rounded(draw, (tx, ty, tx + tile, ty + tile), 12 * s, fill=color)
-        draw.text((tx + tile // 2, ty + tile // 2), labels[index], font=font(11 * s, mono=True, bold=True),
-                  fill=INK, anchor="mm")
+        icon_path = ASSETS / "apps" / "png" / f"{icons[index]}.png"
+        if icon_path.is_file():
+            icon = Image.open(icon_path).convert("RGBA")
+            icon_size = int(tile * 0.62)
+            icon = icon.resize((icon_size, icon_size), Image.LANCZOS)
+            panel.paste(icon, (tx + (tile - icon_size) // 2, ty + (tile - icon_size) // 2), icon)
+        else:
+            draw.text((tx + tile // 2, ty + tile // 2), labels[index],
+                      font=font(11 * s, mono=True, bold=True), fill=INK, anchor="mm")
     # dock
     dock_y = height * s - 34 * s
     rounded(draw, (24 * s, dock_y, width * s - 24 * s, dock_y + 1 * s), 0, fill=(238, 248, 245, 24))

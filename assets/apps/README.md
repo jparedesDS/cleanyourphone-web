@@ -20,6 +20,9 @@ Downloaded from [Simple Icons](https://simpleicons.org/) (CC0 1.0) through
 | `bookingdotcom.svg` | `bookingdotcom` | white |
 | `aliexpress.svg` | `aliexpress` | white |
 
+`png/` contains 2× renders of the system marks used by `tools/make_assets.py` for the banner and
+social preview. The site uses the SVGs; the PNGs are not requested by the page.
+
 ## System and Amazon glyphs
 
 `phone.svg`, `camera.svg`, `clock.svg`, `files.svg`, `settings.svg` and `amazon.svg` were drawn for
