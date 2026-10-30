@@ -1,5 +1,5 @@
-Contact: https://github.com/jparedesDS/clean-your-phone/security/advisories/new
+Contact: https://github.com/jparedesDS/cleanyourphone/security/advisories/new
 Expires: 2027-10-30T00:00:00.000Z
 Preferred-Languages: en, es
 Canonical: https://jparedesds.github.io/cleanyourphone-web/.well-known/security.txt
-Policy: https://github.com/jparedesDS/clean-your-phone/blob/main/SECURITY.md
+Policy: https://github.com/jparedesDS/cleanyourphone/blob/main/SECURITY.md

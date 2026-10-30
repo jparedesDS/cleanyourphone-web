@@ -1,6 +1,6 @@
 # CleanYourPhone — website
 
-Static landing page for [CleanYourPhone](https://github.com/jparedesDS/clean-your-phone), the
+Static landing page for [CleanYourPhone](https://github.com/jparedesDS/cleanyourphone), the
 open-source, reversible Android debloat skill for coding agents.
 
 Published site (after enabling Pages): **<https://jparedesds.github.io/cleanyourphone-web/>**  
@@ -89,11 +89,11 @@ requests, canonical/hreflang metadata, PNG dimensions, the sitemap and `security
 
 ## Links
 
-- Skill repository: <https://github.com/jparedesDS/clean-your-phone>
-- Safety rules: <https://github.com/jparedesDS/clean-your-phone/blob/main/docs/SAFETY.md>
-- Profile catalog: <https://github.com/jparedesDS/clean-your-phone/blob/main/profiles/README.md>
-- Prompt: <https://github.com/jparedesDS/clean-your-phone/blob/main/PROMPT.md>
-- Spanish prompt: <https://github.com/jparedesDS/clean-your-phone/blob/main/PROMPT.es.md>
+- Skill repository: <https://github.com/jparedesDS/cleanyourphone>
+- Safety rules: <https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md>
+- Profile catalog: <https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md>
+- Prompt: <https://github.com/jparedesDS/cleanyourphone/blob/main/PROMPT.md>
+- Spanish prompt: <https://github.com/jparedesDS/cleanyourphone/blob/main/PROMPT.es.md>
 
 ## License
 
