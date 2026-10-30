@@ -25,7 +25,7 @@ ACCENT_2 = (94, 200, 255)
 WARM = (255, 184, 107)
 TILE_COLORS = [
     (74, 222, 128), (96, 165, 250), (129, 140, 248), (244, 114, 182),
-    (52, 211, 153), (56, 189, 248), (251, 191, 36), (52, 211, 153),
+    (52, 211, 153), (56, 189, 248), (37, 211, 102), (30, 64, 175),
     (148, 163, 184), (142, 232, 224), (94, 200, 255), (100, 244, 196),
     (255, 212, 121), (246, 166, 193), (195, 181, 255), (158, 240, 168),
 ]
@@ -109,7 +109,7 @@ def phone_panel(width: int, height: int, scale: int) -> Image.Image:
     cols, rows = 3, 3
     labels = ["Ph", "Ms", "Ca", "Fo", "Ma", "Cl", "Fi", "Pl", "Se"]
     icons = ["phone", "googlemessages", "camera", "googlephotos", "googlemaps",
-             "clock", "files", "googleplay", "settings"]
+             "clock", "whatsapp", "bank", "settings"]
     left, top = 30 * s, 100 * s
     gap_x = 14 * s
     tile = (width * s - left * 2 - gap_x * (cols - 1)) // cols

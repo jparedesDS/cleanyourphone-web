@@ -9,24 +9,20 @@ Downloaded from [Simple Icons](https://simpleicons.org/) (CC0 1.0) through
 
 | File | Source | Color |
 |---|---|---|
+| `whatsapp.svg` | `whatsapp` | white |
 | `googlemessages.svg` | `googlemessages` | white |
 | `googlephotos.svg` | `googlephotos` | white |
 | `googlemaps.svg` | `googlemaps` | white |
-| `googleplay.svg` | `googleplay` | white |
-| `facebook.svg` | `facebook` | white |
-| `tiktok.svg` | `tiktok` | white |
-| `netflix.svg` | `netflix` | `#e50914` |
-| `spotify.svg` | `spotify` | black |
-| `bookingdotcom.svg` | `bookingdotcom` | white |
-| `aliexpress.svg` | `aliexpress` | white |
+| `samsung.svg` | `samsung` | white |
 
 `png/` contains 2× renders of the system marks used by `tools/make_assets.py` for the banner and
 social preview. The site uses the SVGs; the PNGs are not requested by the page.
 
-## System and Amazon glyphs
+## System and OEM glyphs
 
-`phone.svg`, `camera.svg`, `clock.svg`, `files.svg`, `settings.svg` and `amazon.svg` were drawn for
-this project and are MIT, like the rest of the site.
+`phone.svg`, `camera.svg`, `clock.svg`, `settings.svg`, `bank.svg`, `tvplus.svg`, `bixby.svg`,
+`tips.svg`, `themes.svg`, `games.svg` and `cloud.svg` were drawn for this project and are MIT, like
+the rest of the site. They represent preinstalled OEM apps and services in an illustrative demo.
 
-The marks identify the apps in an illustrative demo. All trademarks belong to their owners; this
+The marks identify apps and services in the demo. All trademarks belong to their owners; this
 project is not affiliated with or endorsed by them.
