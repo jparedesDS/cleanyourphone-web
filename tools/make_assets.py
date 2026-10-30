@@ -176,10 +176,65 @@ def compose(width: int, height: int, title_lines, subtitle, eyebrow, chips, phon
     panel = phone_panel(pw, ph, s)
     image.paste(panel, (px, py), panel)
 
-    ASSETS.mkdir(parents=True, exist_ok=True)
+    target = ASSETS / output
+    target.parent.mkdir(parents=True, exist_ok=True)
     final = image.resize((width, height), Image.LANCZOS)
-    final.save(ASSETS / output, optimize=True)
-    print("wrote", ASSETS / output)
+    final.save(target, optimize=True)
+    print("wrote", target)
+
+
+def compose_skill(width: int, height: int, output: str, scale: int = 2):
+    image = base_canvas(width, height)
+    draw = ImageDraw.Draw(image)
+    s = scale
+
+    lx, ly, size = 72 * s, 58 * s, 48 * s
+    rounded(draw, (lx, ly, lx + size, ly + size), 13 * s, fill=INK_2, outline=(*ACCENT, 180), width=2 * s)
+    rounded(draw, (lx + size * 0.34, ly + size * 0.16, lx + size * 0.66, ly + size * 0.84), 5 * s,
+            outline=(*ACCENT, 255), width=2 * s)
+    draw.line((lx + size * 0.42, ly + size * 0.76, lx + size * 0.58, ly + size * 0.76),
+              fill=(*ACCENT, 255), width=2 * s)
+    draw.text((lx + size + 16 * s, ly + 8 * s), "CleanYourPhone", font=font(24 * s, bold=True), fill=TEXT)
+
+    draw.text((72 * s, 132 * s), "OPEN SOURCE · ADB · REVERSIBLE", font=font(11 * s, mono=True, bold=True), fill=ACCENT)
+    draw.text((72 * s, 158 * s), "Your phone,", font=font(58 * s, bold=True), fill=TEXT)
+    draw.text((72 * s, 220 * s), "minus the bloat.", font=font(58 * s, bold=True), fill=ACCENT)
+    draw.multiline_text((72 * s, 300 * s),
+                        "One prompt. One plan.\nOne command to undo.",
+                        font=font(16 * s), fill=MUTED, spacing=5 * s)
+
+    # terminal card
+    card_w = int(width * 0.42) * s
+    card_h = int(height * 0.56) * s
+    cx = int(width * 0.52) * s
+    cy = int(height * 0.2) * s
+    rounded(draw, (cx, cy, cx + card_w, cy + card_h), 16 * s, fill=(3, 9, 11), outline=(*ACCENT, 70), width=2 * s)
+    draw.text((cx + 18 * s, cy + 14 * s), "terminal", font=font(9 * s, mono=True), fill=MUTED_2)
+    for i in range(3):
+        draw.ellipse((cx + 18 * s + i * 12 * s, cy + 34 * s, cx + 24 * s + i * 12 * s, cy + 40 * s),
+                     fill=(*ACCENT, 120))
+    lines = [
+        ("$ python tools/phone.py plan", TEXT),
+        ("DISABLE  5 packages", ACCENT),
+        ("ASK      3 packages", WARM),
+        ("BLOCKED  0 packages", MUTED),
+        ("", MUTED),
+        ("$ python tools/phone.py apply", TEXT),
+        ("Batch 1/1 · verify · done", ACCENT_2),
+    ]
+    y = cy + 64 * s
+    for text, color in lines:
+        draw.text((cx + 24 * s, y), text, font=font(11 * s, mono=True), fill=color)
+        y += 22 * s
+
+    draw.text((72 * s, height * s - 48 * s), "No root · No telemetry · MIT · 157 profiles",
+              font=font(11 * s, mono=True), fill=MUTED_2)
+
+    target = ASSETS / output
+    target.parent.mkdir(parents=True, exist_ok=True)
+    final = image.resize((width, height), Image.LANCZOS)
+    final.save(target, optimize=True)
+    print("wrote", target)
 
 
 def main():
@@ -199,6 +254,12 @@ def main():
         ["No root", "No telemetry", "MIT", "157 profiles"],
         (250, 388), (952, 108), "og.png",
     )
+    compose_skill(1600, 440, "brand/banner-skill.png")
+    compose_skill(1280, 640, "brand/social-skill.png")
+    import shutil
+    shutil.copyfile(ASSETS / "banner.png", ASSETS / "brand" / "banner-web.png")
+    shutil.copyfile(ASSETS / "og.png", ASSETS / "brand" / "social-web.png")
+    print("copied brand banner-web.png and social-web.png")
 
 
 if __name__ == "__main__":

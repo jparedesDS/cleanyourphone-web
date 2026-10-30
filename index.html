@@ -113,22 +113,22 @@
               <span class="phone-count" data-count>9 apps</span>
             </div>
             <div class="app-grid" id="appGrid" data-view="after">
-              <div class="app"><span class="app-icon tile-a" aria-hidden="true">Ph</span><span class="app-name">Phone</span></div>
-              <div class="app"><span class="app-icon tile-b" aria-hidden="true">Ms</span><span class="app-name">Messages</span></div>
-              <div class="app"><span class="app-icon tile-c" aria-hidden="true">Ca</span><span class="app-name">Camera</span></div>
-              <div class="app"><span class="app-icon tile-d" aria-hidden="true">Ph</span><span class="app-name">Photos</span></div>
-              <div class="app"><span class="app-icon tile-e" aria-hidden="true">Ma</span><span class="app-name">Maps</span></div>
-              <div class="app"><span class="app-icon tile-f" aria-hidden="true">Cl</span><span class="app-name">Clock</span></div>
-              <div class="app"><span class="app-icon tile-g" aria-hidden="true">Fi</span><span class="app-name">Files</span></div>
-              <div class="app"><span class="app-icon tile-h" aria-hidden="true">Pl</span><span class="app-name">Play</span></div>
-              <div class="app"><span class="app-icon tile-i" aria-hidden="true">Se</span><span class="app-name">Settings</span></div>
-              <div class="app bloat"><span class="app-icon tile-j" aria-hidden="true">Sh</span><span class="app-name">Shop</span></div>
-              <div class="app bloat"><span class="app-icon tile-b" aria-hidden="true">Ga</span><span class="app-name">Games</span></div>
-              <div class="app bloat"><span class="app-icon tile-c" aria-hidden="true">Ne</span><span class="app-name">News</span></div>
-              <div class="app bloat"><span class="app-icon tile-d" aria-hidden="true">TV</span><span class="app-name">TV</span></div>
-              <div class="app bloat"><span class="app-icon tile-e" aria-hidden="true">Cl</span><span class="app-name">Cloud</span></div>
-              <div class="app bloat"><span class="app-icon tile-g" aria-hidden="true">Pr</span><span class="app-name">Promo</span></div>
-              <div class="app bloat"><span class="app-icon tile-j" aria-hidden="true">So</span><span class="app-name">Social</span></div>
+              <div class="app"><span class="app-icon tile-phone" aria-hidden="true"><img src="assets/apps/phone.svg" alt="" width="24" height="24"></span><span class="app-name">Phone</span></div>
+              <div class="app"><span class="app-icon tile-messages" aria-hidden="true"><img src="assets/apps/googlemessages.svg" alt="" width="24" height="24"></span><span class="app-name">Messages</span></div>
+              <div class="app"><span class="app-icon tile-camera" aria-hidden="true"><img src="assets/apps/camera.svg" alt="" width="24" height="24"></span><span class="app-name">Camera</span></div>
+              <div class="app"><span class="app-icon tile-photos" aria-hidden="true"><img src="assets/apps/googlephotos.svg" alt="" width="24" height="24"></span><span class="app-name">Photos</span></div>
+              <div class="app"><span class="app-icon tile-maps" aria-hidden="true"><img src="assets/apps/googlemaps.svg" alt="" width="24" height="24"></span><span class="app-name">Maps</span></div>
+              <div class="app"><span class="app-icon tile-clock" aria-hidden="true"><img src="assets/apps/clock.svg" alt="" width="24" height="24"></span><span class="app-name">Clock</span></div>
+              <div class="app"><span class="app-icon tile-files" aria-hidden="true"><img src="assets/apps/files.svg" alt="" width="24" height="24"></span><span class="app-name">Files</span></div>
+              <div class="app"><span class="app-icon tile-play" aria-hidden="true"><img src="assets/apps/googleplay.svg" alt="" width="24" height="24"></span><span class="app-name">Play Store</span></div>
+              <div class="app"><span class="app-icon tile-settings" aria-hidden="true"><img src="assets/apps/settings.svg" alt="" width="24" height="24"></span><span class="app-name">Settings</span></div>
+              <div class="app bloat"><span class="app-icon tile-amazon" aria-hidden="true"><img src="assets/apps/amazon.svg" alt="" width="24" height="24"></span><span class="app-name">Amazon</span></div>
+              <div class="app bloat"><span class="app-icon tile-tiktok" aria-hidden="true"><img src="assets/apps/tiktok.svg" alt="" width="24" height="24"></span><span class="app-name">TikTok</span></div>
+              <div class="app bloat"><span class="app-icon tile-netflix" aria-hidden="true"><img src="assets/apps/netflix.svg" alt="" width="24" height="24"></span><span class="app-name">Netflix</span></div>
+              <div class="app bloat"><span class="app-icon tile-spotify" aria-hidden="true"><img src="assets/apps/spotify.svg" alt="" width="24" height="24"></span><span class="app-name">Spotify</span></div>
+              <div class="app bloat"><span class="app-icon tile-booking" aria-hidden="true"><img src="assets/apps/bookingdotcom.svg" alt="" width="24" height="24"></span><span class="app-name">Booking.com</span></div>
+              <div class="app bloat"><span class="app-icon tile-aliexpress" aria-hidden="true"><img src="assets/apps/aliexpress.svg" alt="" width="24" height="24"></span><span class="app-name">AliExpress</span></div>
+              <div class="app bloat"><span class="app-icon tile-facebook" aria-hidden="true"><img src="assets/apps/facebook.svg" alt="" width="24" height="24"></span><span class="app-name">Facebook</span></div>
             </div>
             <div class="phone-dock" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
           </div>
@@ -213,6 +213,41 @@ Profiles .... google-pixel-8
       </div>
     </section>
 
+    <section class="section" id="setup">
+      <div class="section-head">
+        <p class="kicker">Setup</p>
+        <h2>From zero to a plan<br>in three commands.</h2>
+        <p class="lede">The CLI has no third-party dependencies. Python 3.10+ and Android Platform-Tools are enough; the raw ADB procedure is in <code>SKILL.md</code> if you prefer no CLI.</p>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-steps">
+          <div class="setup-step"><span class="step-number">1</span><div><h3>Install Platform-Tools</h3><p>Download the official Android SDK Platform-Tools for Windows, macOS or Linux and add <code>adb</code> to your PATH.</p></div></div>
+          <div class="setup-step"><span class="step-number">2</span><div><h3>Prepare the phone</h3><p>Enable Developer options, turn on USB debugging, connect by USB and accept the authorization prompt.</p></div></div>
+          <div class="setup-step"><span class="step-number">3</span><div><h3>Give the skill to your agent</h3><p>Clone the repo and open your agent there, or copy <code>SKILL.md</code> into its skills folder.</p></div></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span>quick start</span>
+            <button class="copy" type="button" data-copy="git clone https://github.com/jparedesDS/clean-your-phone && cd clean-your-phone && python tools/phone.py doctor">copy</button>
+          </div>
+          <div class="terminal-body">
+            <pre><span class="cmd">$ adb version</span>
+<span class="ok">ok</span>  Android Debug Bridge version 1.0.41
+
+<span class="cmd">$ git clone https://github.com/jparedesDS/clean-your-phone</span>
+<span class="cmd">$ cd clean-your-phone</span>
+<span class="cmd">$ python tools/phone.py doctor</span>
+Device ...... Google Pixel 8 (shiba)
+Profiles .... google-pixel-8
+
+<span class="cmd">$ python tools/phone.py plan --profile google-pixel-8</span>
+Review the plan. Nothing has changed.</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="safety">
       <div class="section-head">
         <p class="kicker">Safety</p>
@@ -231,7 +266,7 @@ Profiles .... google-pixel-8
     </section>
 
     <section class="stats" aria-label="Project facts">
-      <div class="stat"><strong>157</strong><span>documented profiles</span></div>
+      <div class="stat"><strong>157</strong><span>profiles in the catalog</span></div>
       <div class="stat"><strong>6</strong><span>brands covered</span></div>
       <div class="stat"><strong>0</strong><span>root or ROM required</span></div>
       <div class="stat"><strong>1</strong><span>command to undo</span></div>
@@ -243,24 +278,42 @@ Profiles .... google-pixel-8
         <h2>Start from evidence.<br>Not a forum post.</h2>
         <p class="lede">Each profile is a package list for one model and firmware. A <b>device</b> profile was tested on a real phone; a <b>documented</b> profile comes from a primary firmware dump and only ever asks.</p>
       </div>
-      <ul class="profile-chips">
-        <li><strong>Google</strong> Pixel</li>
-        <li><strong>Samsung</strong> Galaxy S, A, M, Note, Z, Tab</li>
-        <li><strong>Xiaomi</strong> Mi, 11T, 12, 15, 17</li>
-        <li><strong>Redmi</strong> Note, K, A</li>
-        <li><strong>POCO</strong> F, X, M</li>
-        <li><strong>OnePlus</strong> 5T, 6T, 7T Pro, 8, 11R, Nord</li>
-      </ul>
-      <ul class="profile-list">
-        <li><span>Google Pixel 8</span><span>device · Android 16</span></li>
-        <li><span>Samsung Galaxy S23 Ultra</span><span>device · Android 14</span></li>
-        <li><span>OnePlus 6T</span><span>device · OxygenOS 11</span></li>
-        <li><span>Xiaomi HyperOS family</span><span>device · Android 14–16</span></li>
-        <li><span>Redmi Note 15 / 15 Pro</span><span>documented · Android 16</span></li>
-        <li><span>POCO X7 Pro / F9 Ultra</span><span>documented · Android 16</span></li>
-        <li><span>Galaxy A57 / A22 / A04e</span><span>documented · Android 13–16</span></li>
-        <li><span>OnePlus 11R / Nord CE 5</span><span>documented · Android 16</span></li>
-      </ul>
+      <div class="brand-shell">
+        <div class="brand-tabs" role="tablist" aria-label="Profiles by brand">
+          <button type="button" role="tab" aria-selected="true" aria-controls="brand-google" id="tab-brand-google" data-brand="google">Google</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="brand-samsung" id="tab-brand-samsung" data-brand="samsung">Samsung</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="brand-xiaomi" id="tab-brand-xiaomi" data-brand="xiaomi">Xiaomi</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="brand-redmi" id="tab-brand-redmi" data-brand="redmi">Redmi</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="brand-poco" id="tab-brand-poco" data-brand="poco">POCO</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="brand-oneplus" id="tab-brand-oneplus" data-brand="oneplus">OnePlus</button>
+        </div>
+        <div class="brand-panels">
+          <article class="brand-panel" role="tabpanel" id="brand-google" aria-labelledby="tab-brand-google" data-brand-panel="google">
+            <div><span class="brand-tag">5 profiles · Pixel 8 device-tested</span><h3>Google Pixel</h3><p>The Pixel 8 profile was tested on Android 16. Pixel 7, 7a, 6 and 6 Pro are documented from primary firmware dumps.</p></div>
+            <div class="brand-meta"><span><b>Device</b>Pixel 8 · Android 16</span><span><b>Documented</b>Pixel 7, 7a, 6, 6 Pro</span><span><b>Android</b>12–16</span></div>
+          </article>
+          <article class="brand-panel" role="tabpanel" id="brand-samsung" aria-labelledby="tab-brand-samsung" data-brand-panel="samsung" hidden>
+            <div><span class="brand-tag">55 profiles · Galaxy S23 Ultra tested</span><h3>Samsung Galaxy</h3><p>S, A, M, F, Note, Z and Tab. The S23 Ultra profile is device-tested; the rest are documented from firmware dumps.</p></div>
+            <div class="brand-meta"><span><b>Device</b>Galaxy S23 Ultra</span><span><b>Documented</b>A/M/F/Note/Z/Tab</span><span><b>Android</b>8–16</span></div>
+          </article>
+          <article class="brand-panel" role="tabpanel" id="brand-xiaomi" aria-labelledby="tab-brand-xiaomi" data-brand-panel="xiaomi" hidden>
+            <div><span class="brand-tag">15 profiles · HyperOS family tested</span><h3>Xiaomi</h3><p>Mi 10, 11T, 12X, Civi, 15T, 15 Ultra, 17 Ultra and the HyperOS family profile.</p></div>
+            <div class="brand-meta"><span><b>Device</b>HyperOS family</span><span><b>Documented</b>15T, 15 Ultra, 17 Ultra, 11T</span><span><b>Android</b>10–16</span></div>
+          </article>
+          <article class="brand-panel" role="tabpanel" id="brand-redmi" aria-labelledby="tab-brand-redmi" data-brand-panel="redmi" hidden>
+            <div><span class="brand-tag">57 profiles · Note, K and A families</span><h3>Redmi</h3><p>Redmi Note 7–15, K20/K40, A-series, 9/10/12/13/15C and the Redmi Pad.</p></div>
+            <div class="brand-meta"><span><b>Documented</b>57 profiles</span><span><b>Families</b>Note, K, A, Pad</span><span><b>Android</b>9–16</span></div>
+          </article>
+          <article class="brand-panel" role="tabpanel" id="brand-poco" aria-labelledby="tab-brand-poco" data-brand-panel="poco" hidden>
+            <div><span class="brand-tag">16 profiles · F, X and M</span><h3>POCO</h3><p>POCO F3/F5/F6/F9 Ultra, X3/X5/X6/X7/X8, M2/M3/M4 and C31.</p></div>
+            <div class="brand-meta"><span><b>Documented</b>16 profiles</span><span><b>Families</b>F, X, M, C</span><span><b>Android</b>11–16</span></div>
+          </article>
+          <article class="brand-panel" role="tabpanel" id="brand-oneplus" aria-labelledby="tab-brand-oneplus" data-brand-panel="oneplus" hidden>
+            <div><span class="brand-tag">8 profiles · OnePlus 6T tested</span><h3>OnePlus</h3><p>OnePlus 5T, 6T, 7T Pro, 8, 11R, Nord, Nord CE and Nord CE5. The 6T is the device-tested OnePlus.</p></div>
+            <div class="brand-meta"><span><b>Device</b>OnePlus 6T</span><span><b>Documented</b>5T, 7T Pro, 8, 11R, Nord</span><span><b>Android</b>10–16</span></div>
+          </article>
+        </div>
+      </div>
       <p class="compare-note">Only a <b>device</b> profile on a tested build can auto-apply. Everything else is a reviewable starting point. <a href="https://github.com/jparedesDS/clean-your-phone/blob/main/profiles/README.md" rel="noopener">Browse the 157 profiles →</a></p>
     </section>
 

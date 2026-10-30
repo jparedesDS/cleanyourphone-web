@@ -148,6 +148,10 @@ class SiteTest(unittest.TestCase):
         self.assertEqual(png_size(ROOT / "assets" / "banner.png"), (1600, 440))
         self.assertTrue((ROOT / "assets" / "logo.svg").is_file())
         self.assertTrue((ROOT / "assets" / "favicon.svg").is_file())
+        for name, size in (("banner-web.png", (1600, 440)), ("banner-skill.png", (1600, 440)),
+                           ("social-web.png", (1280, 640)), ("social-skill.png", (1280, 640))):
+            with self.subTest(asset=name):
+                self.assertEqual(png_size(ROOT / "assets" / "brand" / name), size)
 
     def test_security_txt(self):
         security = (ROOT / ".well-known" / "security.txt").read_text(encoding="utf-8")
