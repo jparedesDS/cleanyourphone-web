@@ -3,8 +3,8 @@
 Static landing page for [CleanYourPhone](https://github.com/jparedesDS/clean-your-phone), the
 open-source, reversible Android debloat skill for coding agents.
 
-**Live site:** <https://jparedesds.github.io/cleanyourphone-web/>  
-**Spanish:** <https://jparedesds.github.io/cleanyourphone-web/es.html>
+Published site (after enabling Pages): **<https://jparedesds.github.io/cleanyourphone-web/>**  
+Spanish: **<https://jparedesds.github.io/cleanyourphone-web/es.html>**
 
 No framework, no build step, no external fonts, no analytics, no third-party requests.
 
