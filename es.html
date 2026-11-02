@@ -70,6 +70,7 @@
     <nav class="nav" aria-label="Principal">
       <a href="#problem">Por qué</a>
       <a href="#how">Cómo funciona</a>
+      <a href="#cli">CLI</a>
       <a href="#safety">Seguridad</a>
       <a href="#profiles">Perfiles</a>
       <a href="#faq">FAQ</a>
@@ -248,6 +249,40 @@ Review the plan. Nothing has changed.</pre>
         </div>
       </div>
       <p class="compare-note">¿Prefieres la terminal? <code>pipx install git+https://github.com/jparedesDS/cleanyourphone.git</code>, luego <code>cleanyourphone wizard</code>. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">Guía del CLI →</a></p>
+    </section>
+
+    <section class="section" id="cli">
+      <div class="section-head">
+        <p class="kicker">CLI</p>
+        <h2>Instálalo una vez.<br>Úsalo donde quieras.</h2>
+        <p class="lede">Las mismas barreras de seguridad que la skill, ahora como comando instalable. Sin dependencias de terceros, sin cuenta y sin telemetría. El repo clonado sigue funcionando; ambos caminos ejecutan el mismo código.</p>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-steps">
+          <div class="setup-step"><span class="step-number">01</span><div><h3>Instala con pipx</h3><p><code>pipx install git+https://github.com/jparedesDS/cleanyourphone.git</code> añade <code>cleanyourphone</code> y el alias corto <code>cyp</code>.</p></div></div>
+          <div class="setup-step"><span class="step-number">02</span><div><h3>Comprueba el móvil</h3><p><code>cleanyourphone doctor</code> valida ADB, el dispositivo, el backup y el perfil antes de cambiar nada.</p></div></div>
+          <div class="setup-step"><span class="step-number">03</span><div><h3>Usa el wizard</h3><p><code>cleanyourphone wizard</code> hace backup, ofrece el lote probado y pregunta uno a uno los paquetes de usuario.</p></div></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span>instalación</span>
+            <button class="copy" type="button" data-copy="pipx install git+https://github.com/jparedesDS/cleanyourphone.git">copiar</button>
+          </div>
+          <div class="terminal-body">
+            <pre><span class="cmd">$ pipx install git+https://github.com/jparedesDS/cleanyourphone.git</span>
+<span class="ok">installed</span> cleanyourphone 0.2.0
+
+<span class="cmd">$ cleanyourphone --version</span>
+CleanYourPhone 0.2.0
+
+<span class="cmd">$ cleanyourphone wizard</span>
+Backup first. Review every package.
+Nothing changes without confirmation.</pre>
+          </div>
+        </div>
+      </div>
+      <p class="compare-note">Las builds fijadas están adjuntas a cada <a href="https://github.com/jparedesDS/cleanyourphone/releases" rel="noopener">release de GitHub</a>. La lista completa de comandos y las rutas están en la <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">guía del CLI</a>.</p>
     </section>
 
     <section class="section" id="safety">

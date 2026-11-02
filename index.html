@@ -70,6 +70,7 @@
     <nav class="nav" aria-label="Main">
       <a href="#problem">Why</a>
       <a href="#how">How it works</a>
+      <a href="#cli">CLI</a>
       <a href="#safety">Safety</a>
       <a href="#profiles">Profiles</a>
       <a href="#faq">FAQ</a>
@@ -248,6 +249,40 @@ Review the plan. Nothing has changed.</pre>
         </div>
       </div>
       <p class="compare-note">Prefer a terminal? <code>pipx install git+https://github.com/jparedesDS/cleanyourphone.git</code>, then run <code>cleanyourphone wizard</code>. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">CLI guide →</a></p>
+    </section>
+
+    <section class="section" id="cli">
+      <div class="section-head">
+        <p class="kicker">CLI</p>
+        <h2>Install once.<br>Run it anywhere.</h2>
+        <p class="lede">The same guardrails as the skill, now as an installable command. No third-party dependencies, no account and no telemetry. The repo clone still works if you prefer it; both paths run the same code.</p>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-steps">
+          <div class="setup-step"><span class="step-number">01</span><div><h3>Install with pipx</h3><p><code>pipx install git+https://github.com/jparedesDS/cleanyourphone.git</code> adds <code>cleanyourphone</code> and the short alias <code>cyp</code>.</p></div></div>
+          <div class="setup-step"><span class="step-number">02</span><div><h3>Check the phone</h3><p><code>cleanyourphone doctor</code> validates ADB, the device, the backup and the profile match before anything changes.</p></div></div>
+          <div class="setup-step"><span class="step-number">03</span><div><h3>Use the wizard</h3><p><code>cleanyourphone wizard</code> backs up first, offers the tested batch and asks for every user-facing package one by one.</p></div></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span>install</span>
+            <button class="copy" type="button" data-copy="pipx install git+https://github.com/jparedesDS/cleanyourphone.git">copy</button>
+          </div>
+          <div class="terminal-body">
+            <pre><span class="cmd">$ pipx install git+https://github.com/jparedesDS/cleanyourphone.git</span>
+<span class="ok">installed</span> cleanyourphone 0.2.0
+
+<span class="cmd">$ cleanyourphone --version</span>
+CleanYourPhone 0.2.0
+
+<span class="cmd">$ cleanyourphone wizard</span>
+Backup first. Review every package.
+Nothing changes without confirmation.</pre>
+          </div>
+        </div>
+      </div>
+      <p class="compare-note">Pinned builds are attached to every <a href="https://github.com/jparedesDS/cleanyourphone/releases" rel="noopener">GitHub release</a>. The full command list and file locations are in the <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">CLI guide</a>.</p>
     </section>
 
     <section class="section" id="safety">
