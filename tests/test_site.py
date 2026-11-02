@@ -100,7 +100,10 @@ class SiteTest(unittest.TestCase):
         text = (ROOT / "index.html").read_text(encoding="utf-8")
         hero = text.split('<section class="hero">', 1)[1].split("</section>", 1)[0]
         self.assertLess(hero.index("Open the skill"), hero.index("Download the app"))
-        self.assertIn('class="prompt-card"', hero)
+        self.assertIn('class="app-window"', hero)
+        self.assertIn('class="app-bar"', hero)
+        self.assertEqual(hero.count("<span></span>"), 3)
+        self.assertIn("CleanYourPhone · skill", hero)
         self.assertIn("data-copy=", hero)
         self.assertIn("Copy prompt", hero)
         self.assertIn("https://github.com/jparedesDS/cleanyourphone", hero)
@@ -182,6 +185,27 @@ class SiteTest(unittest.TestCase):
                 self.assertGreater(width, 0)
                 self.assertGreater(height, 0)
                 self.assertIn(color_type, (4, 6), "logo must keep an alpha channel")
+
+    def test_provider_strip_uses_phone_brands(self):
+        css = (ROOT / "styles.css").read_text(encoding="utf-8")
+        self.assertIn("animation: provider-marquee 90s linear infinite;", css)
+        self.assertIn(".provider-strip:hover .provider-strip-track { animation-play-state: paused; }", css)
+        self.assertIn("animation-duration: 90s !important;", css)
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            hero_start = text.index('<section class="hero">')
+            hero_end = text.index("</section>", hero_start)
+            strip_start = text.index('<div class="provider-strip"', hero_end)
+            start = text.index('id="start"', strip_start)
+            strip = text[strip_start:start]
+            with self.subTest(page=name):
+                self.assertLess(hero_end, strip_start)
+                self.assertLess(strip_start, start)
+                self.assertIn('aria-hidden="true"', strip)
+                self.assertEqual(strip.count('class="provider-strip-group"'), 4)
+                self.assertEqual(strip.count('class="provider-strip-item"'), 24)
+                for brand in ("google", "samsung", "xiaomi", "redmi", "poco", "oneplus"):
+                    self.assertEqual(strip.count(f"assets/brands/{brand}.png"), 4)
 
     def test_app_is_labelled_early_mvp(self):
         text = (ROOT / "index.html").read_text(encoding="utf-8")

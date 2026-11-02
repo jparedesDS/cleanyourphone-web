@@ -19,6 +19,8 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 - A three-step flow: connect locally, review, apply or restore.
 - A profile grid with the existing 156 profiles and official full-color PNG logos for Google,
   Samsung, Xiaomi, Redmi, POCO and OnePlus.
+- A slim, slow provider marquee between the hero and “Choose your path”, using the six phone
+  brands.
 - Four compact safety cards, six FAQ items, a final CTA and a footer with icons.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
   Open Graph metadata, JSON-LD and a sitemap.
