@@ -39,7 +39,9 @@ Open <http://localhost:8080/>.
 | `es.html` | Spanish landing page. |
 | `styles.css` | Shared styles. |
 | `app.js` | Copy buttons and toast feedback. |
-| `assets/logo.svg`, `assets/favicon.svg` | Brand mark. |
+| `assets/logo.svg`, `assets/favicon.svg` | Primary mark and favicon. |
+| `assets/logo-mark.svg`, `assets/logo-mono.svg` | Mark-only color and monochrome versions. |
+| `assets/logo-lockup.svg`, `assets/logo-lockup-mono.svg` | Horizontal lockups for dark and light surfaces. |
 | `assets/banner.png` | Repository banner (1600×440). |
 | `assets/og.png` | Social preview image (1280×640). |
 | `assets/brand/` | `banner-web`, `banner-skill`, `social-web`, `social-skill` variants. |
@@ -47,7 +49,6 @@ Open <http://localhost:8080/>.
 | `.well-known/security.txt` | Security contact and policy. |
 | `404.html` | Not-found page. |
 | `tests/test_site.py` | Link, ID, language, CSP, metadata and asset checks. |
-| `tools/make_assets.py` | Regenerates `banner.png` and `og.png` (dev-only; needs Pillow). |
 
 ## Release sync
 
@@ -57,17 +58,12 @@ test suite again.
 
 ## Brand assets
 
-The banner and social preview are generated from code, so the layout is reproducible:
+The final logo, banner and social preview are checked in under `assets/`. The identity, palette,
+logo usage and clear-space rules live in
+[docs/BRAND.md](https://github.com/jparedesDS/cleanyourphone/blob/main/docs/BRAND.md).
 
-```bash
-python -m pip install pillow
-python tools/make_assets.py
-```
-
-- `assets/banner.png` / `assets/og.png` — website and default social preview (phone mockup).
-- `assets/brand/banner-web.png` / `assets/brand/social-web.png` — copies of the web direction.
-- `assets/brand/banner-skill.png` / `assets/brand/social-skill.png` — terminal-first variant for the
-  skill repository and its social preview.
+The earlier phone-mockup banner generator has been retired; do not reintroduce it over the final
+lockup assets.
 
 ## Deploy
 
