@@ -1,16 +1,16 @@
 :root {
-  --ink: #07100d;
-  --ink-2: #0a1511;
-  --panel: #0d1a15;
-  --panel-2: #11231b;
-  --text: #f5f3fa;
-  --muted: #b8b2c4;
-  --muted-2: #8c8698;
+  --ink: #15161a;
+  --ink-2: #101114;
+  --panel: #1c1e24;
+  --panel-2: #23252d;
+  --text: #ece9e2;
+  --muted: #a8a39b;
+  --muted-2: #8e8a82;
   --accent: #a78bfa;
   --accent-2: #a78bfa;
   --lavender: #c4b5fd;
-  --line: rgba(245, 243, 250, 0.12);
-  --line-strong: rgba(245, 243, 250, 0.2);
+  --line: rgba(236, 233, 226, 0.12);
+  --line-strong: rgba(236, 233, 226, 0.2);
   --radius: 14px;
   --max: 1120px;
   --mono: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -25,7 +25,7 @@ body {
   margin: 0;
   color: var(--text);
   background:
-    radial-gradient(900px 520px at 78% -10%, rgba(167, 139, 250, 0.10), transparent 62%),
+    radial-gradient(900px 520px at 78% -10%, rgba(167, 139, 250, 0.08), transparent 62%),
     radial-gradient(700px 460px at 8% 16%, rgba(167, 139, 250, 0.06), transparent 60%),
     var(--ink);
   font-family: var(--sans);
