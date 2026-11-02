@@ -4,5 +4,5 @@
     <rect x="19" y="8.5" width="26" height="47" rx="6" stroke="#A78BFA"/>
     <path d="M33 17.5L25 25.5L33 33.5M25 25.5H35A8 8 0 0 1 35 41.5H32" stroke="#E2C15C"/>
   </g>
-  <text x="76" y="40" fill="#ECE9E2" font-family="Aptos, 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="26" font-weight="700" letter-spacing="-.5">CleanYourPhone</text>
+  <text x="76" y="40" fill="#ECE9E2" font-family="Aptos, 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="26" font-weight="700" letter-spacing="-.5">CleanYour<tspan fill="#C4B5FD">Phone</tspan></text>
 </svg>

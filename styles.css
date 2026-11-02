@@ -113,6 +113,8 @@ button { font: inherit; }
 
 .brand img { width: 32px; height: 32px; }
 
+.wordmark-phone { color: var(--lavender); }
+
 .nav {
   display: flex;
   align-items: center;
