@@ -71,6 +71,20 @@ class SiteTest(unittest.TestCase):
                                "matomo", "hotjar", "segment.com"):
                     self.assertNotIn(marker, text)
 
+    def test_start_nav_link_points_to_start_section(self):
+        css = (ROOT / "styles.css").read_text(encoding="utf-8")
+        self.assertIn("color: var(--accent-2) !important;", css)
+        for name, label, next_label in (
+            ("index.html", "Start", "How it works"),
+            ("es.html", "Empieza", "Cómo funciona"),
+        ):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            nav = text.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
+            with self.subTest(page=name):
+                self.assertIn(f'class="nav-start" href="#start">{label}</a>', nav)
+                self.assertLess(nav.index("nav-start"), nav.index(next_label))
+                self.assertIn('id="start"', text)
+
     def test_mail_cross_link_after_faq(self):
         for name in ("index.html", "es.html"):
             text = (ROOT / name).read_text(encoding="utf-8")
@@ -98,13 +112,13 @@ class SiteTest(unittest.TestCase):
     def test_section_order_is_skill_first(self):
         text = (ROOT / "index.html").read_text(encoding="utf-8")
         hero = text.index('<section class="hero">')
-        positions = [text.index(f'id="{section}"') for section in ("path", "how", "profiles", "safety", "faq")]
+        positions = [text.index(f'id="{section}"') for section in ("start", "how", "profiles", "safety", "faq")]
         self.assertLess(hero, positions[0])
         self.assertEqual(positions, sorted(positions))
 
     def test_choose_path_puts_skill_before_app(self):
         text = (ROOT / "index.html").read_text(encoding="utf-8")
-        path = text.split('id="path"', 1)[1].split("</section>", 1)[0]
+        path = text.split('id="start"', 1)[1].split("</section>", 1)[0]
         self.assertLess(path.index("Use the skill"), path.index("Download the app"))
         self.assertIn("path-card-primary", path)
         self.assertIn("copy-inline", path)

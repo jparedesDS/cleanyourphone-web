@@ -136,6 +136,11 @@ button { font: inherit; }
 
 .nav a:hover { color: var(--text); }
 
+.nav-start {
+  color: var(--accent-2) !important;
+  font-weight: 700;
+}
+
 .nav-github {
   color: var(--text) !important;
   border: 1px solid var(--line-strong);
