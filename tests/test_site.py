@@ -71,6 +71,74 @@ class SiteTest(unittest.TestCase):
                                "matomo", "hotjar", "segment.com"):
                     self.assertNotIn(marker, text)
 
+    def test_skill_first_hero_and_no_cli_section(self):
+        text = (ROOT / "index.html").read_text(encoding="utf-8")
+        hero = text.split('<section class="hero">', 1)[1].split("</section>", 1)[0]
+        self.assertLess(hero.index("Open the skill"), hero.index("Download the app"))
+        self.assertIn('class="prompt-card"', hero)
+        self.assertIn("data-copy=", hero)
+        self.assertIn("Copy prompt", hero)
+        self.assertIn("https://github.com/jparedesDS/cleanyourphone", hero)
+        prompt_block = hero.split('class="prompt-block"', 1)[1].split("</pre>", 1)[0]
+        self.assertIn("Read SKILL.md from", prompt_block)
+        self.assertIn("https://github.com/jparedesDS/cleanyourphone", prompt_block.replace("<wbr>", ""))
+        self.assertNotIn('id="cli"', text)
+
+    def test_section_order_is_skill_first(self):
+        text = (ROOT / "index.html").read_text(encoding="utf-8")
+        hero = text.index('<section class="hero">')
+        positions = [text.index(f'id="{section}"') for section in ("path", "how", "profiles", "safety", "faq")]
+        self.assertLess(hero, positions[0])
+        self.assertEqual(positions, sorted(positions))
+
+    def test_choose_path_puts_skill_before_app(self):
+        text = (ROOT / "index.html").read_text(encoding="utf-8")
+        path = text.split('id="path"', 1)[1].split("</section>", 1)[0]
+        self.assertLess(path.index("Use the skill"), path.index("Download the app"))
+        self.assertIn("path-card-primary", path)
+        self.assertIn("copy-inline", path)
+        copy_control = path.split('class="copy-inline"', 1)[1].split("</button>", 1)[0]
+        self.assertIn("https://github.com/jparedesDS/cleanyourphone", copy_control)
+
+    def test_inline_icons_are_defined_and_used(self):
+        text = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('class="icon-sprite"', text)
+        for icon in (
+            "i-github", "i-skill", "i-app", "i-download", "i-cli",
+            "i-docs", "i-shield", "i-chat", "i-license", "i-globe",
+        ):
+            with self.subTest(icon=icon):
+                self.assertIn(f'id="{icon}"', text)
+                self.assertIn(f'href="#{icon}"', text)
+        inline_icons = re.findall(r'<svg class="icon"([^>]*)>', text)
+        self.assertGreaterEqual(len(inline_icons), 15)
+        for attrs in inline_icons:
+            with self.subTest(attrs=attrs):
+                self.assertIn('aria-hidden="true"', attrs)
+
+    def test_footer_has_icons_for_every_link(self):
+        text = (ROOT / "index.html").read_text(encoding="utf-8")
+        footer = text.split("<footer", 1)[1]
+        for icon in ("i-app", "i-cli", "i-github", "i-docs", "i-shield", "i-chat", "i-license", "i-globe"):
+            with self.subTest(icon=icon):
+                self.assertIn(f'href="#{icon}"', footer)
+
+    def test_brand_logos_are_transparent_pngs(self):
+        for brand in ("google", "samsung", "xiaomi", "redmi", "poco", "oneplus"):
+            path = ROOT / "assets" / "brands" / f"{brand}.png"
+            with self.subTest(brand=brand):
+                data = path.read_bytes()
+                self.assertEqual(data[:8], b"\x89PNG\r\n\x1a\n")
+                width, height, _depth, color_type = struct.unpack(">IIBB", data[16:26])
+                self.assertGreater(width, 0)
+                self.assertGreater(height, 0)
+                self.assertIn(color_type, (4, 6), "logo must keep an alpha channel")
+
+    def test_app_is_labelled_early_mvp(self):
+        text = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Early MVP", text)
+        self.assertIn("cleanyourphone-app", text)
+
     def test_no_unrelated_project_reference(self):
         """The site must not claim an unrelated project as its inspiration."""
         for name in PAGES:

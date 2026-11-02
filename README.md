@@ -10,16 +10,16 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 
 ## What is here
 
-- A compact bilingual English/Spanish landing page with a copyable terminal quick start.
-- Two explicit paths: give `SKILL.md`/`PROMPT.md` to a coding agent, or install the guided CLI with pipx.
-- A three-step flow: connect, review and disable, with the backup and undo command in view.
-- A CLI command grid: `doctor`, `wizard`, `plan`, `apply`, `restore`, `verify` and the supporting
-  commands.
-- A plain-language safety section: disable never uninstall, protected packages, role checks,
-  backup first, small batches, no telemetry, and `restore --from-backup` for recovery.
-- A brand/profile grid for Google, Samsung, Xiaomi, Redmi, POCO and OnePlus: 156 model/firmware
-  profiles, device-tested vs documented.
-- A short FAQ, a final CTA and a footer with the repository, docs, prompt and changelog.
+- A skill-first bilingual English/Spanish landing page: the hero is a prompt card with **Open the
+  skill** as the primary action and the app as the secondary path.
+- **Choose your path**: the skill on the left as the main product, the local app on the right as an
+  early MVP, and the CLI only as a small GitHub link.
+- Inline SVG icons for GitHub, skill, app, download, CLI, docs, security, discussions, license and
+  language.
+- A three-step flow: connect locally, review, apply or restore.
+- A profile grid with the existing 156 profiles and official full-color PNG logos for Google,
+  Samsung, Xiaomi, Redmi, POCO and OnePlus.
+- Four compact safety cards, six FAQ items, a final CTA and a footer with icons.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
   Open Graph metadata, JSON-LD and a sitemap.
 
@@ -39,9 +39,8 @@ Open <http://localhost:8080/>.
 | `es.html` | Spanish landing page. |
 | `styles.css` | Shared styles. |
 | `app.js` | Copy buttons and toast feedback. |
-| `assets/logo.svg`, `assets/favicon.svg` | Primary mark and favicon. |
-| `assets/logo-mark.svg`, `assets/logo-mono.svg` | Mark-only color and monochrome versions. |
-| `assets/logo-lockup.svg`, `assets/logo-lockup-mono.svg` | Horizontal lockups for dark and light surfaces. |
+| `assets/logo.svg`, `assets/favicon.svg` | Primary mark and favicon used by the site. |
+| `assets/brands/` | Official full-color PNG logos and their source/trademark README (`assets/brands/README.md`). |
 | `assets/banner.png` | Repository banner (1600×440). |
 | `assets/og.png` | Social preview image (1280×640). |
 | `assets/brand/` | `banner-web`, `banner-skill`, `social-web`, `social-skill` variants. |
@@ -61,6 +60,10 @@ test suite again.
 The final logo, banner and social preview are checked in under `assets/`. The identity, palette,
 logo usage and clear-space rules live in
 [docs/BRAND.md](https://github.com/jparedesDS/cleanyourphone/blob/main/docs/BRAND.md).
+
+Profile brand logos live in `assets/brands/`; their source URLs and trademark notice are in
+`assets/brands/README.md`. The app repository is currently empty, so the site labels it as an early
+MVP instead of claiming a downloadable binary.
 
 The earlier phone-mockup banner generator has been retired; do not reintroduce it over the final
 lockup assets.
@@ -89,11 +92,13 @@ python -m unittest discover -s tests -v
 The suite checks local links and assets, duplicate IDs, the language switch, analytics absence,
 inline-style absence (CSP compatibility), the CSP hash against the JSON-LD block, third-party
 requests, canonical/hreflang metadata, PNG dimensions, the sitemap and `security.txt`. It also checks
-that the page does not reference an unrelated project.
+the skill-first order, the prompt card and copy control, the absence of a CLI section, the inline
+icon system, the six transparent brand PNGs and that the page does not reference an unrelated project.
 
 ## Links
 
 - Skill repository: <https://github.com/jparedesDS/cleanyourphone>
+- App repository (early MVP, currently empty): <https://github.com/jparedesDS/cleanyourphone-app>
 - Safety rules: <https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md>
 - Profile catalog: <https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md>
 - Prompt: <https://github.com/jparedesDS/cleanyourphone/blob/main/PROMPT.md>

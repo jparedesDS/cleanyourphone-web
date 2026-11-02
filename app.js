@@ -30,12 +30,13 @@
 
   doc.querySelectorAll("[data-copy]").forEach((button) => {
     button.addEventListener("click", async () => {
-      const original = button.textContent;
+      const label = button.querySelector(".copy-label") || button;
+      const original = label.textContent;
       try {
         await copyText(button.dataset.copy || "");
-        button.textContent = lang === "es" ? "Copiado" : "Copied";
+        label.textContent = lang === "es" ? "Copiado" : "Copied";
         showToast(lang === "es" ? "Copiado al portapapeles" : "Copied to clipboard");
-        setTimeout(() => { button.textContent = original; }, 1600);
+        setTimeout(() => { label.textContent = original; }, 1600);
       } catch {
         showToast(lang === "es" ? "No se pudo copiar" : "Could not copy");
       }
