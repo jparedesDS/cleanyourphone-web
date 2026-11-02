@@ -148,6 +148,30 @@ class SiteTest(unittest.TestCase):
             with self.subTest(icon=icon):
                 self.assertIn(f'href="#{icon}"', footer)
 
+    def test_purple_white_graphite_palette(self):
+        css = (ROOT / "styles.css").read_text(encoding="utf-8")
+        for token in (
+            "--ink: #121316;",
+            "--text: #f3f1ec;",
+            "--muted: #a19e96;",
+            "--accent: #a78bfa;",
+            "--mail-accent: #ffb38a;",
+        ):
+            with self.subTest(token=token):
+                self.assertIn(token, css)
+        self.assertNotIn("#e2c15c", css.lower())
+        self.assertNotIn("#efd07a", css.lower())
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn('<meta name="theme-color" content="#121316">', text)
+        for name in ("logo.svg", "favicon.svg"):
+            svg = (ROOT / "assets" / name).read_text(encoding="utf-8")
+            with self.subTest(asset=name):
+                self.assertIn('stroke="#A78BFA"', svg)
+                self.assertIn('stroke="#F3F1EC"', svg)
+                self.assertNotIn("#E2C15C", svg.upper())
+
     def test_brand_logos_are_transparent_pngs(self):
         for brand in ("google", "samsung", "xiaomi", "redmi", "poco", "oneplus"):
             path = ROOT / "assets" / "brands" / f"{brand}.png"

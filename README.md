@@ -61,6 +61,10 @@ The final logo, banner and social preview are checked in under `assets/`. The id
 logo usage and clear-space rules live in
 [docs/BRAND.md](https://github.com/jparedesDS/cleanyourphone/blob/main/docs/BRAND.md).
 
+The website uses the two-color CleanYourMail-style system: lavender `#A78BFA` for actions and
+emphasis, white `#F3F1EC` for text, and graphite `#121316` for the surface. The CleanYourMail
+wordmark keeps its own orange `#FFB38A`.
+
 Profile brand logos live in `assets/brands/`; their source URLs and trademark notice are in
 `assets/brands/README.md`. The app repository is currently empty, so the site labels it as an early
 MVP instead of claiming a downloadable binary.

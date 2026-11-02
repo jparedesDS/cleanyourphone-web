@@ -1,18 +1,16 @@
 :root {
-  --ink: #15161a;
-  --ink-2: #101114;
-  --panel: #1c1e24;
-  --panel-2: #23252d;
-  --text: #ece9e2;
-  --muted: #a8a39b;
-  --muted-2: #8e8a82;
-  --accent: #e2c15c;
+  --ink: #121316;
+  --ink-2: #17181c;
+  --panel: #1b1c21;
+  --panel-2: #2a2c31;
+  --text: #f3f1ec;
+  --muted: #a19e96;
+  --muted-2: #8b8881;
+  --accent: #a78bfa;
   --accent-2: #a78bfa;
-  --lavender: #c4b5fd;
-  --coral: #d97a5e;
   --mail-accent: #ffb38a;
-  --line: rgba(236, 233, 226, 0.12);
-  --line-strong: rgba(236, 233, 226, 0.2);
+  --line: rgba(243, 241, 236, 0.12);
+  --line-strong: rgba(243, 241, 236, 0.2);
   --radius: 14px;
   --max: 1120px;
   --mono: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -27,8 +25,8 @@ body {
   margin: 0;
   color: var(--text);
   background:
-    radial-gradient(900px 520px at 78% -10%, rgba(226, 193, 92, 0.08), transparent 62%),
-    radial-gradient(700px 460px at 8% 16%, rgba(167, 139, 250, 0.10), transparent 60%),
+    radial-gradient(900px 520px at 78% -10%, rgba(167, 139, 250, 0.10), transparent 62%),
+    radial-gradient(700px 460px at 8% 16%, rgba(167, 139, 250, 0.07), transparent 60%),
     radial-gradient(620px 420px at 50% 100%, rgba(167, 139, 250, 0.05), transparent 60%),
     var(--ink);
   font-family: var(--sans);
@@ -116,7 +114,7 @@ button { font: inherit; }
 
 .brand img { width: 32px; height: 32px; }
 
-.wordmark-phone { color: var(--lavender); }
+.wordmark-phone { color: var(--accent); }
 .wordmark-mail { color: var(--mail-accent); }
 
 .nav {
@@ -246,7 +244,7 @@ h1 em {
   color: var(--ink);
 }
 
-.button-primary:hover { background: #efd07a; }
+.button-primary:hover { background: #b9a3ff; }
 
 .button-ghost {
   background: transparent;
@@ -255,7 +253,7 @@ h1 em {
 }
 
 .button-ghost:hover {
-  background: rgba(238, 248, 238, 0.04);
+  background: rgba(243, 241, 236, 0.04);
   border-color: var(--muted);
 }
 
@@ -294,7 +292,7 @@ h1 em {
 }
 
 .terminal-bar span:nth-child(1) { background: var(--accent-2); }
-.terminal-bar span:nth-child(2) { background: var(--lavender); }
+.terminal-bar span:nth-child(2) { background: var(--accent); }
 .terminal-bar span:nth-child(3) { background: var(--text); }
 
 .terminal-bar em {
@@ -318,7 +316,7 @@ h1 em {
 
 .prompt { color: var(--accent); }
 .ok { color: var(--accent); }
-.ask { color: var(--lavender); }
+.ask { color: var(--accent); }
 
 .icon-sprite {
   position: absolute;
@@ -381,8 +379,8 @@ h1 em {
 .prompt-badge {
   padding: 5px 8px;
   color: var(--accent);
-  background: rgba(226, 193, 92, 0.08);
-  border: 1px solid rgba(226, 193, 92, 0.32);
+  background: rgba(167, 139, 250, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.32);
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 10px;
@@ -442,7 +440,7 @@ h1 em {
 
 .path-card-primary {
   background: linear-gradient(135deg, var(--panel), var(--panel-2));
-  border-color: rgba(226, 193, 92, 0.34);
+  border-color: rgba(167, 139, 250, 0.34);
 }
 
 .path-label {
@@ -734,7 +732,7 @@ h2 {
 
 /* Samsung's official blue is very dark on carbon; a neutral 1px halo keeps the fill untouched and legible. */
 .brand-logo-samsung {
-  filter: drop-shadow(0 0 1px rgba(236, 233, 226, 0.9));
+  filter: drop-shadow(0 0 1px rgba(243, 241, 236, 0.9));
 }
 
 .profile-grid b { font-size: 14.5px; }
