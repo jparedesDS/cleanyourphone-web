@@ -71,6 +71,17 @@ class SiteTest(unittest.TestCase):
                                "matomo", "hotjar", "segment.com"):
                     self.assertNotIn(marker, text)
 
+    def test_mail_cross_link_after_faq(self):
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            nav = text.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
+            with self.subTest(page=name):
+                self.assertLess(nav.index(">FAQ<"), nav.index("https://jparedesds.github.io/cleanyourmail-web"))
+                self.assertIn('class="wordmark-mail"', nav)
+                self.assertIn(">Mail</span>", nav)
+        css = (ROOT / "styles.css").read_text(encoding="utf-8")
+        self.assertIn("--mail-accent: #ffb38a;", css)
+
     def test_skill_first_hero_and_no_cli_section(self):
         text = (ROOT / "index.html").read_text(encoding="utf-8")
         hero = text.split('<section class="hero">', 1)[1].split("</section>", 1)[0]

@@ -10,6 +10,7 @@
   --accent-2: #a78bfa;
   --lavender: #c4b5fd;
   --coral: #d97a5e;
+  --mail-accent: #ffb38a;
   --line: rgba(236, 233, 226, 0.12);
   --line-strong: rgba(236, 233, 226, 0.2);
   --radius: 14px;
@@ -116,6 +117,7 @@ button { font: inherit; }
 .brand img { width: 32px; height: 32px; }
 
 .wordmark-phone { color: var(--lavender); }
+.wordmark-mail { color: var(--mail-accent); }
 
 .nav {
   display: flex;
