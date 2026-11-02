@@ -16,7 +16,7 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 - A three-command setup section and a copyable terminal walkthrough.
 - A plain-language safety section: disable never uninstall, protected packages, role checks,
   backup first, small batches, no telemetry.
-- The profile story: 157 model/firmware profiles, 6 brands, device vs documented.
+- The profile story: 156 model/firmware profiles, 6 brands, device vs documented.
 - A comparison against random ADB scripts and root debloaters.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
   Open Graph metadata, JSON-LD and a sitemap.

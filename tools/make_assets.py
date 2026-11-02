@@ -236,7 +236,7 @@ def compose_skill(width: int, height: int, output: str, scale: int = 2):
         draw.text((cx + 24 * s, y), text, font=font(11 * s, mono=True), fill=color)
         y += 22 * s
 
-    draw.text((72 * s, height * s - 48 * s), "No root · No telemetry · MIT · 157 profiles",
+    draw.text((72 * s, height * s - 48 * s), "No root · No telemetry · MIT · 156 profiles",
               font=font(11 * s, mono=True), fill=MUTED_2)
 
     target = ASSETS / output
@@ -252,7 +252,7 @@ def main():
         [("Your phone,", TEXT), ("minus the bloat.", ACCENT)],
         "Disable preinstalled Android apps over ADB.\nNo root. No ROM. Nothing uninstalled.",
         "OPEN SOURCE · ADB · REVERSIBLE",
-        ["No root", "No telemetry", "MIT", "157 profiles"],
+        ["No root", "No telemetry", "MIT", "156 profiles"],
         (236, 348), (1288, 42), "banner.png",
     )
     compose(
@@ -260,7 +260,7 @@ def main():
         [("Your phone,", TEXT), ("minus the bloat.", ACCENT)],
         "Disable preinstalled Android apps over ADB.\nNo root. No ROM. Nothing uninstalled.\nEvery change has an undo command.",
         "OPEN SOURCE · ADB · REVERSIBLE",
-        ["No root", "No telemetry", "MIT", "157 profiles"],
+        ["No root", "No telemetry", "MIT", "156 profiles"],
         (250, 388), (952, 108), "og.png",
     )
     compose_skill(1600, 440, "brand/banner-skill.png")
