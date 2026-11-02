@@ -209,7 +209,7 @@ def compose_skill(width: int, height: int, output: str, scale: int = 2):
     draw.text((72 * s, 158 * s), "Your phone,", font=font(58 * s, bold=True), fill=TEXT)
     draw.text((72 * s, 220 * s), "minus the bloat.", font=font(58 * s, bold=True), fill=ACCENT)
     draw.multiline_text((72 * s, 300 * s),
-                        "One prompt. One plan.\nOne command to undo.",
+                        "One prompt. One plan.\nRestore every recorded change.",
                         font=font(16 * s), fill=MUTED, spacing=5 * s)
 
     # terminal card
@@ -236,7 +236,7 @@ def compose_skill(width: int, height: int, output: str, scale: int = 2):
         draw.text((cx + 24 * s, y), text, font=font(11 * s, mono=True), fill=color)
         y += 22 * s
 
-    draw.text((72 * s, height * s - 48 * s), "No root · No telemetry · MIT · 156 profiles",
+    draw.text((72 * s, height * s - 48 * s), "No root · No telemetry · MIT · 156 profiles · 4 device-tested",
               font=font(11 * s, mono=True), fill=MUTED_2)
 
     target = ASSETS / output

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CleanYourPhone — your phone, minus the bloat</title>
-  <meta name="description" content="An open-source skill for coding agents that disables preinstalled Android apps over ADB. No root, no custom ROM, nothing uninstalled, and one command to undo every change.">
+  <title>CleanYourPhone — Reversible Android ADB Debloat Skill &amp; CLI</title>
+  <meta name="description" content="An open-source skill and CLI that disables preinstalled Android apps over ADB without root or uninstalling. It backs up first, protects core apps and roles, and restores every change the CLI recorded.">
   <meta name="author" content="Jose Paredes">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#061014">
@@ -20,8 +20,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CleanYourPhone">
   <meta property="og:url" content="https://jparedesds.github.io/cleanyourphone-web/">
-  <meta property="og:title" content="CleanYourPhone — your phone, minus the bloat">
-  <meta property="og:description" content="Disable preinstalled Android apps without root, without uninstalling, and undo every change with one command.">
+  <meta property="og:title" content="CleanYourPhone — Reversible Android ADB Debloat Skill &amp; CLI">
+  <meta property="og:description" content="Disable preinstalled Android apps without root or uninstalling. Back up first, protect core apps, and restore every change the CLI recorded.">
   <meta property="og:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="640">
@@ -29,8 +29,8 @@
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CleanYourPhone — your phone, minus the bloat">
-  <meta name="twitter:description" content="An open-source, reversible Android debloat skill for coding agents. No root, no telemetry, no uninstall.">
+  <meta name="twitter:title" content="CleanYourPhone — Reversible Android ADB Debloat Skill &amp; CLI">
+  <meta name="twitter:description" content="An open-source Android debloat skill and CLI. Disable only what you approve, back up first, and restore every recorded change.">
   <meta name="twitter:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
   <meta name="twitter:image:alt" content="CleanYourPhone — your phone, minus the bloat">
   <script type="application/ld+json">
@@ -86,28 +86,26 @@
         <div class="hero-copy">
           <p class="eyebrow">Open source · ADB · Reversible</p>
           <h1>Your phone,<br><em>minus the bloat.</em></h1>
-          <p class="lede">A skill for coding agents that disables preinstalled Android apps over ADB. No root, no custom ROM, nothing uninstalled, and one command to undo every change. WhatsApp, banking and your own apps stay.</p>
+          <p class="lede">A skill for coding agents that disables preinstalled Android apps over ADB. No root, no custom ROM, nothing uninstalled. The optional CLI backs up first, reviews every package with you, and restores every change it recorded. Nothing user-facing is disabled without your approval.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">Get the skill <span aria-hidden="true">↗</span></a>
             <a class="button button-ghost" href="#cli">See the CLI</a>
           </div>
-          <p class="trust-line">Free · MIT · No root · No telemetry · 156 profiles</p>
+          <p class="trust-line">Free · MIT · No root · No telemetry · 156 profiles · 4 device-tested · 3 auto-apply</p>
         </div>
 
         <div class="hero-card">
           <div class="terminal">
             <div class="terminal-bar"><span></span><span></span><span></span><em>terminal</em></div>
             <pre><code><span class="prompt">$</span> pipx install git+https://github.com/jparedesDS/cleanyourphone.git
-<span class="prompt">$</span> cleanyourphone doctor
-Device ...... Google Pixel 8 (shiba)
-Profiles .... google-pixel-8
-
-<span class="prompt">$</span> cleanyourphone wizard
-Backup first. Review every package.
-Nothing changes without confirmation.</code></pre>
-            <button class="copy-button" type="button" data-copy="pipx install git+https://github.com/jparedesDS/cleanyourphone.git&#10;cleanyourphone doctor&#10;cleanyourphone wizard">Copy commands</button>
+<span class="prompt">$</span> cleanyourphone plan --profile google-pixel-8
+DISABLE  com.google.android.apps.wellbeing
+         why: screen-time tracking
+ASK      com.google.android.apps.turbo
+         why: Adaptive Battery</code></pre>
+            <button class="copy-button" type="button" data-copy="pipx install git+https://github.com/jparedesDS/cleanyourphone.git">Copy install</button>
           </div>
-          <p class="hero-note">Start with a backup. Review the plan. Keep the undo command.</p>
+          <p class="hero-note">Start with a backup. Review the plan. Keep the restore command.</p>
         </div>
       </div>
     </section>
@@ -136,6 +134,29 @@ Nothing changes without confirmation.</code></pre>
           </li>
         </ol>
         <p class="section-note">The CLI is optional. <code>SKILL.md</code> contains the raw ADB procedure for an agent that cannot run Python.</p>
+      </div>
+    </section>
+
+    <section class="section" id="start">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Choose your path</p>
+          <h2>Use your agent,<br>or run the CLI.</h2>
+        </div>
+        <div class="start-grid">
+          <article class="start-card">
+            <span class="start-label">Main product</span>
+            <h3>Give the skill to your agent</h3>
+            <p>Clone the repo, open it with Claude Code, OpenCode, Cursor or Codex, and say “Use CleanYourPhone on my phone.” Or paste <code>PROMPT.md</code> into any chat agent.</p>
+            <p class="start-link"><a href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener">Open SKILL.md ↗</a></p>
+          </article>
+          <article class="start-card">
+            <span class="start-label">Guided terminal</span>
+            <h3>Install the CLI</h3>
+            <p>Install with <code>pipx</code> from the repo, then run <code>cleanyourphone wizard</code>. Same backup, same review, same restore.</p>
+            <p class="start-link"><a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">Read the CLI guide ↗</a></p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -202,8 +223,8 @@ Nothing changes without confirmation.</code></pre>
           <li><b>Google</b><span>5 profiles · Pixel 8 device-tested</span></li>
           <li><b>Samsung</b><span>55 profiles · Galaxy S23 Ultra device-tested</span></li>
           <li><b>Xiaomi</b><span>15 profiles · HyperOS family device-tested</span></li>
-          <li><b>Redmi</b><span>56 profiles · Note, K and A families</span></li>
-          <li><b>POCO</b><span>16 profiles · F, X and M families</span></li>
+          <li><b>Redmi</b><span>56 profiles · Note, K and A families · documented only</span></li>
+          <li><b>POCO</b><span>16 profiles · F, X and M families · documented only</span></li>
           <li><b>OnePlus</b><span>8 profiles · OnePlus 6T device-tested</span></li>
         </ul>
         <p class="section-note">Only a <b>device</b> profile on a tested build can auto-apply. Everything else is a reviewable starting point. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">Browse the 156 profiles ↗</a></p>
@@ -217,19 +238,23 @@ Nothing changes without confirmation.</code></pre>
           <h2>Short answers.</h2>
         </div>
         <div class="faq">
-          <details><summary>Is it safe?</summary><p>Safer than a copied package list, but not magic. It never uninstalls, backs up first, refuses protected packages and role holders, disables in small batches and can undo every change. You still review the plan and test calls, SMS, camera, keyboard, Home and notifications.</p></details>
+          <details><summary>Is it safe?</summary><p>Safer than a copied package list, but not magic. It never uninstalls, backs up first, refuses protected packages and role holders, disables in small batches and can restore every change the CLI recorded. You still review the plan and test calls, SMS, camera, keyboard, Home and notifications.</p></details>
           <details><summary>Does it uninstall anything?</summary><p>No. The only state change is <code>pm disable-user --user 0</code>. No uninstall, hide, clear or root. <code>pm enable</code> is the undo.</p></details>
           <details><summary>What if something goes wrong?</summary><p>Stop. Run <code>restore</code> if ADB still sees the phone. If the undo journal is lost, run <code>restore --from-backup &lt;folder&gt;</code> and review the list. If the phone does not boot, the recovery guide covers safe mode, ADB and recovery; factory reset is the last resort.</p></details>
+          <details><summary>Why disable instead of uninstall?</summary><p><code>pm uninstall --user 0</code> removes the package for the main user and can complicate OTA updates, factory-reset expectations or OEM restore flows. <code>pm disable-user --user 0</code> freezes it in place and reverses with <code>pm enable</code>.</p></details>
+          <details><summary>Does a cloud agent see my phone data?</summary><p>The CLI is local and talks to <code>adb</code> only. If you use a hosted coding agent, that agent may receive the model, package names and fingerprint; use a local model if that matters. The website and CLI make no third-party requests.</p></details>
+          <details><summary>Will it break OTA updates or Knox?</summary><p>It does not unlock the bootloader, flash a ROM or uninstall packages, so Samsung Knox is not tripped. Disabling a package does not modify the system partition. A major OEM update can still re-enable some packages; re-run <code>doctor</code> and <code>plan</code> after an OTA.</p></details>
+          <details><summary>Does it really improve battery life?</summary><p>Sometimes, but it is not a battery miracle. Expect a small idle improvement at best; the big wins come from screen, background activity and signal. Measure before and after instead of trusting a claim.</p></details>
           <details><summary>Does it work on tablets?</summary><p>Yes, on Android 8+ with ADB. Tablet profiles set <code>form_factor: tablet</code>; a missing dialer or SMS role is a warning, not a failure. Home and keyboard checks still apply.</p></details>
           <details><summary>Do I need Python?</summary><p>No. <code>SKILL.md</code> contains the raw ADB procedure. If you use the CLI, Python 3.10+ and Platform-Tools are enough; there are no third-party dependencies.</p></details>
-          <details><summary>Is it free?</summary><p>Yes. MIT license. No account, no subscription, no telemetry and no hosted service.</p></details>
+          <details><summary>Is it free?</summary><p>Yes. MIT license. No account, no subscription, no telemetry and no CleanYourPhone-hosted service.</p></details>
         </div>
       </div>
     </section>
 
     <section class="cta">
       <div class="container cta-inner">
-        <h2>Make the phone yours again.</h2>
+        <h2>Review the plan.<br>Keep the undo.</h2>
         <p>Give the prompt to your agent, or run the CLI yourself.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">Get the skill <span aria-hidden="true">↗</span></a>

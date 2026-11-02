@@ -11,6 +11,7 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 ## What is here
 
 - A compact bilingual English/Spanish landing page with a copyable terminal quick start.
+- Two explicit paths: give `SKILL.md`/`PROMPT.md` to a coding agent, or install the guided CLI with pipx.
 - A three-step flow: connect, review and disable, with the backup and undo command in view.
 - A CLI command grid: `doctor`, `wizard`, `plan`, `apply`, `restore`, `verify` and the supporting
   commands.

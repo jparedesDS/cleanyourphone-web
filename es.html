@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CleanYourPhone — tu móvil, sin lo que sobra</title>
-  <meta name="description" content="Una skill de código abierto para agentes que desactiva apps preinstaladas de Android por ADB. Sin root, sin ROM, sin desinstalar nada y con un comando para deshacerlo todo.">
+  <title>CleanYourPhone — Desactiva bloatware Android por ADB sin root</title>
+  <meta name="description" content="Skill y CLI de código abierto para desactivar apps preinstaladas de Android por ADB. Sin root, sin desinstalar, con copia previa y restauración de cada cambio registrado por la CLI.">
   <meta name="author" content="Jose Paredes">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#061014">
@@ -20,8 +20,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CleanYourPhone">
   <meta property="og:url" content="https://jparedesds.github.io/cleanyourphone-web/es.html">
-  <meta property="og:title" content="CleanYourPhone — tu móvil, sin lo que sobra">
-  <meta property="og:description" content="Desactiva apps preinstaladas de Android sin root, sin desinstalar y con un comando para deshacerlo todo.">
+  <meta property="og:title" content="CleanYourPhone — Desactiva bloatware Android por ADB sin root">
+  <meta property="og:description" content="Desactiva apps preinstaladas de Android sin root ni desinstalar. Copia previa, protección de apps críticas y restauración de cada cambio registrado.">
   <meta property="og:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="640">
@@ -29,8 +29,8 @@
   <meta property="og:locale" content="es_ES">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CleanYourPhone — tu móvil, sin lo que sobra">
-  <meta name="twitter:description" content="Una skill de Android reversible para agentes. Sin root, sin telemetría, sin desinstalar.">
+  <meta name="twitter:title" content="CleanYourPhone — Desactiva bloatware Android por ADB sin root">
+  <meta name="twitter:description" content="Skill y CLI de Android reversible. Desactiva solo lo que apruebes, con copia previa y restauración de cada cambio registrado.">
   <meta name="twitter:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
   <meta name="twitter:image:alt" content="CleanYourPhone — tu móvil, sin lo que sobra">
   <script type="application/ld+json">
@@ -86,28 +86,26 @@
         <div class="hero-copy">
           <p class="eyebrow">Código abierto · ADB · Reversible</p>
           <h1>Tu móvil,<br><em>sin lo que sobra.</em></h1>
-          <p class="lede">Una skill para agentes que desactiva apps preinstaladas de Android por ADB. Sin root, sin ROM, sin desinstalar nada y con un comando para deshacerlo todo. WhatsApp, el banco y tus apps se quedan.</p>
+          <p class="lede">Una skill para agentes que desactiva apps preinstaladas de Android por ADB. Sin root, sin ROM, sin desinstalar nada. La CLI opcional hace copia previa, revisa cada paquete contigo y restaura cada cambio que registró. Nada de cara al usuario se desactiva sin tu aprobación.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">Consigue la skill <span aria-hidden="true">↗</span></a>
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">Ver la skill en GitHub <span aria-hidden="true">↗</span></a>
             <a class="button button-ghost" href="#cli">Ver la CLI</a>
           </div>
-          <p class="trust-line">Gratis · MIT · Sin root · Sin telemetría · 156 perfiles</p>
+          <p class="trust-line">Gratis · MIT · Sin root · Sin telemetría · 156 perfiles · 4 probados en dispositivo · 3 aplicables automáticamente</p>
         </div>
 
         <div class="hero-card">
           <div class="terminal">
             <div class="terminal-bar"><span></span><span></span><span></span><em>terminal</em></div>
             <pre><code><span class="prompt">$</span> pipx install git+https://github.com/jparedesDS/cleanyourphone.git
-<span class="prompt">$</span> cleanyourphone doctor
-Device ...... Google Pixel 8 (shiba)
-Profiles .... google-pixel-8
-
-<span class="prompt">$</span> cleanyourphone wizard
-Backup first. Review every package.
-Nothing changes without confirmation.</code></pre>
-            <button class="copy-button" type="button" data-copy="pipx install git+https://github.com/jparedesDS/cleanyourphone.git&#10;cleanyourphone doctor&#10;cleanyourphone wizard">Copiar comandos</button>
+<span class="prompt">$</span> cleanyourphone plan --profile google-pixel-8
+DISABLE  com.google.android.apps.wellbeing
+         why: screen-time tracking
+ASK      com.google.android.apps.turbo
+         why: Adaptive Battery</code></pre>
+            <button class="copy-button" type="button" data-copy="pipx install git+https://github.com/jparedesDS/cleanyourphone.git">Copiar instalación</button>
           </div>
-          <p class="hero-note">Empieza con un backup. Revisa el plan. Guarda el comando de undo.</p>
+          <p class="hero-note">Empieza con una copia de seguridad. Revisa el plan. Guarda el comando para deshacer. La salida del CLI está en inglés.</p>
         </div>
       </div>
     </section>
@@ -122,7 +120,7 @@ Nothing changes without confirmation.</code></pre>
           <li>
             <span class="step-number">01</span>
             <h3>Conecta</h3>
-            <p>Activa la depuración USB, conecta el móvil y ejecuta <code>doctor</code>. Comprueba ADB, el dispositivo, el backup y el perfil antes de cambiar nada.</p>
+            <p>Activa la depuración USB, conecta el móvil y ejecuta <code>doctor</code>. Comprueba ADB, el dispositivo, la copia de seguridad y el perfil antes de cambiar nada.</p>
           </li>
           <li>
             <span class="step-number">02</span>
@@ -132,10 +130,33 @@ Nothing changes without confirmation.</code></pre>
           <li>
             <span class="step-number">03</span>
             <h3>Desactiva</h3>
-            <p>Los paquetes se desactivan en lotes de cinco, con verificación. <code>restore</code> deshace los cambios exactos; <code>restore --from-backup</code> es la red si se pierde el journal.</p>
+            <p>Los paquetes se desactivan en lotes de cinco, con verificación. <code>restore</code> deshace los cambios exactos; <code>restore --from-backup</code> es la alternativa si se pierde el registro.</p>
           </li>
         </ol>
         <p class="section-note">La CLI es opcional. <code>SKILL.md</code> contiene el procedimiento ADB en crudo para un agente que no pueda ejecutar Python.</p>
+      </div>
+    </section>
+
+    <section class="section" id="start">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Elige tu camino</p>
+          <h2>Usa tu agente,<br>o ejecuta la CLI.</h2>
+        </div>
+        <div class="start-grid">
+          <article class="start-card">
+            <span class="start-label">Producto principal</span>
+            <h3>Dale la skill a tu agente</h3>
+            <p>Clona el repo, ábrelo con Claude Code, OpenCode, Cursor o Codex y di «Usa CleanYourPhone en mi móvil». O pega <code>PROMPT.es.md</code> en cualquier chat.</p>
+            <p class="start-link"><a href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener">Abrir SKILL.md ↗</a></p>
+          </article>
+          <article class="start-card">
+            <span class="start-label">Terminal guiada</span>
+            <h3>Instala la CLI</h3>
+            <p>Instala con <code>pipx</code> desde el repo y ejecuta <code>cleanyourphone wizard</code>. Misma copia, misma revisión, misma restauración.</p>
+            <p class="start-link"><a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">Leer la guía del CLI ↗</a></p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -143,16 +164,16 @@ Nothing changes without confirmation.</code></pre>
       <div class="container">
         <div class="section-head">
           <p class="kicker">La CLI</p>
-          <h2>Un conjunto de comandos guiado.</h2>
+          <h2>Una CLI que te guía.</h2>
           <p>Python 3.10+. Sin dependencias. <code>wizard</code> es el camino simple; <code>plan</code> y <code>apply</code> están cuando quieres control.</p>
         </div>
         <div class="command-grid">
-          <article class="command"><code>doctor</code><p>Comprueba ADB, el móvil, el backup y el perfil.</p></article>
-          <article class="command"><code>wizard</code><p>Flujo guiado: backup, elección de perfil, revisión paquete a paquete y apply.</p></article>
+          <article class="command"><code>doctor</code><p>Comprueba ADB, el móvil, la copia de seguridad y el perfil.</p></article>
+          <article class="command"><code>wizard</code><p>Flujo guiado: copia de seguridad, elección de perfil, revisión paquete a paquete y apply.</p></article>
           <article class="command"><code>plan</code><p>Muestra <code>DISABLE</code>, <code>ASK</code>, <code>BLOCKED</code> y <code>SKIP</code> sin cambiar nada.</p></article>
           <article class="command"><code>apply</code><p>Aplica la lista disable de un perfil device probado, en lotes de cinco.</p></article>
           <article class="command"><code>restore</code><p>Reactiva exactamente lo que desactivó la herramienta y restaura el DNS privado.</p></article>
-          <article class="command"><code>restore --from-backup</code><p>Si se pierde el journal, reconstruye el cambio desde el backup. Dry run hasta <code>--yes</code>.</p></article>
+          <article class="command"><code>restore --from-backup</code><p>Si se pierde el registro, reconstruye el cambio desde la copia. Vista previa hasta <code>--yes</code>.</p></article>
           <article class="command"><code>verify</code><p>Comprueba dialer, SMS, Home, teclado, Play y paquetes protegidos.</p></article>
           <article class="command"><code>profiles</code><p>Lista los 156 perfiles de modelo/firmware y su nivel de verificación.</p></article>
           <article class="command"><code>protected</code><p>Muestra los paquetes que nunca se tocan.</p></article>
@@ -172,19 +193,19 @@ Nothing changes without confirmation.</code></pre>
         <div class="safety-grid">
           <article class="safety-card">
             <h3>Desactivar, nunca desinstalar</h3>
-            <p>Solo <code>pm disable-user --user 0</code>. Sin desinstalar, ocultar, borrar ni root. <code>pm enable</code> es el undo.</p>
+            <p>Solo <code>pm disable-user --user 0</code>. Sin desinstalar, ocultar, borrar ni root. <code>pm enable</code> lo revierte.</p>
           </article>
           <article class="safety-card">
-            <h3>Backup primero</h3>
-            <p>Paquetes, roles, teclado, ajustes y <code>getprop</code> se guardan antes del primer cambio. Sin backup no hay cambios.</p>
+            <h3>Copia de seguridad primero</h3>
+            <p>Paquetes, roles, teclado, ajustes y <code>getprop</code> se guardan antes del primer cambio. Sin copia no hay cambios.</p>
           </article>
           <article class="safety-card">
             <h3>Lista protegida y roles</h3>
             <p>Telefonía, Play Services, WebView, permisos, alertas de emergencia, dialer, SMS, Home y teclado se rechazan o se comprueban.</p>
           </article>
           <article class="safety-card">
-            <h3>Lotes pequeños, undo claro</h3>
-            <p>Cinco paquetes, verificación y siguiente lote. El journal es exacto; si se pierde, el backup reconstruye el cambio.</p>
+            <h3>Lotes pequeños, reversión exacta</h3>
+            <p>Cinco paquetes, verificación y siguiente lote. El registro es exacto; si se pierde, la copia reconstruye el cambio.</p>
           </article>
         </div>
         <p class="section-note">Un paquete core equivocado puede provocar un bootloop. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/RESTORE.md" rel="noopener">Lee la guía de recuperación ↗</a></p>
@@ -202,11 +223,11 @@ Nothing changes without confirmation.</code></pre>
           <li><b>Google</b><span>5 perfiles · Pixel 8 probado en dispositivo</span></li>
           <li><b>Samsung</b><span>55 perfiles · Galaxy S23 Ultra probado en dispositivo</span></li>
           <li><b>Xiaomi</b><span>15 perfiles · familia HyperOS probada en dispositivo</span></li>
-          <li><b>Redmi</b><span>56 perfiles · familias Note, K y A</span></li>
-          <li><b>POCO</b><span>16 perfiles · familias F, X y M</span></li>
+          <li><b>Redmi</b><span>56 perfiles · familias Note, K y A · documentados, sin prueba en dispositivo</span></li>
+          <li><b>POCO</b><span>16 perfiles · familias F, X y M · documentados, sin prueba en dispositivo</span></li>
           <li><b>OnePlus</b><span>8 perfiles · OnePlus 6T probado en dispositivo</span></li>
         </ul>
-        <p class="section-note">Solo un perfil <b>device</b> en un build probado puede auto-aplicarse. El resto es un punto de partida revisable. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">Ver los 156 perfiles ↗</a></p>
+        <p class="section-note">Solo un perfil <b>device</b> en una compilación probada puede aplicarse automáticamente. El resto es un punto de partida revisable. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">Ver los 156 perfiles ↗</a></p>
       </div>
     </section>
 
@@ -217,19 +238,23 @@ Nothing changes without confirmation.</code></pre>
           <h2>Respuestas cortas.</h2>
         </div>
         <div class="faq">
-          <details><summary>¿Es seguro?</summary><p>Más seguro que una lista copiada, pero no es magia. Nunca desinstala, hace backup primero, rechaza paquetes protegidos y role holders, desactiva en lotes pequeños y puede deshacer cada cambio. Aun así, revisa el plan y prueba llamadas, SMS, cámara, teclado, Home y notificaciones.</p></details>
-          <details><summary>¿Desinstala algo?</summary><p>No. El único cambio de estado es <code>pm disable-user --user 0</code>. Sin desinstalar, ocultar, borrar ni root. <code>pm enable</code> es el undo.</p></details>
-          <details><summary>¿Y si algo sale mal?</summary><p>Para. Ejecuta <code>restore</code> si ADB todavía ve el móvil. Si se perdió el journal, ejecuta <code>restore --from-backup &lt;carpeta&gt;</code> y revisa la lista. Si el móvil no arranca, la guía de recuperación cubre modo seguro, ADB y recovery; el factory reset es el último recurso.</p></details>
+          <details><summary>¿Es seguro?</summary><p>Más seguro que una lista copiada, pero no es magia. Nunca desinstala, hace copia primero, rechaza paquetes protegidos y apps con roles críticos, desactiva en lotes pequeños y puede restaurar cada cambio registrado por la CLI. Aun así, revisa el plan y prueba llamadas, SMS, cámara, teclado, Home y notificaciones.</p></details>
+          <details><summary>¿Desinstala algo?</summary><p>No. El único cambio de estado es <code>pm disable-user --user 0</code>. Sin desinstalar, ocultar, borrar ni root. <code>pm enable</code> lo revierte.</p></details>
+          <details><summary>¿Y si algo sale mal?</summary><p>Detente. No desactives más paquetes. Ejecuta <code>restore</code> si ADB todavía ve el móvil. Si se perdió el registro, ejecuta <code>restore --from-backup &lt;carpeta&gt;</code> y revisa la lista. Si el móvil no arranca, la guía de recuperación cubre modo seguro, ADB y recuperación; el restablecimiento de fábrica es el último recurso.</p></details>
+          <details><summary>¿Por qué desactivar en vez de desinstalar?</summary><p><code>pm uninstall --user 0</code> elimina el paquete para el usuario principal y puede complicar las OTA, el restablecimiento de fábrica o los flujos del fabricante. <code>pm disable-user --user 0</code> lo deja inactivo sin borrarlo y se revierte con <code>pm enable</code>.</p></details>
+          <details><summary>¿Un agente en la nube ve los datos de mi móvil?</summary><p>La CLI es local y solo habla con <code>adb</code>. Si usas un agente alojado, ese agente puede recibir el modelo, los nombres de paquetes y el fingerprint; usa un modelo local si eso te importa. La web y la CLI no hacen peticiones a terceros.</p></details>
+          <details><summary>¿Rompe las OTA o Knox?</summary><p>No desbloquea el bootloader, no flashea una ROM y no desinstala paquetes, así que no dispara Knox. Desactivar un paquete no modifica la partición del sistema. Una actualización mayor del fabricante puede reactivar algún paquete; vuelve a ejecutar <code>doctor</code> y <code>plan</code> tras una OTA.</p></details>
+          <details><summary>¿De verdad mejora la batería?</summary><p>A veces, pero no es un milagro. Lo realista es una mejora pequeña en reposo; la mayor parte viene de la pantalla, la actividad en segundo plano y la señal. Mídelo antes y después en vez de fiarte de una promesa.</p></details>
           <details><summary>¿Funciona en tablets?</summary><p>Sí, en Android 8+ con ADB. Los perfiles de tablet usan <code>form_factor: tablet</code>; que falte el dialer o SMS es un aviso, no un fallo. Las comprobaciones de Home y teclado siguen aplicando.</p></details>
           <details><summary>¿Necesito Python?</summary><p>No. <code>SKILL.md</code> contiene el procedimiento ADB en crudo. Si usas la CLI, con Python 3.10+ y Platform-Tools basta; no hay dependencias de terceros.</p></details>
-          <details><summary>¿Es gratis?</summary><p>Sí. Licencia MIT. Sin cuenta, sin suscripción, sin telemetría y sin servicio alojado.</p></details>
+          <details><summary>¿Es gratis?</summary><p>Sí. Licencia MIT. Sin cuenta, sin suscripción, sin telemetría y sin servicio alojado por CleanYourPhone.</p></details>
         </div>
       </div>
     </section>
 
     <section class="cta">
       <div class="container cta-inner">
-        <h2>Haz que el móvil vuelva a ser tuyo.</h2>
+        <h2>Revisa el plan.<br>Conserva la vuelta atrás.</h2>
         <p>Dale el prompt a tu agente o ejecuta la CLI tú mismo.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">Consigue la skill <span aria-hidden="true">↗</span></a>
