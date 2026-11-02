@@ -725,6 +725,11 @@ h2 {
   object-fit: contain;
 }
 
+/* Samsung's official blue is very dark on carbon; a neutral 1px halo keeps the fill untouched and legible. */
+.brand-logo-samsung {
+  filter: drop-shadow(0 0 1px rgba(236, 233, 226, 0.9));
+}
+
 .profile-grid b { font-size: 14.5px; }
 
 .trademark-note {
