@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="64" viewBox="0 0 320 64" role="img" aria-labelledby="title">
   <title id="title">CleanYourPhone</title>
-  <g transform="translate(4 4) scale(.875)" fill="none" stroke="#15161A" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+  <g transform="translate(4 4) scale(.875)" fill="none" stroke="#121316" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
     <rect x="19" y="8.5" width="26" height="47" rx="6"/>
     <path d="M33 17.5L25 25.5L33 33.5M25 25.5H35A8 8 0 0 1 35 41.5H32"/>
   </g>
-  <text x="76" y="40" fill="#15161A" font-family="Aptos, 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="26" font-weight="700" letter-spacing="-.5">CleanYourPhone</text>
+  <text x="76" y="40" fill="#121316" font-family="Aptos, 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="26" font-weight="700" letter-spacing="-.5">CleanYourPhone</text>
 </svg>
