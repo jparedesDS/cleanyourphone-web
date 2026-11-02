@@ -3,22 +3,22 @@
 Static landing page for [CleanYourPhone](https://github.com/jparedesDS/cleanyourphone), the
 open-source, reversible Android debloat skill for coding agents.
 
-Published site (after enabling Pages): **<https://jparedesds.github.io/cleanyourphone-web/>**  
+Live site: **<https://jparedesds.github.io/cleanyourphone-web/>**  
 Spanish: **<https://jparedesds.github.io/cleanyourphone-web/es.html>**
 
 No framework, no build step, no external fonts, no analytics, no third-party requests.
 
 ## What is here
 
-- A bilingual English/Spanish landing page with a before/after home-screen demo using real app
-  marks (Google, Facebook, TikTok, Netflix, Spotify, Booking.com, AliExpress).
-- Brand tabs for Google, Samsung, Xiaomi, Redmi, POCO and OnePlus with profile counts and evidence.
-- A three-command setup section and a copyable terminal walkthrough.
+- A compact bilingual English/Spanish landing page with a copyable terminal quick start.
+- A three-step flow: connect, review and disable, with the backup and undo command in view.
+- A CLI command grid: `doctor`, `wizard`, `plan`, `apply`, `restore`, `verify` and the supporting
+  commands.
 - A plain-language safety section: disable never uninstall, protected packages, role checks,
-  backup first, small batches, no telemetry.
-- The profile story: 156 model/firmware profiles, 6 brands, device vs documented.
-- The installable CLI: `cleanyourphone` / `cyp`, including the guided `wizard`.
-- A comparison against random ADB scripts and root debloaters.
+  backup first, small batches, no telemetry, and `restore --from-backup` for recovery.
+- A brand/profile grid for Google, Samsung, Xiaomi, Redmi, POCO and OnePlus: 156 model/firmware
+  profiles, device-tested vs documented.
+- A short FAQ, a final CTA and a footer with the repository, docs, prompt and changelog.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
   Open Graph metadata, JSON-LD and a sitemap.
 
@@ -37,17 +37,22 @@ Open <http://localhost:8080/>.
 | `index.html` | English landing page. |
 | `es.html` | Spanish landing page. |
 | `styles.css` | Shared styles. |
-| `app.js` | Before/after app grid and copy buttons. |
+| `app.js` | Copy buttons and toast feedback. |
 | `assets/logo.svg`, `assets/favicon.svg` | Brand mark. |
-| `assets/banner.png` | Website banner (1600×440). |
+| `assets/banner.png` | Repository banner (1600×440). |
 | `assets/og.png` | Social preview image (1280×640). |
 | `assets/brand/` | `banner-web`, `banner-skill`, `social-web`, `social-skill` variants. |
-| `assets/apps/` | Local app marks for the demo; see `assets/apps/README.md`. |
 | `robots.txt`, `sitemap.xml` | Crawler metadata. |
 | `.well-known/security.txt` | Security contact and policy. |
 | `404.html` | Not-found page. |
 | `tests/test_site.py` | Link, ID, language, CSP, metadata and asset checks. |
 | `tools/make_assets.py` | Regenerates `banner.png` and `og.png` (dev-only; needs Pillow). |
+
+## Release sync
+
+`softwareVersion` in `index.html` and `es.html` must match `VERSION` in `tools/phone.py` in the skill
+repository. When the JSON-LD block changes, recompute the CSP `sha256` hash in both pages and run the
+test suite again.
 
 ## Brand assets
 
@@ -86,7 +91,8 @@ python -m unittest discover -s tests -v
 
 The suite checks local links and assets, duplicate IDs, the language switch, analytics absence,
 inline-style absence (CSP compatibility), the CSP hash against the JSON-LD block, third-party
-requests, canonical/hreflang metadata, PNG dimensions, the sitemap and `security.txt`.
+requests, canonical/hreflang metadata, PNG dimensions, the sitemap and `security.txt`. It also checks
+that the page does not reference an unrelated project.
 
 ## Links
 

@@ -63,393 +63,204 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="brand" href="./" aria-label="CleanYourPhone home">
-      <img src="assets/logo.svg" alt="" width="34" height="34">
-      <span>CleanYourPhone</span>
-    </a>
-    <nav class="nav" aria-label="Main">
-      <a href="#problem">Why</a>
-      <a href="#how">How it works</a>
-      <a href="#cli">CLI</a>
-      <a href="#safety">Safety</a>
-      <a href="#profiles">Profiles</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-github" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
-      <a class="lang" href="es.html" hreflang="es" lang="es">ES</a>
-    </nav>
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="CleanYourPhone home">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>CleanYourPhone</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#cli">CLI</a>
+        <a href="#safety">Safety</a>
+        <a href="#profiles">Profiles</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-github" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="lang" href="es.html" hreflang="es" lang="es">ES</a>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
     <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="dot"></span> Open source · ADB · Reversible</p>
-        <h1>Your phone,<br><span class="accent">minus the bloat.</span></h1>
-        <p class="lead">A skill for coding agents that disables preinstalled OEM apps over ADB. No root, no custom ROM, nothing uninstalled, and one command to undo every change. WhatsApp, banking and your own apps stay.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#how">See how it works <span aria-hidden="true">→</span></a>
-          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">View on GitHub</a>
-        </div>
-        <ul class="trust">
-          <li>No root</li>
-          <li>No telemetry</li>
-          <li>MIT license</li>
-          <li>156 profiles</li>
-        </ul>
-      </div>
-
-      <div class="hero-demo">
-        <div class="demo-top">
-          <span>Review the plan. Then apply.</span>
-          <div class="demo-toggle" role="group" aria-label="App grid view">
-            <button type="button" data-view="before" aria-pressed="false">Before</button>
-            <button type="button" data-view="after" aria-pressed="true">After</button>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Open source · ADB · Reversible</p>
+          <h1>Your phone,<br><em>minus the bloat.</em></h1>
+          <p class="lede">A skill for coding agents that disables preinstalled Android apps over ADB. No root, no custom ROM, nothing uninstalled, and one command to undo every change. WhatsApp, banking and your own apps stay.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">Get the skill <span aria-hidden="true">↗</span></a>
+            <a class="button button-ghost" href="#cli">See the CLI</a>
           </div>
+          <p class="trust-line">Free · MIT · No root · No telemetry · 156 profiles</p>
         </div>
-        <div class="phone-wrap">
-          <div class="phone-glow" aria-hidden="true"></div>
-          <div class="phone" aria-label="Example Android home screen">
-            <div class="phone-status"><span>9:41</span><span class="status-icons" aria-hidden="true">▮▮▮ ◔</span></div>
-            <div class="phone-head">
-              <span class="phone-label">Home</span>
-              <span class="phone-count" data-count>9 apps</span>
-            </div>
-            <div class="app-grid" id="appGrid" data-view="after" aria-label="Before and after: preinstalled OEM apps are disabled; your apps stay">
-              <div class="app"><span class="app-icon tile-phone" aria-hidden="true"><img src="assets/apps/phone.svg" alt="" width="24" height="24"></span><span class="app-name">Phone</span></div>
-              <div class="app"><span class="app-icon tile-messages" aria-hidden="true"><img src="assets/apps/googlemessages.svg" alt="" width="24" height="24"></span><span class="app-name">Messages</span></div>
-              <div class="app"><span class="app-icon tile-camera" aria-hidden="true"><img src="assets/apps/camera.svg" alt="" width="24" height="24"></span><span class="app-name">Camera</span></div>
-              <div class="app"><span class="app-icon tile-photos" aria-hidden="true"><img src="assets/apps/googlephotos.svg" alt="" width="24" height="24"></span><span class="app-name">Photos</span></div>
-              <div class="app"><span class="app-icon tile-maps" aria-hidden="true"><img src="assets/apps/googlemaps.svg" alt="" width="24" height="24"></span><span class="app-name">Maps</span></div>
-              <div class="app"><span class="app-icon tile-clock" aria-hidden="true"><img src="assets/apps/clock.svg" alt="" width="24" height="24"></span><span class="app-name">Clock</span></div>
-              <div class="app"><span class="app-icon tile-whatsapp" aria-hidden="true"><img src="assets/apps/whatsapp.svg" alt="" width="24" height="24"></span><span class="app-name">WhatsApp</span></div>
-              <div class="app"><span class="app-icon tile-bank" aria-hidden="true"><img src="assets/apps/bank.svg" alt="" width="24" height="24"></span><span class="app-name">Bank</span></div>
-              <div class="app"><span class="app-icon tile-settings" aria-hidden="true"><img src="assets/apps/settings.svg" alt="" width="24" height="24"></span><span class="app-name">Settings</span></div>
-              <div class="app bloat"><span class="app-icon tile-samsung" aria-hidden="true"><img src="assets/apps/samsung.svg" alt="" width="24" height="24"></span><span class="app-name">Samsung Free</span></div>
-              <div class="app bloat"><span class="app-icon tile-tvplus" aria-hidden="true"><img src="assets/apps/tvplus.svg" alt="" width="24" height="24"></span><span class="app-name">TV Plus</span></div>
-              <div class="app bloat"><span class="app-icon tile-bixby" aria-hidden="true"><img src="assets/apps/bixby.svg" alt="" width="24" height="24"></span><span class="app-name">Bixby</span></div>
-              <div class="app bloat"><span class="app-icon tile-tips" aria-hidden="true"><img src="assets/apps/tips.svg" alt="" width="24" height="24"></span><span class="app-name">Tips</span></div>
-              <div class="app bloat"><span class="app-icon tile-themes" aria-hidden="true"><img src="assets/apps/themes.svg" alt="" width="24" height="24"></span><span class="app-name">Themes</span></div>
-              <div class="app bloat"><span class="app-icon tile-games" aria-hidden="true"><img src="assets/apps/games.svg" alt="" width="24" height="24"></span><span class="app-name">Games</span></div>
-              <div class="app bloat"><span class="app-icon tile-cloud" aria-hidden="true"><img src="assets/apps/cloud.svg" alt="" width="24" height="24"></span><span class="app-name">Cloud</span></div>
-            </div>
-            <div class="phone-dock" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-          </div>
-        </div>
-        <div class="plan-card" aria-label="Example plan">
-          <div class="plan-head"><span class="plan-file">plan.json</span><span class="plan-status">review before apply</span></div>
-          <div class="plan-row"><span class="plan-action disable">DISABLE</span><span>5 packages</span><span class="plan-note">one batch</span></div>
-          <div class="plan-row"><span class="plan-action ask">ASK</span><span>2 packages</span><span class="plan-note">your call</span></div>
-          <div class="plan-row"><span class="plan-action blocked">BLOCKED</span><span>0 packages</span><span class="plan-note">protected</span></div>
-        </div>
-        <p class="demo-note">Only preinstalled OEM apps enter the plan. WhatsApp, banking and your photos stay.</p>
-      </div>
-    </section>
 
-    <section class="section" id="problem">
-      <div class="section-head">
-        <p class="kicker">The problem</p>
-        <h2>You bought the phone.<br>Not the catalogue.</h2>
-        <p class="lede">A new Android phone can ship with dozens of preinstalled apps, services and “partners”. Some cannot be removed. Most debloat advice asks you to trust a random script, root the phone or install a custom ROM. None of that is necessary.</p>
-      </div>
-      <div class="cards three">
-        <article class="card">
-          <span class="num">01</span>
-          <h3>Preinstalled, not optional</h3>
-          <p>Games, shopping apps, cloud trials and duplicate galleries take space, notifications and battery. The uninstall button is often disabled.</p>
-        </article>
-        <article class="card">
-          <span class="num">02</span>
-          <h3>Advice is a coin flip</h3>
-          <p>Copy-pasted ADB lists can break calls, SMS, the keyboard or a banking app. They rarely tell you what each package does or how to undo it.</p>
-        </article>
-        <article class="card">
-          <span class="num">03</span>
-          <h3>The useful stuff gets buried</h3>
-          <p>Your camera, wallet, work apps and photos end up next to someone else's promotions. The phone feels slower before you have installed anything.</p>
-        </article>
+        <div class="hero-card">
+          <div class="terminal">
+            <div class="terminal-bar"><span></span><span></span><span></span><em>terminal</em></div>
+            <pre><code><span class="prompt">$</span> pipx install git+https://github.com/jparedesDS/cleanyourphone.git
+<span class="prompt">$</span> cleanyourphone doctor
+Device ...... Google Pixel 8 (shiba)
+Profiles .... google-pixel-8
+
+<span class="prompt">$</span> cleanyourphone wizard
+Backup first. Review every package.
+Nothing changes without confirmation.</code></pre>
+            <button class="copy-button" type="button" data-copy="pipx install git+https://github.com/jparedesDS/cleanyourphone.git&#10;cleanyourphone doctor&#10;cleanyourphone wizard">Copy commands</button>
+          </div>
+          <p class="hero-note">Start with a backup. Review the plan. Keep the undo command.</p>
+        </div>
       </div>
     </section>
 
     <section class="section" id="how">
-      <div class="section-head">
-        <p class="kicker">How it works</p>
-        <h2>Three steps.<br>Your agent does the typing.</h2>
-        <p class="lede">CleanYourPhone is a skill, not an app. You give <code>SKILL.md</code> to your coding agent; the agent runs a small local CLI, shows a plan and asks before touching anything.</p>
-      </div>
-      <div class="steps">
-        <article class="step">
-          <span class="step-number">1</span>
-          <h3>Connect</h3>
-          <p>Enable USB debugging, connect the phone and run <code>doctor</code>. The CLI checks ADB, the device, the backup and the profile match.</p>
-        </article>
-        <article class="step">
-          <span class="step-number">2</span>
-          <h3>Review</h3>
-          <p>The agent backs up the package list, roles and settings, then shows a table with <b>why</b> and <b>what breaks</b>. Nothing changes yet.</p>
-        </article>
-        <article class="step">
-          <span class="step-number">3</span>
-          <h3>Disable</h3>
-          <p>Packages are disabled in small batches, five at a time, followed by a reboot and verification. <code>restore</code> undoes everything.</p>
-        </article>
-      </div>
-      <div class="terminal">
-        <div class="terminal-bar">
-          <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
-          <span>local terminal · no account</span>
-          <button class="copy" type="button" data-copy="python tools/phone.py doctor">copy</button>
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">How it works</p>
+          <h2>Three steps. You stay in control.</h2>
         </div>
-        <div class="terminal-body">
-          <pre><span class="cmd">$ python tools/phone.py doctor</span>
-Device ...... Google Pixel 8 (shiba)
-Android ..... 16 · managed: no
-Profiles .... google-pixel-8
-
-<span class="cmd">$ python tools/phone.py plan --profile google-pixel-8</span>
-<span class="ok">DISABLE</span> 5 packages
-<span class="warn">ASK</span>     3 packages
-<span class="ok">BLOCKED</span> 0 packages
-
-<span class="cmd">$ python tools/phone.py restore</span>
-<span class="ok">Restored.</span> Every disabled package is enabled again.</pre>
-        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-number">01</span>
+            <h3>Connect</h3>
+            <p>Enable USB debugging, connect the phone and run <code>doctor</code>. It checks ADB, the device, the backup and the profile match before anything changes.</p>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <h3>Review</h3>
+            <p>The CLI backs up packages, roles and settings, then shows a plan with <code>why</code> and <code>breaks</code> for every package. Nothing changes yet.</p>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <h3>Disable</h3>
+            <p>Packages are disabled in batches of five, followed by verification. <code>restore</code> undoes the exact changes; <code>restore --from-backup</code> is the fallback if the journal is lost.</p>
+          </li>
+        </ol>
+        <p class="section-note">The CLI is optional. <code>SKILL.md</code> contains the raw ADB procedure for an agent that cannot run Python.</p>
       </div>
-    </section>
-
-    <section class="section" id="setup">
-      <div class="section-head">
-        <p class="kicker">Setup</p>
-        <h2>From zero to a plan<br>in three commands.</h2>
-        <p class="lede">The CLI has no third-party dependencies. Python 3.10+ and Android Platform-Tools are enough; the raw ADB procedure is in <code>SKILL.md</code> if you prefer no CLI.</p>
-      </div>
-      <div class="setup-grid">
-        <div class="setup-steps">
-          <div class="setup-step"><span class="step-number">1</span><div><h3>Install Platform-Tools</h3><p>Download the official Android SDK Platform-Tools for Windows, macOS or Linux and add <code>adb</code> to your PATH.</p></div></div>
-          <div class="setup-step"><span class="step-number">2</span><div><h3>Prepare the phone</h3><p>Enable Developer options, turn on USB debugging, connect by USB and accept the authorization prompt.</p></div></div>
-          <div class="setup-step"><span class="step-number">3</span><div><h3>Give the skill to your agent</h3><p>Clone the repo and open your agent there, or copy <code>SKILL.md</code> into its skills folder.</p></div></div>
-        </div>
-        <div class="terminal">
-          <div class="terminal-bar">
-            <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span>quick start</span>
-            <button class="copy" type="button" data-copy="git clone https://github.com/jparedesDS/cleanyourphone && cd cleanyourphone && python tools/phone.py doctor">copy</button>
-          </div>
-          <div class="terminal-body">
-            <pre><span class="cmd">$ adb version</span>
-<span class="ok">ok</span>  Android Debug Bridge version 1.0.41
-
-<span class="cmd">$ git clone https://github.com/jparedesDS/cleanyourphone</span>
-<span class="cmd">$ cd cleanyourphone</span>
-<span class="cmd">$ python tools/phone.py doctor</span>
-Device ...... Google Pixel 8 (shiba)
-Profiles .... google-pixel-8
-
-<span class="cmd">$ python tools/phone.py plan --profile google-pixel-8</span>
-Review the plan. Nothing has changed.</pre>
-          </div>
-        </div>
-      </div>
-      <p class="compare-note">Prefer a terminal? <code>pipx install git+https://github.com/jparedesDS/cleanyourphone.git</code>, then run <code>cleanyourphone wizard</code>. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">CLI guide →</a></p>
     </section>
 
     <section class="section" id="cli">
-      <div class="section-head">
-        <p class="kicker">CLI</p>
-        <h2>Install once.<br>Run it anywhere.</h2>
-        <p class="lede">The same guardrails as the skill, now as an installable command. No third-party dependencies, no account and no telemetry. The repo clone still works if you prefer it; both paths run the same code.</p>
-      </div>
-      <div class="setup-grid">
-        <div class="setup-steps">
-          <div class="setup-step"><span class="step-number">01</span><div><h3>Install with pipx</h3><p><code>pipx install git+https://github.com/jparedesDS/cleanyourphone.git</code> adds <code>cleanyourphone</code> and the short alias <code>cyp</code>.</p></div></div>
-          <div class="setup-step"><span class="step-number">02</span><div><h3>Check the phone</h3><p><code>cleanyourphone doctor</code> validates ADB, the device, the backup and the profile match before anything changes.</p></div></div>
-          <div class="setup-step"><span class="step-number">03</span><div><h3>Use the wizard</h3><p><code>cleanyourphone wizard</code> backs up first, offers the tested batch and asks for every user-facing package one by one.</p></div></div>
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">The CLI</p>
+          <h2>A guided command set.</h2>
+          <p>Python 3.10+. No packages. <code>wizard</code> is the simple path; <code>plan</code> and <code>apply</code> are there when you want control.</p>
         </div>
-        <div class="terminal">
-          <div class="terminal-bar">
-            <span class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span>install</span>
-            <button class="copy" type="button" data-copy="pipx install git+https://github.com/jparedesDS/cleanyourphone.git">copy</button>
-          </div>
-          <div class="terminal-body">
-            <pre><span class="cmd">$ pipx install git+https://github.com/jparedesDS/cleanyourphone.git</span>
-<span class="ok">installed</span> cleanyourphone 0.2.1
-
-<span class="cmd">$ cleanyourphone --version</span>
-CleanYourPhone 0.2.1
-
-<span class="cmd">$ cleanyourphone wizard</span>
-Backup first. Review every package.
-Nothing changes without confirmation.</pre>
-          </div>
+        <div class="command-grid">
+          <article class="command"><code>doctor</code><p>Checks ADB, the phone, the backup and the profile match.</p></article>
+          <article class="command"><code>wizard</code><p>Guided flow: backup, profile choice, per-package review and apply.</p></article>
+          <article class="command"><code>plan</code><p>Shows <code>DISABLE</code>, <code>ASK</code>, <code>BLOCKED</code> and <code>SKIP</code> without changing anything.</p></article>
+          <article class="command"><code>apply</code><p>Applies a tested device profile's disable list in batches of five.</p></article>
+          <article class="command"><code>restore</code><p>Re-enables exactly what the tool disabled and restores Private DNS.</p></article>
+          <article class="command"><code>restore --from-backup</code><p>If the journal is lost, reconstructs the change from the backup. Dry run until <code>--yes</code>.</p></article>
+          <article class="command"><code>verify</code><p>Checks dialer, SMS, Home, keyboard, Play and protected packages.</p></article>
+          <article class="command"><code>profiles</code><p>Lists the 156 model/firmware profiles and their verification level.</p></article>
+          <article class="command"><code>protected</code><p>Shows the packages that are never touched.</p></article>
+          <article class="command"><code>validate</code><p>Validates every profile in the catalog.</p></article>
         </div>
+        <p class="section-note">Installed as <code>cleanyourphone</code> and <code>cyp</code>; the repo-local form is <code>python tools/phone.py</code>.</p>
+        <p class="section-link"><a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">Full command reference in docs/CLI.md ↗</a></p>
       </div>
-      <p class="compare-note">Pinned builds are attached to every <a href="https://github.com/jparedesDS/cleanyourphone/releases" rel="noopener">GitHub release</a>. The full command list and file locations are in the <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener">CLI guide</a>.</p>
     </section>
 
     <section class="section" id="safety">
-      <div class="section-head">
-        <p class="kicker">Safety</p>
-        <h2>Safe by design.<br>Boring on purpose.</h2>
-        <p class="lede">The phone is a daily driver: calls, SMS, banking, alarms, work, photos. The guardrails are the product, not a disclaimer.</p>
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Safety</p>
+          <h2>Safe by design. Boring on purpose.</h2>
+        </div>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <h3>Disable, never uninstall</h3>
+            <p>Only <code>pm disable-user --user 0</code>. No uninstall, hide, clear or root. <code>pm enable</code> is the undo.</p>
+          </article>
+          <article class="safety-card">
+            <h3>Back up first</h3>
+            <p>Packages, roles, IME, settings and <code>getprop</code> are saved before the first change. No backup, no changes.</p>
+          </article>
+          <article class="safety-card">
+            <h3>Protected list and roles</h3>
+            <p>Telephony, Play Services, WebView, permissions, emergency alerts, dialer, SMS, Home and keyboard are refused or checked.</p>
+          </article>
+          <article class="safety-card">
+            <h3>Small batches, clear undo</h3>
+            <p>Five packages, verify, then the next batch. The journal is exact; if it is lost, the backup reconstructs the change.</p>
+          </article>
+        </div>
+        <p class="section-note">A wrong core package can cause a boot loop. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/RESTORE.md" rel="noopener">Read the recovery guide ↗</a></p>
       </div>
-      <div class="safety-grid">
-        <article class="safety-card"><span class="safety-icon">01</span><h3>Disable, never uninstall</h3><p>Only <code>pm disable-user --user 0</code>. No uninstall, no hide, no clear. <code>pm enable</code> is the undo.</p></article>
-        <article class="safety-card"><span class="safety-icon">02</span><h3>Back up first</h3><p>Package lists, roles, IMEs, settings and <code>getprop</code> are saved before the first change. No backup, no changes. If the undo journal is lost, <code>restore --from-backup</code> reconstructs the change from it.</p></article>
-        <article class="safety-card"><span class="safety-icon">03</span><h3>Protected list and roles</h3><p>Telephony, Play Services, WebView, permission controller, emergency alerts, dialer, SMS, Home and keyboard are refused or checked.</p></article>
-        <article class="safety-card"><span class="safety-icon">04</span><h3>Small batches</h3><p>Five packages, reboot, verify. If something fails, the batch stops and the undo path is already known.</p></article>
-        <article class="safety-card"><span class="safety-icon">05</span><h3>No root, no ROM</h3><p>No bootloader unlock, no flashing, no Magisk, no Shizuku requirement. Just ADB and the package manager.</p></article>
-        <article class="safety-card"><span class="safety-icon">06</span><h3>No telemetry</h3><p>The CLI runs locally and talks to <code>adb</code> only. No account, no analytics, no third-party API, no phone-home.</p></article>
-      </div>
-      <div class="safety-note"><span class="check">✓</span><p><b>The one rule:</b> if the phone loses the dialer, SMS, Home, keyboard, notifications or mobile data, stop and restore. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md" rel="noopener">Read the full safety rules →</a></p></div>
-    </section>
-
-    <section class="stats" aria-label="Project facts">
-      <div class="stat"><strong>156</strong><span>profiles in the catalog</span></div>
-      <div class="stat"><strong>6</strong><span>brands covered</span></div>
-      <div class="stat"><strong>0</strong><span>root or ROM required</span></div>
-      <div class="stat"><strong>1</strong><span>command to undo</span></div>
     </section>
 
     <section class="section" id="profiles">
-      <div class="section-head">
-        <p class="kicker">Profiles</p>
-        <h2>Start from evidence.<br>Not a forum post.</h2>
-        <p class="lede">Each profile is a package list for one model and firmware. A <b>device</b> profile was tested on a real phone; a <b>documented</b> profile comes from a primary firmware dump and only ever asks.</p>
-      </div>
-      <div class="brand-shell">
-        <div class="brand-tabs" role="tablist" aria-label="Profiles by brand">
-          <button type="button" role="tab" aria-selected="true" aria-controls="brand-google" id="tab-brand-google" data-brand="google">Google</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="brand-samsung" id="tab-brand-samsung" data-brand="samsung">Samsung</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="brand-xiaomi" id="tab-brand-xiaomi" data-brand="xiaomi">Xiaomi</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="brand-redmi" id="tab-brand-redmi" data-brand="redmi">Redmi</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="brand-poco" id="tab-brand-poco" data-brand="poco">POCO</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="brand-oneplus" id="tab-brand-oneplus" data-brand="oneplus">OnePlus</button>
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Profiles</p>
+          <h2>Start from evidence.<br>Not a forum post.</h2>
+          <p>Each profile is a package list for one model and firmware. A <b>device</b> profile was tested on a real phone; a <b>documented</b> profile comes from a primary firmware dump and only asks.</p>
         </div>
-        <div class="brand-panels">
-          <article class="brand-panel" role="tabpanel" id="brand-google" aria-labelledby="tab-brand-google" data-brand-panel="google">
-            <div><span class="brand-tag">5 profiles · Pixel 8 device-tested</span><h3>Google Pixel</h3><p>The Pixel 8 profile was tested on Android 16. Pixel 7, 7a, 6 and 6 Pro are documented from primary firmware dumps.</p></div>
-            <div class="brand-meta"><span><b>Device</b>Pixel 8 · Android 16</span><span><b>Documented</b>Pixel 7, 7a, 6, 6 Pro</span><span><b>Android</b>12–16</span></div>
-          </article>
-          <article class="brand-panel" role="tabpanel" id="brand-samsung" aria-labelledby="tab-brand-samsung" data-brand-panel="samsung" hidden>
-            <div><span class="brand-tag">55 profiles · Galaxy S23 Ultra tested</span><h3>Samsung Galaxy</h3><p>S, A, M, F, Note, Z and Tab. The S23 Ultra profile is device-tested; the rest are documented from firmware dumps.</p></div>
-            <div class="brand-meta"><span><b>Device</b>Galaxy S23 Ultra</span><span><b>Documented</b>A/M/F/Note/Z/Tab</span><span><b>Android</b>8–16</span></div>
-          </article>
-          <article class="brand-panel" role="tabpanel" id="brand-xiaomi" aria-labelledby="tab-brand-xiaomi" data-brand-panel="xiaomi" hidden>
-            <div><span class="brand-tag">15 profiles · HyperOS family tested</span><h3>Xiaomi</h3><p>Mi 10, 11T, 12X, Civi, 15T, 15 Ultra, 17 Ultra and the HyperOS family profile.</p></div>
-            <div class="brand-meta"><span><b>Device</b>HyperOS family</span><span><b>Documented</b>15T, 15 Ultra, 17 Ultra, 11T</span><span><b>Android</b>10–16</span></div>
-          </article>
-          <article class="brand-panel" role="tabpanel" id="brand-redmi" aria-labelledby="tab-brand-redmi" data-brand-panel="redmi" hidden>
-            <div><span class="brand-tag">56 profiles · Note, K and A families</span><h3>Redmi</h3><p>Redmi Note 7–15, K20/K40, A-series, 9/10/12/13/15C and the Redmi Pad 2.</p></div>
-            <div class="brand-meta"><span><b>Documented</b>56 profiles</span><span><b>Families</b>Note, K, A, Pad</span><span><b>Android</b>9–16</span></div>
-          </article>
-          <article class="brand-panel" role="tabpanel" id="brand-poco" aria-labelledby="tab-brand-poco" data-brand-panel="poco" hidden>
-            <div><span class="brand-tag">16 profiles · F, X and M</span><h3>POCO</h3><p>POCO F3/F5/F6/F9 Ultra, X3/X5/X6/X7/X8, M2/M3/M4 and C31.</p></div>
-            <div class="brand-meta"><span><b>Documented</b>16 profiles</span><span><b>Families</b>F, X, M, C</span><span><b>Android</b>11–16</span></div>
-          </article>
-          <article class="brand-panel" role="tabpanel" id="brand-oneplus" aria-labelledby="tab-brand-oneplus" data-brand-panel="oneplus" hidden>
-            <div><span class="brand-tag">8 profiles · OnePlus 6T tested</span><h3>OnePlus</h3><p>OnePlus 5T, 6T, 7T Pro, 8, 11R, Nord, Nord CE and Nord CE5. The 6T is the device-tested OnePlus.</p></div>
-            <div class="brand-meta"><span><b>Device</b>OnePlus 6T</span><span><b>Documented</b>5T, 7T Pro, 8, 11R, Nord</span><span><b>Android</b>10–16</span></div>
-          </article>
-        </div>
+        <ul class="profile-grid">
+          <li><b>Google</b><span>5 profiles · Pixel 8 device-tested</span></li>
+          <li><b>Samsung</b><span>55 profiles · Galaxy S23 Ultra device-tested</span></li>
+          <li><b>Xiaomi</b><span>15 profiles · HyperOS family device-tested</span></li>
+          <li><b>Redmi</b><span>56 profiles · Note, K and A families</span></li>
+          <li><b>POCO</b><span>16 profiles · F, X and M families</span></li>
+          <li><b>OnePlus</b><span>8 profiles · OnePlus 6T device-tested</span></li>
+        </ul>
+        <p class="section-note">Only a <b>device</b> profile on a tested build can auto-apply. Everything else is a reviewable starting point. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">Browse the 156 profiles ↗</a></p>
       </div>
-      <p class="compare-note">Only a <b>device</b> profile on a tested build can auto-apply. Everything else is a reviewable starting point. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">Browse the 156 profiles →</a></p>
-    </section>
-
-    <section class="section" id="agents">
-      <div class="section-head">
-        <p class="kicker">Agents</p>
-        <h2>Works with the agent<br>you already use.</h2>
-        <p class="lede">The skill is plain text plus a stdlib Python CLI. It does not depend on a model vendor, a browser extension or an OAuth broker.</p>
-      </div>
-      <ul class="agent-chips">
-        <li>Claude Code</li>
-        <li>Codex</li>
-        <li>Cursor</li>
-        <li>Gemini CLI</li>
-        <li>OpenCode</li>
-        <li>Any chat agent</li>
-      </ul>
-      <p class="compare-note">Paste <code>PROMPT.md</code>, or copy <code>SKILL.md</code> into your agent's skills folder. The CLI is optional: the raw ADB commands are in the skill too.</p>
-    </section>
-
-    <section class="section" id="compare">
-      <div class="section-head">
-        <p class="kicker">Why this one</p>
-        <h2>A different kind of debloater.</h2>
-      </div>
-      <div class="compare-card" aria-label="Comparison with other Android debloat approaches">
-        <div class="compare-row compare-head"><span>Feature</span><span>Random ADB script</span><span>Root debloater</span><span>CleanYourPhone</span></div>
-        <div class="compare-row"><span>Needs root or a ROM</span><span>Usually</span><span>Yes</span><span>No</span></div>
-        <div class="compare-row"><span>Uninstalls packages</span><span>Sometimes</span><span>Yes</span><span>Never</span></div>
-        <div class="compare-row"><span>Undo</span><span>Re-flash</span><span>Backup or ROM</span><span>One command</span></div>
-        <div class="compare-row"><span>Protected apps</span><span>Hope</span><span>Manual</span><span>Enforced</span></div>
-        <div class="compare-row"><span>Per-model evidence</span><span>None</span><span>Forum lists</span><span>156 profiles</span></div>
-        <div class="compare-row"><span>Telemetry or account</span><span>Unknown</span><span>Unknown</span><span>None</span></div>
-      </div>
-      <p class="compare-note">General comparison with common debloat approaches. Check each tool and your OEM's warranty terms.</p>
     </section>
 
     <section class="section" id="faq">
-      <div class="section-head">
-        <p class="kicker">FAQ</p>
-        <h2>The questions people ask.</h2>
-      </div>
-      <div class="faq">
-        <details>
-          <summary>Is it safe?</summary>
-          <p>Safer than a copied package list, but not magic. It never uninstalls, backs up first, refuses protected packages and role holders, disables in small batches and can undo every change. You still review the plan and test calls, SMS, camera, keyboard, Home and notifications.</p>
-        </details>
-        <details>
-          <summary>Does it void the warranty?</summary>
-          <p>No root, no bootloader unlock, no flashing and no uninstall. Disabling a preinstalled package is reversible. Warranty rules vary by country and OEM; disabling software can still affect support in some cases. Read your terms.</p>
-        </details>
-        <details>
-          <summary>What if I need an app back?</summary>
-          <p>Run <code>python tools/phone.py enable &lt;package&gt;</code> for one app, or <code>restore</code> to enable everything from the backup. The journal and backup are created before the first change.</p>
-        </details>
-        <details>
-          <summary>Does it uninstall anything?</summary>
-          <p>No. The only state change is <code>pm disable-user --user 0</code>. No uninstall, no hide, no clear, no bare expunge. If the package is not installed, nothing happens.</p>
-        </details>
-        <details>
-          <summary>Does it work on tablets?</summary>
-          <p>Yes, on Android 8+ with ADB. Tablet profiles set <code>form_factor: tablet</code>; a missing dialer or SMS role is a warning, not a failure. Home and keyboard checks still apply.</p>
-        </details>
-        <details>
-          <summary>Do I need Python?</summary>
-          <p>No. The CLI is the safest path, but <code>SKILL.md</code> contains the raw <code>adb</code> procedure. If you use the CLI, Python 3.10+ and Platform-Tools are enough; there are no third-party dependencies.</p>
-        </details>
-        <details>
-          <summary>Is it free?</summary>
-          <p>Yes. MIT license. No account, no subscription, no telemetry and no hosted service.</p>
-        </details>
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">FAQ</p>
+          <h2>Short answers.</h2>
+        </div>
+        <div class="faq">
+          <details><summary>Is it safe?</summary><p>Safer than a copied package list, but not magic. It never uninstalls, backs up first, refuses protected packages and role holders, disables in small batches and can undo every change. You still review the plan and test calls, SMS, camera, keyboard, Home and notifications.</p></details>
+          <details><summary>Does it uninstall anything?</summary><p>No. The only state change is <code>pm disable-user --user 0</code>. No uninstall, hide, clear or root. <code>pm enable</code> is the undo.</p></details>
+          <details><summary>What if something goes wrong?</summary><p>Stop. Run <code>restore</code> if ADB still sees the phone. If the undo journal is lost, run <code>restore --from-backup &lt;folder&gt;</code> and review the list. If the phone does not boot, the recovery guide covers safe mode, ADB and recovery; factory reset is the last resort.</p></details>
+          <details><summary>Does it work on tablets?</summary><p>Yes, on Android 8+ with ADB. Tablet profiles set <code>form_factor: tablet</code>; a missing dialer or SMS role is a warning, not a failure. Home and keyboard checks still apply.</p></details>
+          <details><summary>Do I need Python?</summary><p>No. <code>SKILL.md</code> contains the raw ADB procedure. If you use the CLI, Python 3.10+ and Platform-Tools are enough; there are no third-party dependencies.</p></details>
+          <details><summary>Is it free?</summary><p>Yes. MIT license. No account, no subscription, no telemetry and no hosted service.</p></details>
+        </div>
       </div>
     </section>
 
-    <section class="cta" id="start">
-      <h2>Make the phone yours again.</h2>
-      <p class="lede">Clone the repo, give <code>SKILL.md</code> to your agent, and review the first plan. The phone does the rest.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">Start on GitHub <span aria-hidden="true">↗</span></a>
-        <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md" rel="noopener">Read the safety rules</a>
+    <section class="cta">
+      <div class="container cta-inner">
+        <h2>Make the phone yours again.</h2>
+        <p>Give the prompt to your agent, or run the CLI yourself.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">Get the skill <span aria-hidden="true">↗</span></a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md" rel="noopener">Read the safety rules</a>
+        </div>
       </div>
-      <p class="cta-note">No account. No telemetry. MIT. Android 8+.</p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <span>© 2026 Jose Paredes · CleanYourPhone</span>
-    <nav class="footer-links" aria-label="Footer">
-      <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">GitHub</a>
-      <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md" rel="noopener">Safety</a>
-      <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">Profiles</a>
-      <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/PROMPT.md" rel="noopener">Prompt</a>
-      <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/CHANGELOG.md" rel="noopener">Changelog</a>
-      <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/LICENSE" rel="noopener">MIT</a>
-      <a href="es.html" hreflang="es" lang="es">Español</a>
-    </nav>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="" width="26" height="26">
+        <span>CleanYourPhone</span>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">GitHub</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md" rel="noopener">Safety</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">Profiles</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/PROMPT.md" rel="noopener">Prompt</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/CHANGELOG.md" rel="noopener">Changelog</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/LICENSE" rel="noopener">MIT</a>
+        <a href="es.html" hreflang="es" lang="es">Español</a>
+      </nav>
+    </div>
+    <div class="container">
+      <p class="footer-note">No cookies. No analytics. No third-party requests. Not affiliated with any OEM.</p>
+    </div>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
