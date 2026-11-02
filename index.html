@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#061014">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-BKPpqcd6JJjI2wXJZQD53cSJbKq/ztvti7Sce1OIYy0='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-rkyL2vBQ0pKsegroQ4aAQ4OIG/eVo08MRGoS04r8Dj0='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
   <link rel="canonical" href="https://jparedesds.github.io/cleanyourphone-web/">
   <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourphone-web/">
   <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
@@ -41,7 +41,7 @@
     "description": "Open-source skill for coding agents that disables preinstalled Android apps over ADB. No root, no uninstall, reversible.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS, Linux",
-    "softwareVersion": "0.2.0",
+    "softwareVersion": "0.2.1",
     "license": "https://opensource.org/licenses/MIT",
     "codeRepository": "https://github.com/jparedesDS/cleanyourphone",
     "url": "https://jparedesds.github.io/cleanyourphone-web/",
@@ -271,10 +271,10 @@ Review the plan. Nothing has changed.</pre>
           </div>
           <div class="terminal-body">
             <pre><span class="cmd">$ pipx install git+https://github.com/jparedesDS/cleanyourphone.git</span>
-<span class="ok">installed</span> cleanyourphone 0.2.0
+<span class="ok">installed</span> cleanyourphone 0.2.1
 
 <span class="cmd">$ cleanyourphone --version</span>
-CleanYourPhone 0.2.0
+CleanYourPhone 0.2.1
 
 <span class="cmd">$ cleanyourphone wizard</span>
 Backup first. Review every package.
@@ -293,7 +293,7 @@ Nothing changes without confirmation.</pre>
       </div>
       <div class="safety-grid">
         <article class="safety-card"><span class="safety-icon">01</span><h3>Disable, never uninstall</h3><p>Only <code>pm disable-user --user 0</code>. No uninstall, no hide, no clear. <code>pm enable</code> is the undo.</p></article>
-        <article class="safety-card"><span class="safety-icon">02</span><h3>Back up first</h3><p>Package lists, roles, IMEs, settings and <code>getprop</code> are saved before the first change. No backup, no changes.</p></article>
+        <article class="safety-card"><span class="safety-icon">02</span><h3>Back up first</h3><p>Package lists, roles, IMEs, settings and <code>getprop</code> are saved before the first change. No backup, no changes. If the undo journal is lost, <code>restore --from-backup</code> reconstructs the change from it.</p></article>
         <article class="safety-card"><span class="safety-icon">03</span><h3>Protected list and roles</h3><p>Telephony, Play Services, WebView, permission controller, emergency alerts, dialer, SMS, Home and keyboard are refused or checked.</p></article>
         <article class="safety-card"><span class="safety-icon">04</span><h3>Small batches</h3><p>Five packages, reboot, verify. If something fails, the batch stops and the undo path is already known.</p></article>
         <article class="safety-card"><span class="safety-icon">05</span><h3>No root, no ROM</h3><p>No bootloader unlock, no flashing, no Magisk, no Shizuku requirement. Just ADB and the package manager.</p></article>

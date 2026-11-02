@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#061014">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-UE0bBE1Zoqf7KGUMqtJeC5pEE6ql2axr4RN1zXmhEz8='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-WG+zHPlI+jumRwLtIUDMWl6oE09T7C3CjwogxE/Nt/c='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
   <link rel="canonical" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
   <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourphone-web/">
   <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
@@ -41,7 +41,7 @@
     "description": "Skill de código abierto para agentes que desactiva apps preinstaladas de Android por ADB. Sin root, sin desinstalar, reversible.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS, Linux",
-    "softwareVersion": "0.2.0",
+    "softwareVersion": "0.2.1",
     "license": "https://opensource.org/licenses/MIT",
     "codeRepository": "https://github.com/jparedesDS/cleanyourphone",
     "url": "https://jparedesds.github.io/cleanyourphone-web/es.html",
@@ -271,10 +271,10 @@ Review the plan. Nothing has changed.</pre>
           </div>
           <div class="terminal-body">
             <pre><span class="cmd">$ pipx install git+https://github.com/jparedesDS/cleanyourphone.git</span>
-<span class="ok">installed</span> cleanyourphone 0.2.0
+<span class="ok">installed</span> cleanyourphone 0.2.1
 
 <span class="cmd">$ cleanyourphone --version</span>
-CleanYourPhone 0.2.0
+CleanYourPhone 0.2.1
 
 <span class="cmd">$ cleanyourphone wizard</span>
 Backup first. Review every package.
@@ -293,7 +293,7 @@ Nothing changes without confirmation.</pre>
       </div>
       <div class="safety-grid">
         <article class="safety-card"><span class="safety-icon">01</span><h3>Desactivar, nunca desinstalar</h3><p>Solo <code>pm disable-user --user 0</code>. Sin desinstalar, sin ocultar, sin borrar. <code>pm enable</code> es el undo.</p></article>
-        <article class="safety-card"><span class="safety-icon">02</span><h3>Backup primero</h3><p>Listas de paquetes, roles, teclados, ajustes y <code>getprop</code> se guardan antes del primer cambio. Sin backup no hay cambios.</p></article>
+        <article class="safety-card"><span class="safety-icon">02</span><h3>Backup primero</h3><p>Listas de paquetes, roles, teclados, ajustes y <code>getprop</code> se guardan antes del primer cambio. Sin backup no hay cambios. Si se pierde el journal, <code>restore --from-backup</code> reconstruye el cambio desde él.</p></article>
         <article class="safety-card"><span class="safety-icon">03</span><h3>Lista protegida y roles</h3><p>Telefonía, Play Services, WebView, permisos, alertas de emergencia, dialer, SMS, Home y teclado se bloquean o se comprueban.</p></article>
         <article class="safety-card"><span class="safety-icon">04</span><h3>Lotes pequeños</h3><p>Cinco paquetes, reinicio y verificación. Si algo falla, el lote se detiene y el camino de vuelta ya está claro.</p></article>
         <article class="safety-card"><span class="safety-icon">05</span><h3>Sin root ni ROM</h3><p>Sin desbloquear el bootloader, sin flashear, sin Magisk, sin exigir Shizuku. Solo ADB y el gestor de paquetes.</p></article>
