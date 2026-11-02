@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-labelledby="title">
   <title id="title">CleanYourPhone</title>
-  <rect width="32" height="32" rx="7" fill="#0F0D14"/>
+  <rect width="32" height="32" rx="7" fill="#07100D"/>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75">
     <rect x="9.5" y="4.25" width="13" height="23.5" rx="3" stroke="#A78BFA"/>
     <path d="M16.5 8.75L12.5 12.75L16.5 16.75M12.5 12.75H17.5A4 4 0 0 1 17.5 20.75H16" stroke="#F5F3FA"/>
