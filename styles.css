@@ -1,17 +1,16 @@
 :root {
-  --ink: #061014;
-  --ink-2: #081820;
-  --panel: #0b1b24;
-  --panel-2: #0e2530;
-  --text: #eaf7fb;
-  --muted: #9db4bf;
-  --muted-2: #86a0ad;
-  --accent: #5ec8ff;
-  --accent-2: #64f4c4;
-  --pink: #f0a6c8;
-  --orange: #ffb86b;
-  --line: rgba(238, 248, 238, 0.12);
-  --line-strong: rgba(238, 248, 238, 0.2);
+  --ink: #121316;
+  --ink-2: #0b0c0f;
+  --panel: #181a20;
+  --panel-2: #1e2028;
+  --text: #f3f1ec;
+  --muted: #a19e96;
+  --muted-2: #918e86;
+  --accent: #ffc400;
+  --accent-2: #9650ff;
+  --orange: #ff5500;
+  --line: rgba(243, 241, 236, 0.12);
+  --line-strong: rgba(243, 241, 236, 0.2);
   --radius: 14px;
   --max: 1120px;
   --mono: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -26,8 +25,8 @@ body {
   margin: 0;
   color: var(--text);
   background:
-    radial-gradient(900px 520px at 78% -10%, rgba(100, 244, 196, 0.10), transparent 62%),
-    radial-gradient(700px 460px at 8% 16%, rgba(94, 200, 255, 0.07), transparent 60%),
+    radial-gradient(900px 520px at 78% -10%, rgba(255, 196, 0, 0.08), transparent 62%),
+    radial-gradient(700px 460px at 8% 16%, rgba(150, 80, 255, 0.10), transparent 60%),
     var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -46,8 +45,8 @@ code {
   font-family: var(--mono);
   font-size: 0.9em;
   color: var(--accent);
-  background: rgba(94, 200, 255, 0.07);
-  border: 1px solid rgba(94, 200, 255, 0.16);
+  background: rgba(255, 196, 0, 0.08);
+  border: 1px solid rgba(255, 196, 0, 0.18);
   border-radius: 5px;
   padding: 0.08em 0.32em;
 }
@@ -230,7 +229,7 @@ h1 em {
   color: var(--ink);
 }
 
-.button-primary:hover { background: #7dd8ff; }
+.button-primary:hover { background: #ffd633; }
 
 .button-ghost {
   background: transparent;
@@ -277,9 +276,9 @@ h1 em {
   background: var(--muted-2);
 }
 
-.terminal-bar span:nth-child(1) { background: var(--pink); }
+.terminal-bar span:nth-child(1) { background: var(--accent-2); }
 .terminal-bar span:nth-child(2) { background: var(--orange); }
-.terminal-bar span:nth-child(3) { background: var(--accent-2); }
+.terminal-bar span:nth-child(3) { background: var(--accent); }
 
 .terminal-bar em {
   margin-left: auto;
