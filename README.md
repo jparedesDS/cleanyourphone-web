@@ -14,8 +14,7 @@ No framework, no build step, no external fonts, no analytics, no third-party req
   skill** as the primary action and the app as the secondary path.
 - **Choose your path**: the skill on the left as the main product, the local app on the right as an
   early MVP, and the CLI only as a small GitHub link.
-- Inline SVG icons for GitHub, skill, app, download, CLI, docs, security, discussions, license and
-  language.
+- Inline SVG icons for GitHub, skill, app, CLI, docs, security, discussions, license and language.
 - A three-step flow: connect locally, review, apply or restore.
 - A profile grid with the existing 156 profiles and official full-color PNG logos for Google,
   Samsung, Xiaomi, Redmi, POCO and OnePlus.
@@ -68,8 +67,8 @@ emphasis, white `#F3F1EC` for text, and graphite `#121316` for the surface. The 
 wordmark keeps its own orange `#FFB38A`.
 
 Profile brand logos live in `assets/brands/`; their source URLs and trademark notice are in
-`assets/brands/README.md`. The app repository is currently empty, so the site labels it as an early
-MVP instead of claiming a downloadable binary.
+`assets/brands/README.md`. The app repository now has a status README, so the site labels it as an
+early MVP with no installer instead of claiming a downloadable binary.
 
 The earlier phone-mockup banner generator has been retired; do not reintroduce it over the final
 lockup assets.
@@ -104,7 +103,7 @@ icon system, the six transparent brand PNGs and that the page does not reference
 ## Links
 
 - Skill repository: <https://github.com/jparedesDS/cleanyourphone>
-- App repository (early MVP, currently empty): <https://github.com/jparedesDS/cleanyourphone-app>
+- App repository (early MVP; status README, no installer yet): <https://github.com/jparedesDS/cleanyourphone-app>
 - Safety rules: <https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md>
 - Profile catalog: <https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md>
 - Prompt: <https://github.com/jparedesDS/cleanyourphone/blob/main/PROMPT.md>
