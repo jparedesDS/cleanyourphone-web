@@ -238,7 +238,7 @@ class SiteTest(unittest.TestCase):
                 self.assertIn(note, text)
                 self.assertIn("Windows 10/11", text)
                 self.assertIn("OnePlus 6T", text)
-                self.assertIn("v0.1.0", text)
+                self.assertIn("v0.2.0", text)
                 self.assertIn("cleanyourphone-app/releases/latest", text)
                 self.assertIn("docs/CONNECT.md", text)
 
@@ -329,8 +329,23 @@ class SiteTest(unittest.TestCase):
         self.assertNotIn("url(http", css)
 
         js = (ROOT / "app.js").read_text(encoding="utf-8").lower()
-        for marker in ("fetch(", "xmlhttprequest", "websocket", "sendbeacon"):
+        for marker in ("xmlhttprequest", "websocket", "sendbeacon"):
             self.assertNotIn(marker, js)
+        self.assertEqual(js.count("fetch("), 1)
+
+    def test_feedback_form_only_posts_to_the_worker(self):
+        endpoint = "https://cleanyourphone-feedback.subtitleme.workers.dev"
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn('id="feedback-form"', text)
+                self.assertIn(f'data-endpoint="{endpoint}"', text)
+                self.assertIn("feedback-consent", text)
+                self.assertIn(f"connect-src {endpoint}", text)
+        js = (ROOT / "app.js").read_text(encoding="utf-8")
+        self.assertIn(f"const endpoint", js)
+        self.assertIn("fetch(endpoint", js)
+        self.assertIn("Content-Type", js)
 
     def test_canonical_and_alternates(self):
         cases = {

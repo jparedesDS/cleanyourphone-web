@@ -1,0 +1,12 @@
+name = "cleanyourphone-feedback"
+main = "worker.js"
+compatibility_date = "2026-11-10"
+workers_dev = true
+
+# Create the namespace first:
+#   npx wrangler kv namespace create FEEDBACK_KV
+# Then replace the id below. If you deploy from the Cloudflare dashboard,
+# add the KV binding in Settings > Bindings instead.
+[[kv_namespaces]]
+binding = "FEEDBACK_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"

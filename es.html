@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#121316">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-JYjosKPqZfD/Wt56SSjB59nMpEHSo4uvXK9WMqkha8o='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-JYjosKPqZfD/Wt56SSjB59nMpEHSo4uvXK9WMqkha8o='; connect-src https://cleanyourphone-feedback.subtitleme.workers.dev; font-src 'self'; upgrade-insecure-requests">
   <link rel="canonical" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
   <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourphone-web/">
   <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
@@ -86,6 +86,7 @@
         <a href="#profiles">Perfiles</a>
         <a href="#safety">Seguridad</a>
         <a href="#faq">FAQ</a>
+        <a href="#feedback">Feedback</a>
         <a class="nav-mail" href="https://jparedesds.github.io/cleanyourmail-web">CleanYour<span class="wordmark-mail">Mail</span></a>
         <a class="nav-github" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub <span aria-hidden="true">↗</span></a>
         <a class="lang" href="index.html" hreflang="en" lang="en"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg> EN</a>
@@ -192,7 +193,7 @@ Dame el comando para deshacer.</code></pre>
             <h3>Descarga la app</h3>
             <p>La app es el camino sencillo para quien prefiere botones a prompts. Instalador para Windows 10/11, probado en un OnePlus 6T. Hace copia primero y solo continúa con un móvil compatible y probado.</p>
             <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> Descargar para Windows</a>
-            <p class="path-note">MVP temprano · Windows 10/11 · v0.1.0 · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CONNECT.md" rel="noopener">Guía de conexión</a></p>
+            <p class="path-note">MVP temprano · Windows 10/11 · v0.2.0 · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CONNECT.md" rel="noopener">Guía de conexión</a></p>
           </article>
         </div>
         <p class="section-note">¿Prefieres la terminal? <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">La CLI sigue en GitHub.</a></p>
@@ -291,6 +292,47 @@ Dame el comando para deshacer.</code></pre>
       </div>
     </section>
 
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Feedback</p>
+          <h2>Envía un bug, una idea o el checklist de tu móvil.</h2>
+          <p>Este formulario envía un mensaje al Discord de CleanYourPhone. Sin telemetría automática. No incluyas números de serie, direcciones IP, IMEI ni MAC.</p>
+        </div>
+        <form class="feedback-form" id="feedback-form" data-endpoint="https://cleanyourphone-feedback.subtitleme.workers.dev" novalidate>
+          <div class="feedback-grid">
+            <label>Tipo
+              <select name="kind" id="feedback-kind">
+                <option value="feedback">Mejora</option>
+                <option value="bug">Bug</option>
+                <option value="profile">Petición de perfil</option>
+              </select>
+            </label>
+            <label>Contacto (opcional)
+              <input name="contact" id="feedback-contact" maxlength="200" autocomplete="off" placeholder="Discord, GitHub o email">
+            </label>
+          </div>
+          <label>Mensaje
+            <textarea name="message" id="feedback-message" maxlength="4000" rows="5" placeholder="¿Qué debería cambiar? ¿Qué falló?"></textarea>
+          </label>
+          <label>Checklist del móvil (opcional)
+            <textarea name="checklist" id="feedback-checklist" maxlength="6000" rows="6" placeholder="Modelo:&#10;Android:&#10;Compilación:&#10;Perfil:&#10;Qué pasó:"></textarea>
+          </label>
+          <label class="feedback-honeypot" aria-hidden="true">Website
+            <input name="website" id="feedback-website" tabindex="-1" autocomplete="off">
+          </label>
+          <label class="feedback-consent">
+            <input type="checkbox" id="feedback-consent">
+            Acepto enviar este mensaje al Discord de CleanYourPhone.
+          </label>
+          <div class="feedback-actions">
+            <button class="button button-primary" type="submit" id="feedback-submit">Enviar feedback</button>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <section class="cta">
       <div class="container cta-inner">
         <h2>Revisa el plan. Conserva la vuelta atrás.</h2>
@@ -321,7 +363,7 @@ Dame el comando para deshacer.</code></pre>
       </nav>
     </div>
     <div class="container">
-      <p class="footer-note">Sin cookies. Sin analítica. Sin peticiones a terceros.</p>
+      <p class="footer-note">Sin cookies. Sin analítica. El feedback solo se envía cuando usas el formulario.</p>
     </div>
   </footer>
 

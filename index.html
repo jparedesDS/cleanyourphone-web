@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#121316">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-4SepJ5QniKTZ44FH6D3YsyUGhcrf7vx77fH2KdV/FnM='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-4SepJ5QniKTZ44FH6D3YsyUGhcrf7vx77fH2KdV/FnM='; connect-src https://cleanyourphone-feedback.subtitleme.workers.dev; font-src 'self'; upgrade-insecure-requests">
   <link rel="canonical" href="https://jparedesds.github.io/cleanyourphone-web/">
   <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourphone-web/">
   <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
@@ -86,6 +86,7 @@
         <a href="#profiles">Profiles</a>
         <a href="#safety">Safety</a>
         <a href="#faq">FAQ</a>
+        <a href="#feedback">Feedback</a>
         <a class="nav-mail" href="https://jparedesds.github.io/cleanyourmail-web">CleanYour<span class="wordmark-mail">Mail</span></a>
         <a class="nav-github" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub <span aria-hidden="true">↗</span></a>
         <a class="lang" href="es.html" hreflang="es" lang="es"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg> ES</a>
@@ -192,7 +193,7 @@ Give me the undo command.</code></pre>
             <h3>Download the app</h3>
             <p>The app is the simple path for people who prefer buttons over prompts. Windows 10/11 installer, tested on a OnePlus 6T. It backs up first and only continues on a supported, tested phone.</p>
             <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> Download for Windows</a>
-            <p class="path-note">Early MVP · Windows 10/11 · v0.1.0 · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CONNECT.md" rel="noopener">Connection guide</a></p>
+            <p class="path-note">Early MVP · Windows 10/11 · v0.2.0 · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CONNECT.md" rel="noopener">Connection guide</a></p>
           </article>
         </div>
         <p class="section-note">Prefer the terminal? <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">The CLI is still on GitHub.</a></p>
@@ -291,6 +292,47 @@ Give me the undo command.</code></pre>
       </div>
     </section>
 
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Feedback</p>
+          <h2>Send a bug, an idea or a phone checklist.</h2>
+          <p>This form sends a message to the CleanYourPhone Discord. No automatic telemetry. Do not include serial numbers, IP addresses, IMEI or MAC addresses.</p>
+        </div>
+        <form class="feedback-form" id="feedback-form" data-endpoint="https://cleanyourphone-feedback.subtitleme.workers.dev" novalidate>
+          <div class="feedback-grid">
+            <label>Type
+              <select name="kind" id="feedback-kind">
+                <option value="feedback">Improvement</option>
+                <option value="bug">Bug</option>
+                <option value="profile">Phone profile request</option>
+              </select>
+            </label>
+            <label>Contact (optional)
+              <input name="contact" id="feedback-contact" maxlength="200" autocomplete="off" placeholder="Discord, GitHub or email">
+            </label>
+          </div>
+          <label>Message
+            <textarea name="message" id="feedback-message" maxlength="4000" rows="5" placeholder="What should change? What failed?"></textarea>
+          </label>
+          <label>Phone checklist (optional)
+            <textarea name="checklist" id="feedback-checklist" maxlength="6000" rows="6" placeholder="Phone model:&#10;Android:&#10;Build:&#10;Profile:&#10;What happened:"></textarea>
+          </label>
+          <label class="feedback-honeypot" aria-hidden="true">Website
+            <input name="website" id="feedback-website" tabindex="-1" autocomplete="off">
+          </label>
+          <label class="feedback-consent">
+            <input type="checkbox" id="feedback-consent">
+            I agree to send this message to the CleanYourPhone Discord.
+          </label>
+          <div class="feedback-actions">
+            <button class="button button-primary" type="submit" id="feedback-submit">Send feedback</button>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <section class="cta">
       <div class="container cta-inner">
         <h2>Review the plan. Keep the undo.</h2>
@@ -321,7 +363,7 @@ Give me the undo command.</code></pre>
       </nav>
     </div>
     <div class="container">
-      <p class="footer-note">No cookies. No analytics. No third-party requests.</p>
+      <p class="footer-note">No cookies. No analytics. Feedback is sent only when you submit the form.</p>
     </div>
   </footer>
 
