@@ -1,28 +1,75 @@
-# CleanYourPhone — website
+<p align="center">
+  <a href="https://jparedesds.github.io/cleanyourphone-web/">
+    <img src="assets/banner.png" alt="CleanYourPhone — your phone, minus the bloat" width="100%">
+  </a>
+</p>
 
-Static landing page for [CleanYourPhone](https://github.com/jparedesDS/cleanyourphone), the
-open-source, reversible Android debloat skill for coding agents.
+<p align="center">
+  <b>English</b> ·
+  <a href="es.html">Español</a> ·
+  <a href="https://github.com/jparedesDS/cleanyourphone">Skill</a> ·
+  <a href="https://github.com/jparedesDS/cleanyourphone-app">Windows app</a> ·
+  <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/FEEDBACK.md">Feedback docs</a>
+</p>
 
-Live site: **<https://jparedesds.github.io/cleanyourphone-web/>**  
+<p align="center">
+  <a href="https://jparedesds.github.io/cleanyourphone-web/"><img src="https://img.shields.io/badge/live-GitHub%20Pages-a78bfa?labelColor=121316" alt="Live site"></a>
+  <img src="https://img.shields.io/badge/license-MIT-a78bfa?labelColor=121316" alt="MIT">
+  <img src="https://img.shields.io/badge/analytics-none-a78bfa?labelColor=121316" alt="No analytics">
+  <a href="https://github.com/jparedesDS/cleanyourphone-app/releases"><img src="https://img.shields.io/github/v/release/jparedesDS/cleanyourphone-app?color=a78bfa&label=app&labelColor=121316" alt="app release"></a>
+</p>
+
+# CleanYourPhone website
+
+The bilingual landing page for [CleanYourPhone](https://github.com/jparedesDS/cleanyourphone), the
+open-source, reversible Android debloat skill for coding agents. The site puts the **skill first**,
+offers the optional **Windows app**, and lets anyone send a bug, improvement or phone checklist
+without needing Discord.
+
+Live: **<https://jparedesds.github.io/cleanyourphone-web/>**  
 Spanish: **<https://jparedesds.github.io/cleanyourphone-web/es.html>**
 
-No framework, no build step, no external fonts, no analytics, no third-party requests.
+Static HTML, CSS and JavaScript. No framework, no build step, no external fonts, no analytics and no
+page-load third-party requests.
+
+<p align="center">
+  <a href="https://jparedesds.github.io/cleanyourphone-web/">
+    <img src="assets/landing.png" alt="CleanYourPhone landing page: skill prompt card and app download" width="900">
+  </a>
+</p>
 
 ## What is here
 
-- A skill-first bilingual English/Spanish landing page: the hero is a prompt card with **Open the
-  skill** as the primary action and the app as the secondary path.
-- **Choose your path**: the skill on the left as the main product, the local app on the right as an
-  early MVP, and the CLI only as a small GitHub link.
-- Inline SVG icons for GitHub, skill, app, CLI, docs, security, discussions, license and language.
-- A three-step flow: connect locally, review, apply or restore.
-- A profile grid with the existing 156 profiles and official full-color PNG logos for Google,
-  Samsung, Xiaomi, Redmi, POCO and OnePlus.
-- A slim, slow provider marquee between the hero and “Choose your path”, using the six phone
-  brands.
-- Four compact safety cards, six FAQ items, a final CTA and a footer with icons.
-- A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
-  Open Graph metadata, JSON-LD and a sitemap.
+- **Skill-first hero:** a prompt card with **Open the skill** as the primary action and the Windows
+  app as the secondary path.
+- **Choose your path:** skill on the left as the main product, app on the right as an Early MVP, and
+  the CLI as a small GitHub link.
+- **How it works:** connect, review, apply or restore.
+- **156 profiles:** official full-color logos for Google, Samsung, Xiaomi, Redmi, POCO and OnePlus.
+- **Safety and FAQ:** the guardrails, undo limits, warranty and YouTube caveats.
+- **Feedback:** a real form that posts to a Cloudflare Worker and then to the maintainer's Discord.
+  No Discord account is needed to send.
+- **Strict CSP, `security.txt`, canonical URLs, hreflang, Open Graph, JSON-LD, sitemap and a custom
+  404.** The CSP allows only self-hosted assets plus the feedback Worker on submit.
+
+## Feedback Worker
+
+```text
+web form / app / skill  →  Cloudflare Worker  →  private Discord webhook
+```
+
+- Endpoint used by the page:
+  `https://cleanyourphone-feedback.subtitleme.workers.dev`
+- The webhook and `IP_SALT` live as Worker secrets; they are never in this repository or the app.
+- The Worker accepts `feedback`, `bug` and `profile` messages with an optional checklist.
+- It caps the body at 16 KB, rate-limits one request per hashed IP every five minutes, disables
+  Discord mentions and does not store the message.
+- Deployment, KV binding, CORS and secret steps:
+  [feedback-worker/README.md](feedback-worker/README.md).
+
+The web form sends only after the consent box is checked and **Send feedback** is pressed. The app
+and skill use the same endpoint. `tools/phone.py` stays network-free; the skill uses
+`scripts/feedback.py` as a separate opt-in helper.
 
 ## Preview locally
 
@@ -30,7 +77,8 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 python -m http.server 8080
 ```
 
-Open <http://localhost:8080/>.
+Open <http://localhost:8080/>. The feedback form needs the Worker endpoint and shows a send error if
+it is unreachable.
 
 ## Files
 
@@ -38,23 +86,28 @@ Open <http://localhost:8080/>.
 |---|---|
 | `index.html` | English landing page. |
 | `es.html` | Spanish landing page. |
-| `styles.css` | Shared styles. |
-| `app.js` | Copy buttons and toast feedback. |
-| `assets/logo.svg`, `assets/favicon.svg` | Primary mark and favicon used by the site. |
-| `assets/brands/` | Official full-color PNG logos and their source/trademark README (`assets/brands/README.md`). |
-| `assets/banner.png` | Repository banner (1600×440). |
+| `styles.css` | Shared styles, feedback form and responsive layout. |
+| `app.js` | Copy buttons, toast feedback and the opt-in feedback form. |
+| `assets/logo.svg`, `assets/favicon.svg` | Primary mark and favicon. |
+| `assets/banner.png` | Repository and page banner (1600×440). |
 | `assets/og.png` | Social preview image (1280×640). |
+| `assets/landing.png` | Live landing-page screenshot used by this README. |
+| `assets/brands/` | Official brand PNGs and their source/trademark README. |
 | `assets/brand/` | `banner-web`, `banner-skill`, `social-web`, `social-skill` variants. |
+| `feedback-worker/` | Cloudflare Worker, deployment guide, tests and wrangler config. |
 | `robots.txt`, `sitemap.xml` | Crawler metadata. |
 | `.well-known/security.txt` | Security contact and policy. |
 | `404.html` | Not-found page. |
-| `tests/test_site.py` | Link, ID, language, CSP, metadata and asset checks. |
+| `tests/test_site.py` | Link, ID, language, CSP, metadata, feedback and asset checks. |
 
 ## Release sync
 
-`softwareVersion` in `index.html` and `es.html` must match `VERSION` in `tools/phone.py` in the skill
-repository. When the JSON-LD block changes, recompute the CSP `sha256` hash in both pages and run the
-test suite again.
+- `softwareVersion` in `index.html` and `es.html` must match `VERSION` in `tools/phone.py` in the
+  skill repository. Current CLI: **`0.3.2`**.
+- The app card links to `releases/latest` and states the current app version: **`v0.2.0`**.
+- The feedback endpoint is duplicated in the two HTML files (`data-endpoint`) and in the app
+  (`FEEDBACK_ENDPOINT`). Change all three together.
+- When the JSON-LD block changes, recompute the CSP `sha256` hash in both pages and run the tests.
 
 ## Brand assets
 
@@ -62,53 +115,59 @@ The final logo, banner and social preview are checked in under `assets/`. The id
 logo usage and clear-space rules live in
 [docs/BRAND.md](https://github.com/jparedesDS/cleanyourphone/blob/main/docs/BRAND.md).
 
-The website uses the two-color CleanYourMail-style system: lavender `#A78BFA` for actions and
-emphasis, white `#F3F1EC` for text, and graphite `#121316` for the surface. The CleanYourMail
-wordmark keeps its own orange `#FFB38A`.
-
-Profile brand logos live in `assets/brands/`; their source URLs and trademark notice are in
-`assets/brands/README.md`. The app repository now has a status README, so the site labels it as an
-early MVP with no installer instead of claiming a downloadable binary.
+The site uses lavender `#A78BFA` for actions and emphasis, white `#F3F1EC` for text, and graphite
+`#121316` for the surface. CleanYourMail keeps its own orange `#FFB38A` wordmark.
 
 The earlier phone-mockup banner generator has been retired; do not reintroduce it over the final
 lockup assets.
 
 ## Deploy
 
-This repository is a static site at the root. In GitHub:
+This repository is a static site at the root and deploys with GitHub Pages.
 
 1. **Settings → Pages**.
-2. **Build and deployment → Source**: **Deploy from a branch**.
+2. **Build and deployment → Source:** **Deploy from a branch**.
 3. Branch: **`main`**, folder: **`/ (root)`**.
 4. Save.
 
 If the first build does not start, push any commit to `main`. The `pages build and deployment`
 workflow should appear in **Actions**.
 
-No workflow is required. If you prefer GitHub Actions, add a Pages workflow that uploads the root
-directory as the artifact.
+The feedback Worker is deployed separately from `feedback-worker/`; it is not part of the GitHub
+Pages artifact.
 
 ## Tests
 
 ```bash
-python -m unittest discover -s tests -v
+python -m pytest -q
 ```
 
-The suite checks local links and assets, duplicate IDs, the language switch, analytics absence,
-inline-style absence (CSP compatibility), the CSP hash against the JSON-LD block, third-party
-requests, canonical/hreflang metadata, PNG dimensions, the sitemap and `security.txt`. It also checks
-the skill-first order, the prompt card and copy control, the absence of a CLI section, the inline
-icon system, the six transparent brand PNGs and that the page does not reference an unrelated project.
+Current site suite: **29 passed, 245 subtests**. It checks local links and assets, duplicate IDs, the
+language switch, analytics absence, inline-style absence, the CSP hash against JSON-LD, the feedback
+endpoint and CSP, third-party page-load requests, canonical/hreflang metadata, PNG dimensions, the
+sitemap, `security.txt`, the skill-first order, the prompt card and the inline icon system.
+
+Worker tests:
+
+```bash
+cd feedback-worker
+node --test worker.test.mjs
+```
+
+Current Worker suite: **7 passed** (validation, honeypot, CORS preflight, Discord payload, missing
+webhook and rate limiting).
 
 ## Links
 
-- Skill repository: <https://github.com/jparedesDS/cleanyourphone>
-- App repository (early MVP; status README, no installer yet): <https://github.com/jparedesDS/cleanyourphone-app>
-- Safety rules: <https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md>
-- Profile catalog: <https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md>
-- Prompt: <https://github.com/jparedesDS/cleanyourphone/blob/main/PROMPT.md>
-- Spanish prompt: <https://github.com/jparedesDS/cleanyourphone/blob/main/PROMPT.es.md>
+- **Skill repository:** <https://github.com/jparedesDS/cleanyourphone>
+- **Windows app:** <https://github.com/jparedesDS/cleanyourphone-app>
+- **App release:** <https://github.com/jparedesDS/cleanyourphone-app/releases/latest>
+- **Connection guide:** <https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CONNECT.md>
+- **Feedback and privacy:** <https://github.com/jparedesDS/cleanyourphone/blob/main/docs/FEEDBACK.md>
+- **Safety rules:** <https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md>
+- **Profiles:** <https://github.com/jparedesDS/cleanyourphone/tree/main/profiles>
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE). Brand names and logos are trademarks of their respective owners; see
+`assets/brands/README.md`.
