@@ -238,6 +238,40 @@ class SiteTest(unittest.TestCase):
                 self.assertNotIn("Download the app", text)
                 self.assertNotIn("Descargar la app", text)
 
+    def test_app_ctas_are_status_only(self):
+        for name, cta_label, heading, step, final in (
+            (
+                "index.html",
+                "App status",
+                "Use the skill. The app is in development.",
+                "Open the repo, enable USB debugging",
+                "The app is still in development.",
+            ),
+            (
+                "es.html",
+                "Estado de la app",
+                "Usa la skill. La app está en desarrollo.",
+                "Abre el repo, activa la depuración USB",
+                "La app aún está en desarrollo.",
+            ),
+        ):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn(heading, text)
+                self.assertIn(step, text)
+                self.assertIn(final, text)
+                links = re.findall(
+                    r'<a class="button button-ghost" href="https://github\.com/jparedesDS/cleanyourphone-app"[^>]*>(.*?)</a>',
+                    text,
+                )
+                self.assertEqual(len(links), 3)
+                for inner in links:
+                    self.assertIn(cta_label, inner)
+                self.assertNotIn("download", text.lower())
+                self.assertNotIn("descarg", text.lower())
+                self.assertNotIn("open the app", text.lower())
+                self.assertNotIn("abre la app", text.lower())
+
     def test_no_unrelated_project_reference(self):
         """The site must not claim an unrelated project as its inspiration."""
         for name in PAGES:
