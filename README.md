@@ -7,6 +7,17 @@
 <p align="center">
   <b>English</b> ·
   <a href="es.html">Español</a> ·
+  <a href="pt-BR.html">Português (BR)</a> ·
+  <a href="fr.html">Français</a> ·
+  <a href="de.html">Deutsch</a> ·
+  <a href="it.html">Italiano</a> ·
+  <a href="ja.html">日本語</a> ·
+  <a href="zh-CN.html">简体中文</a> ·
+  <a href="zh-TW.html">繁體中文</a> ·
+  <a href="ko.html">한국어</a>
+</p>
+
+<p align="center">
   <a href="https://github.com/jparedesDS/cleanyourphone">Skill</a> ·
   <a href="https://github.com/jparedesDS/cleanyourphone-app">Windows app</a> ·
   <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/FEEDBACK.md">Feedback docs</a>
@@ -16,18 +27,18 @@
   <a href="https://jparedesds.github.io/cleanyourphone-web/"><img src="https://img.shields.io/badge/live-GitHub%20Pages-a78bfa?labelColor=121316" alt="Live site"></a>
   <img src="https://img.shields.io/badge/license-MIT-a78bfa?labelColor=121316" alt="MIT">
   <img src="https://img.shields.io/badge/analytics-none-a78bfa?labelColor=121316" alt="No analytics">
+  <img src="https://img.shields.io/badge/languages-10-a78bfa?labelColor=121316" alt="10 languages">
   <a href="https://github.com/jparedesDS/cleanyourphone-app/releases"><img src="https://img.shields.io/github/v/release/jparedesDS/cleanyourphone-app?color=a78bfa&label=app&labelColor=121316" alt="app release"></a>
 </p>
 
 # CleanYourPhone website
 
-The bilingual landing page for [CleanYourPhone](https://github.com/jparedesDS/cleanyourphone), the
-open-source, reversible Android debloat skill for coding agents. The site puts the **skill first**,
-offers the optional **Windows app**, and lets anyone send a bug, improvement or phone checklist
-without needing Discord.
+The **ten-language** landing page for [CleanYourPhone](https://github.com/jparedesDS/cleanyourphone),
+the open-source, reversible Android debloat skill for coding agents. The site puts the **skill
+first**, offers the optional **Windows app**, and lets anyone send a bug, improvement or phone
+checklist without needing Discord.
 
-Live: **<https://jparedesds.github.io/cleanyourphone-web/>**  
-Spanish: **<https://jparedesds.github.io/cleanyourphone-web/es.html>**
+Live: **<https://jparedesds.github.io/cleanyourphone-web/>**
 
 Static HTML, CSS and JavaScript. No framework, no build step, no external fonts, no analytics and no
 page-load third-party requests.
@@ -49,8 +60,28 @@ page-load third-party requests.
 - **Safety and FAQ:** the guardrails, undo limits, warranty and YouTube caveats.
 - **Feedback:** a real form that posts to a Cloudflare Worker and then to the maintainer's Discord.
   No Discord account is needed to send.
+- **Ten languages:** English, Spanish, Portuguese (BR), French, German, Italian, Japanese, Simplified
+  Chinese, Traditional Chinese and Korean, with a native `<select>` in the nav.
 - **Strict CSP, `security.txt`, canonical URLs, hreflang, Open Graph, JSON-LD, sitemap and a custom
   404.** The CSP allows only self-hosted assets plus the feedback Worker on submit.
+
+## Languages
+
+| Language | Page |
+|---|---|
+| English | <https://jparedesds.github.io/cleanyourphone-web/> |
+| Español | <https://jparedesds.github.io/cleanyourphone-web/es.html> |
+| Português (BR) | <https://jparedesds.github.io/cleanyourphone-web/pt-BR.html> |
+| Français | <https://jparedesds.github.io/cleanyourphone-web/fr.html> |
+| Deutsch | <https://jparedesds.github.io/cleanyourphone-web/de.html> |
+| Italiano | <https://jparedesds.github.io/cleanyourphone-web/it.html> |
+| 日本語 | <https://jparedesds.github.io/cleanyourphone-web/ja.html> |
+| 简体中文 | <https://jparedesds.github.io/cleanyourphone-web/zh-CN.html> |
+| 繁體中文 | <https://jparedesds.github.io/cleanyourphone-web/zh-TW.html> |
+| 한국어 | <https://jparedesds.github.io/cleanyourphone-web/ko.html> |
+
+Every page has the same canonical/hreflang set, its own Open Graph/JSON-LD locale, and the shared
+feedback endpoint.
 
 ## Feedback Worker
 
@@ -86,8 +117,10 @@ it is unreachable.
 |---|---|
 | `index.html` | English landing page. |
 | `es.html` | Spanish landing page. |
-| `styles.css` | Shared styles, feedback form and responsive layout. |
-| `app.js` | Copy buttons, toast feedback and the opt-in feedback form. |
+| `pt-BR.html`, `fr.html`, `de.html`, `it.html` | Portuguese, French, German and Italian pages. |
+| `ja.html`, `zh-CN.html`, `zh-TW.html`, `ko.html` | Japanese, Simplified Chinese, Traditional Chinese and Korean pages. |
+| `styles.css` | Shared styles, language selector, feedback form and responsive layout. |
+| `app.js` | Language picker, copy buttons, localized toast/feedback strings and the opt-in form. |
 | `assets/logo.svg`, `assets/favicon.svg` | Primary mark and favicon. |
 | `assets/banner.png` | Repository and page banner (1600×440). |
 | `assets/og.png` | Social preview image (1280×640). |
@@ -102,7 +135,7 @@ it is unreachable.
 
 ## Release sync
 
-- `softwareVersion` in `index.html` and `es.html` must match `VERSION` in `tools/phone.py` in the
+- `softwareVersion` in all ten landing pages must match `VERSION` in `tools/phone.py` in the
   skill repository. Current CLI: **`0.3.2`**.
 - The app card links to `releases/latest` and states the current app version: **`v0.2.0`**.
 - The feedback endpoint is duplicated in the two HTML files (`data-endpoint`) and in the app
@@ -142,10 +175,11 @@ Pages artifact.
 python -m pytest -q
 ```
 
-Current site suite: **29 passed, 245 subtests**. It checks local links and assets, duplicate IDs, the
-language switch, analytics absence, inline-style absence, the CSP hash against JSON-LD, the feedback
-endpoint and CSP, third-party page-load requests, canonical/hreflang metadata, PNG dimensions, the
-sitemap, `security.txt`, the skill-first order, the prompt card and the inline icon system.
+Current site suite: **30 passed, 999 subtests**. It checks local links and assets, duplicate IDs,
+the ten-language selector, page language, analytics absence, inline-style absence, the CSP hash
+against JSON-LD, the feedback endpoint and CSP, third-party page-load requests, canonical/hreflang
+metadata for every locale, PNG dimensions, the sitemap, `security.txt`, the skill-first order, the
+prompt card and the inline icon system.
 
 Worker tests:
 

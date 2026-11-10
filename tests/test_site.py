@@ -10,8 +10,20 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ("index.html", "es.html", "404.html")
-PAGES_WITH_JSONLD = ("index.html", "es.html")
+LANGUAGES = {
+    "index.html": ("en", ""),
+    "es.html": ("es", "es.html"),
+    "pt-BR.html": ("pt-BR", "pt-BR.html"),
+    "fr.html": ("fr", "fr.html"),
+    "de.html": ("de", "de.html"),
+    "it.html": ("it", "it.html"),
+    "ja.html": ("ja", "ja.html"),
+    "zh-CN.html": ("zh-CN", "zh-CN.html"),
+    "zh-TW.html": ("zh-TW", "zh-TW.html"),
+    "ko.html": ("ko", "ko.html"),
+}
+PAGES_WITH_JSONLD = tuple(LANGUAGES)
+PAGES = (*PAGES_WITH_JSONLD, "404.html")
 BASE_URL = "https://jparedesds.github.io/cleanyourphone-web/"
 
 
@@ -58,10 +70,16 @@ class SiteTest(unittest.TestCase):
                         self.assertTrue((page.parent / target).resolve().exists())
 
     def test_language_switch(self):
-        english = (ROOT / "index.html").read_text(encoding="utf-8")
-        spanish = (ROOT / "es.html").read_text(encoding="utf-8")
-        self.assertIn('href="es.html"', english)
-        self.assertIn('href="index.html"', spanish)
+        for name in PAGES_WITH_JSONLD:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn('id="language-select"', text)
+                self.assertEqual(text.count('id="language-select"'), 1)
+                self.assertEqual(len(re.findall(r'<option value="[^"]+"', text)), 13)
+                selected = re.findall(
+                    r'<option value="([^"]+)" selected>', text
+                )
+                self.assertEqual(selected, [name])
 
     def test_no_analytics_or_tracking(self):
         for name in PAGES:
@@ -74,79 +92,75 @@ class SiteTest(unittest.TestCase):
     def test_start_nav_link_points_to_start_section(self):
         css = (ROOT / "styles.css").read_text(encoding="utf-8")
         self.assertIn("color: var(--accent-2) !important;", css)
-        for name, label, next_label in (
-            ("index.html", "Start", "How it works"),
-            ("es.html", "Empieza", "Cómo funciona"),
-        ):
+        for name in PAGES_WITH_JSONLD:
             text = (ROOT / name).read_text(encoding="utf-8")
             nav = text.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
             with self.subTest(page=name):
-                self.assertIn(f'class="nav-start" href="#start">{label}</a>', nav)
-                self.assertLess(nav.index("nav-start"), nav.index(next_label))
+                self.assertIn('class="nav-start" href="#start"', nav)
+                self.assertLess(nav.index("nav-start"), nav.index('href="#how"'))
                 self.assertIn('id="start"', text)
 
     def test_mail_cross_link_after_faq(self):
-        for name in ("index.html", "es.html"):
+        for name in PAGES_WITH_JSONLD:
             text = (ROOT / name).read_text(encoding="utf-8")
             nav = text.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
             with self.subTest(page=name):
-                self.assertLess(nav.index(">FAQ<"), nav.index("https://jparedesds.github.io/cleanyourmail-web"))
+                self.assertLess(nav.index('href="#faq"'), nav.index("https://jparedesds.github.io/cleanyourmail-web"))
                 self.assertIn('class="wordmark-mail"', nav)
                 self.assertIn(">Mail</span>", nav)
         css = (ROOT / "styles.css").read_text(encoding="utf-8")
         self.assertIn("--mail-accent: #ffb38a;", css)
 
     def test_skill_first_hero_and_no_cli_section(self):
-        text = (ROOT / "index.html").read_text(encoding="utf-8")
-        hero = text.split('<section class="hero">', 1)[1].split("</section>", 1)[0]
-        self.assertIn("Download for Windows", hero)
-        self.assertIn("cleanyourphone-app/releases/latest", hero)
-        self.assertLess(hero.index("Open the skill"), hero.index("Download for Windows"))
-
-        spanish = (ROOT / "es.html").read_text(encoding="utf-8")
-        es_hero = spanish.split('<section class="hero">', 1)[1].split("</section>", 1)[0]
-        self.assertIn("Descargar para Windows", es_hero)
-        self.assertIn("cleanyourphone-app/releases/latest", es_hero)
-        self.assertLess(es_hero.index("Abrir la skill"), es_hero.index("Descargar para Windows"))
-
-        self.assertIn('class="app-window"', hero)
-        self.assertIn('class="app-bar"', hero)
-        self.assertEqual(hero.count("<span></span>"), 3)
-        self.assertIn("CleanYourPhone · skill", hero)
-        self.assertIn("data-copy=", hero)
-        self.assertIn("Copy prompt", hero)
-        self.assertIn("https://github.com/jparedesDS/cleanyourphone", hero)
-        prompt_block = hero.split('class="prompt-block"', 1)[1].split("</pre>", 1)[0]
-        self.assertIn("Read SKILL.md from", prompt_block)
-        self.assertIn("https://github.com/jparedesDS/cleanyourphone", prompt_block.replace("<wbr>", ""))
-        self.assertNotIn('id="cli"', text)
+        for name in PAGES_WITH_JSONLD:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            hero = text.split('<section class="hero">', 1)[1].split("</section>", 1)[0]
+            with self.subTest(page=name):
+                self.assertIn("SKILL.md", hero)
+                self.assertIn("cleanyourphone-app/releases/latest", hero)
+                self.assertLess(
+                    hero.index("SKILL.md"),
+                    hero.index("cleanyourphone-app/releases/latest"),
+                )
+                self.assertIn('class="app-window"', hero)
+                self.assertIn('class="app-bar"', hero)
+                self.assertEqual(hero.count("<span></span>"), 3)
+                self.assertIn("data-copy=", hero)
+                self.assertIn("https://github.com/jparedesDS/cleanyourphone", hero)
+                prompt_block = hero.split('class="prompt-block"', 1)[1].split("</pre>", 1)[0]
+                self.assertIn(
+                    "https://github.com/jparedesDS/cleanyourphone",
+                    prompt_block.replace("<wbr>", ""),
+                )
+                self.assertNotIn('id="cli"', text)
 
     def test_section_order_is_skill_first(self):
-        text = (ROOT / "index.html").read_text(encoding="utf-8")
-        hero = text.index('<section class="hero">')
-        positions = [text.index(f'id="{section}"') for section in ("start", "how", "profiles", "safety", "faq")]
-        self.assertLess(hero, positions[0])
-        self.assertEqual(positions, sorted(positions))
+        for name in PAGES_WITH_JSONLD:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            hero = text.index('<section class="hero">')
+            positions = [
+                text.index(f'id="{section}"')
+                for section in ("start", "how", "profiles", "safety", "faq")
+            ]
+            with self.subTest(page=name):
+                self.assertLess(hero, positions[0])
+                self.assertEqual(positions, sorted(positions))
 
     def test_choose_path_puts_skill_before_app(self):
-        text = (ROOT / "index.html").read_text(encoding="utf-8")
-        path = text.split('id="start"', 1)[1].split("</section>", 1)[0]
-        self.assertIn("App · Early MVP", path)
-        self.assertIn("Download the app", path)
-        self.assertIn("cleanyourphone-app/releases/latest", path)
-        self.assertLess(path.index("Use the skill"), path.index("App · Early MVP"))
-
-        spanish = (ROOT / "es.html").read_text(encoding="utf-8")
-        es_path = spanish.split('id="start"', 1)[1].split("</section>", 1)[0]
-        self.assertIn("App · MVP temprano", es_path)
-        self.assertIn("Descarga la app", es_path)
-        self.assertIn("cleanyourphone-app/releases/latest", es_path)
-        self.assertLess(es_path.index("Usa la skill"), es_path.index("App · MVP temprano"))
-
-        self.assertIn("path-card-primary", path)
-        self.assertIn("copy-inline", path)
-        copy_control = path.split('class="copy-inline"', 1)[1].split("</button>", 1)[0]
-        self.assertIn("https://github.com/jparedesDS/cleanyourphone", copy_control)
+        for name in PAGES_WITH_JSONLD:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            path = text.split('id="start"', 1)[1].split("</section>", 1)[0]
+            with self.subTest(page=name):
+                self.assertIn("path-card-primary", path)
+                self.assertIn("SKILL.md", path)
+                self.assertIn("cleanyourphone-app/releases/latest", path)
+                self.assertLess(
+                    path.index("SKILL.md"),
+                    path.index("cleanyourphone-app/releases/latest"),
+                )
+                self.assertIn("copy-inline", path)
+                copy_control = path.split('class="copy-inline"', 1)[1].split("</button>", 1)[0]
+                self.assertIn("https://github.com/jparedesDS/cleanyourphone", copy_control)
 
     def test_inline_icons_are_defined_and_used(self):
         text = (ROOT / "index.html").read_text(encoding="utf-8")
@@ -184,7 +198,7 @@ class SiteTest(unittest.TestCase):
                 self.assertIn(token, css)
         self.assertNotIn("#e2c15c", css.lower())
         self.assertNotIn("#efd07a", css.lower())
-        for name in ("index.html", "es.html"):
+        for name in PAGES_WITH_JSONLD:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertIn('<meta name="theme-color" content="#121316">', text)
@@ -211,7 +225,7 @@ class SiteTest(unittest.TestCase):
         self.assertIn("animation: provider-marquee 90s linear infinite;", css)
         self.assertIn(".provider-strip:hover .provider-strip-track { animation-play-state: paused; }", css)
         self.assertIn("animation-duration: 90s !important;", css)
-        for name in ("index.html", "es.html"):
+        for name in PAGES_WITH_JSONLD:
             text = (ROOT / name).read_text(encoding="utf-8")
             hero_start = text.index('<section class="hero">')
             hero_end = text.index("</section>", hero_start)
@@ -228,14 +242,17 @@ class SiteTest(unittest.TestCase):
                     self.assertEqual(strip.count(f"assets/brands/{brand}.png"), 4)
 
     def test_app_is_labelled_early_mvp_and_has_a_download(self):
-        for name, label, note in (
-            ("index.html", "Early MVP", "Download the app"),
-            ("es.html", "MVP temprano", "Descarga la app"),
-        ):
+        self.assertIn(
+            "Early MVP",
+            (ROOT / "index.html").read_text(encoding="utf-8"),
+        )
+        self.assertIn(
+            "MVP temprano",
+            (ROOT / "es.html").read_text(encoding="utf-8"),
+        )
+        for name in PAGES_WITH_JSONLD:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
-                self.assertIn(label, text)
-                self.assertIn(note, text)
                 self.assertIn("Windows 10/11", text)
                 self.assertIn("OnePlus 6T", text)
                 self.assertIn("v0.2.0", text)
@@ -335,7 +352,7 @@ class SiteTest(unittest.TestCase):
 
     def test_feedback_form_only_posts_to_the_worker(self):
         endpoint = "https://cleanyourphone-feedback.subtitleme.workers.dev"
-        for name in ("index.html", "es.html"):
+        for name in PAGES_WITH_JSONLD:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertIn('id="feedback-form"', text)
@@ -347,17 +364,24 @@ class SiteTest(unittest.TestCase):
         self.assertIn("fetch(endpoint", js)
         self.assertIn("Content-Type", js)
 
-    def test_canonical_and_alternates(self):
-        cases = {
-            "index.html": BASE_URL,
-            "es.html": f"{BASE_URL}es.html",
-        }
-        for name, canonical in cases.items():
+    def test_page_language(self):
+        for name, (language, _path) in LANGUAGES.items():
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
+                self.assertIn(f'<html lang="{language}">', text)
+
+    def test_canonical_and_alternates(self):
+        for name, (_language, path) in LANGUAGES.items():
+            text = (ROOT / name).read_text(encoding="utf-8")
+            canonical = BASE_URL + path
+            with self.subTest(page=name):
                 self.assertIn(f'<link rel="canonical" href="{canonical}">', text)
-                self.assertIn('hreflang="en"', text)
-                self.assertIn('hreflang="es"', text)
+                self.assertIn(f'property="og:url" content="{canonical}"', text)
+                for language, alternate_path in LANGUAGES.values():
+                    self.assertIn(
+                        f'hreflang="{language}" href="{BASE_URL + alternate_path}"',
+                        text,
+                    )
                 self.assertIn('hreflang="x-default"', text)
 
     def test_social_metadata(self):
@@ -388,8 +412,10 @@ class SiteTest(unittest.TestCase):
 
     def test_sitemap(self):
         sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-        self.assertIn(BASE_URL, sitemap)
-        self.assertIn(f"{BASE_URL}es.html", sitemap)
+        for _language, path in LANGUAGES.values():
+            self.assertIn(f"<loc>{BASE_URL + path}</loc>", sitemap)
+        self.assertEqual(sitemap.count("<loc>"), len(LANGUAGES))
+        self.assertIn('hreflang="x-default"', sitemap)
 
 
 if __name__ == "__main__":

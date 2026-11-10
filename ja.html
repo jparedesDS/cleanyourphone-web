@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanYourPhone — エージェント向けの可逆的 Android アプリ無効化スキル</title>
+  <meta name="description" content="ADB 経由で Android のプリインストールアプリを無効化するオープンソースのエージェントスキル。root 権限もアンインストールも不要です。最初にバックアップし、主要なアプリとロールを保護して、記録した変更をすべて復元します。ローカルアプリと CLI は任意で利用できます。">
+  <meta name="author" content="Jose Paredes">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#121316">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-CB34QKqmR85QwJHswaDDbFMM6z1YwaxwcbcqGPx80/M='; connect-src https://cleanyourphone-feedback.subtitleme.workers.dev; font-src 'self'; upgrade-insecure-requests">
+  <link rel="canonical" href="https://jparedesds.github.io/cleanyourphone-web/ja.html">
+  <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourphone-web/">
+  <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://jparedesds.github.io/cleanyourphone-web/pt-BR.html">
+  <link rel="alternate" hreflang="fr" href="https://jparedesds.github.io/cleanyourphone-web/fr.html">
+  <link rel="alternate" hreflang="de" href="https://jparedesds.github.io/cleanyourphone-web/de.html">
+  <link rel="alternate" hreflang="it" href="https://jparedesds.github.io/cleanyourphone-web/it.html">
+  <link rel="alternate" hreflang="ja" href="https://jparedesds.github.io/cleanyourphone-web/ja.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://jparedesds.github.io/cleanyourphone-web/zh-CN.html">
+  <link rel="alternate" hreflang="zh-TW" href="https://jparedesds.github.io/cleanyourphone-web/zh-TW.html">
+  <link rel="alternate" hreflang="ko" href="https://jparedesds.github.io/cleanyourphone-web/ko.html">
+  <link rel="alternate" hreflang="x-default" href="https://jparedesds.github.io/cleanyourphone-web/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CleanYourPhone">
+  <meta property="og:url" content="https://jparedesds.github.io/cleanyourphone-web/ja.html">
+  <meta property="og:title" content="CleanYourPhone — エージェント向けの可逆的 Android アプリ無効化スキル">
+  <meta property="og:description" content="root 権限もアンインストールも不要で、Android のプリインストールアプリを無効化。まずバックアップし、主要なアプリを保護して、記録した変更をすべて復元します。ローカルアプリと CLI は任意です。">
+  <meta property="og:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="CleanYourPhone — スマホから余計なものをそぎ落とす">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CleanYourPhone — エージェント向けの可逆的 Android アプリ無効化スキル">
+  <meta name="twitter:description" content="コーディングエージェント向けのオープンソース Android アプリ無効化スキル。承認したものだけを無効化し、最初にバックアップして、記録した変更をすべて復元します。">
+  <meta name="twitter:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
+  <meta name="twitter:image:alt" content="CleanYourPhone — スマホから余計なものをそぎ落とす">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CleanYourPhone",
+    "description": "ADB 経由で Android のプリインストールアプリを無効化する、コーディングエージェント向けのオープンソーススキル。root 不要、アンインストール不要、元に戻せます。",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "0.3.2",
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/jparedesDS/cleanyourphone",
+    "url": "https://jparedesds.github.io/cleanyourphone-web/ja.html",
+    "inLanguage": "ja",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Jose Paredes",
+      "url": "https://github.com/jparedesDS"
+    }
+  }
+  </script>
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></symbol>
+    <symbol id="i-skill" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"/></g></symbol>
+    <symbol id="i-app" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></g></symbol>
+    <symbol id="i-cli" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></g></symbol>
+    <symbol id="i-docs" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v4h4M9 11h6M9 15h6"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m9 12 2 2 4-4"/></g></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/></g></symbol>
+    <symbol id="i-license" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v4h4"/><circle cx="12" cy="14" r="2.5"/><path d="m10.5 16-1 3 2.5-1 2.5 1-1-3"/></g></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></g></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">コンテンツへスキップ</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="CleanYourPhone ホーム">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>CleanYour<span class="wordmark-phone">Phone</span></span>
+      </a>
+      <nav class="nav" aria-label="メイン">
+        <a class="nav-start" href="#start">はじめる</a>
+        <a href="#how">使い方</a>
+        <a href="#profiles">プロファイル</a>
+        <a href="#safety">安全性</a>
+        <a href="#faq">FAQ</a>
+        <a href="#feedback">フィードバック</a>
+        <a class="nav-mail" href="https://jparedesds.github.io/cleanyourmail-web">CleanYour<span class="wordmark-mail">Mail</span></a>
+        <a class="nav-github" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub <span aria-hidden="true">↗</span></a>
+        <label class="lang-select-wrap">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg>
+          <select class="lang-select" id="language-select" aria-label="言語">
+            <option value="index.html">English</option>
+            <option value="es.html">Español</option>
+            <option value="pt-BR.html">Português (BR)</option>
+            <option value="fr.html">Français</option>
+            <option value="de.html">Deutsch</option>
+            <option value="it.html">Italiano</option>
+            <option value="ja.html" selected>日本語</option>
+            <option value="zh-CN.html">简体中文</option>
+            <option value="zh-TW.html">繁體中文</option>
+            <option value="ko.html">한국어</option>
+          </select>
+        </label>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">オープンソース · エージェントスキル · ローカルアプリ</p>
+          <h1>あなたのスマホを、<br><em>もっと身軽に。</em></h1>
+          <p class="lede">CleanYourPhone は、ADB 経由で Android のプリインストールアプリを無効化するローカルなエージェントスキルです。アプリは任意で利用できます。最初にバックアップし、すべてのパッケージをあなたと一緒に確認し、記録した変更をすべて復元します。root 権限は不要、アンインストールは行わず、テレメトリーもありません。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> スキルを開く</a>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> Windows 版をダウンロード</a>
+          </div>
+          <p class="trust-line">無料 · MIT · root 不要 · テレメトリーなし · 156 プロファイル · 実機検証済み 4 件</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="app-window" aria-label="CleanYourPhone スキルのプロンプトプレビュー">
+            <div class="app-bar"><span></span><span></span><span></span><em>CleanYourPhone · スキル</em></div>
+            <div class="app-body">
+              <div class="app-head">
+                <span class="app-badge">エージェントスキル</span>
+                <span class="app-step">メインプロダクト</span>
+              </div>
+              <h3>エージェントに渡すだけ。</h3>
+              <pre class="prompt-block"><code>SKILL.md を次から読み込んでください：
+https://github.com/<wbr>jparedesDS/<wbr>cleanyourphone
+その内容に正確に従ってください。
+ADB のみ使用。最初にバックアップ。
+何かを変更する前に計画を見せてください。
+元に戻すコマンドも提示してください。</code></pre>
+              <div class="app-actions">
+                <button class="copy-button" type="button" data-copy="SKILL.md を次から読み込んでください：&#10;https://github.com/jparedesDS/cleanyourphone&#10;その内容に正確に従ってください。&#10;ADB のみ使用。最初にバックアップ。&#10;何かを変更する前に計画を見せてください。&#10;元に戻すコマンドも提示してください。"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg><span class="copy-label">プロンプトをコピー</span></button>
+              </div>
+              <p class="app-note">Claude Code、Cursor、OpenCode、またはシェルにアクセスできる任意のエージェントに貼り付けてください。</p>
+            </div>
+          </div>
+          <p class="hero-note">スキルが中心 · アプリは任意 · CLI は GitHub で公開</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="provider-strip" aria-hidden="true">
+      <div class="container provider-strip-viewport">
+        <div class="provider-strip-track">
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="start">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">進め方を選ぶ</p>
+          <h2>スキルを使いましょう。アプリは開発中です。</h2>
+          <p>スキルがメインプロダクトです。コーディングエージェントに渡して、計画を確認してください。アプリは、ボタン操作を好む人向けのシンプルな選択肢になる予定です。CLI は上級者向けに GitHub で公開を続けています。</p>
+        </div>
+        <div class="path-grid">
+          <article class="path-card path-card-primary">
+            <p class="path-label">スキル · メインプロダクト</p>
+            <h3>スキルを使う</h3>
+            <p>Claude Code、Cursor、OpenCode、またはシェルにアクセスできる別のエージェントに渡してください。最初にバックアップし、何かを変更する前に計画を示し、元に戻すコマンドを提示します。</p>
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> スキルを開く</a>
+            <p class="path-note">または <button class="copy-inline" type="button" data-copy="SKILL.md を次から読み込んでください：&#10;https://github.com/jparedesDS/cleanyourphone&#10;その内容に正確に従ってください。&#10;ADB のみ使用。最初にバックアップ。&#10;何かを変更する前に計画を見せてください。&#10;元に戻すコマンドも提示してください。"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg><span class="copy-label">プロンプトをコピー</span></button>して、Claude Code、Cursor、OpenCode に貼り付けてください。</p>
+          </article>
+          <article class="path-card">
+            <p class="path-label">アプリ · 初期 MVP</p>
+            <h3>アプリをダウンロード</h3>
+            <p>アプリは、プロンプトよりボタン操作を好む人向けのシンプルな選択肢です。Windows 10/11 用インストーラーで、OnePlus 6T でテスト済みです。最初にバックアップし、サポート対象の検証済み端末でのみ続行します。</p>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> Windows 版をダウンロード</a>
+            <p class="path-note">初期 MVP · Windows 10/11 · v0.2.0 · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CONNECT.md" rel="noopener">接続ガイド</a></p>
+          </article>
+        </div>
+        <p class="section-note">ターミナルのほうが好みですか？ <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">CLI は今も GitHub にあります。</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">使い方</p>
+          <h2>3 つのステップ。主導権はあなたに。</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-number">01</span>
+            <h3>ローカルで接続</h3>
+            <p>リポジトリを開き、USB デバッグを有効にして端末を接続します。ツールは何かを変更する前に ADB と端末を確認します。</p>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <h3>確認</h3>
+            <p>パッケージ、ロール、設定をバックアップします。各パッケージの <code>DISABLE</code>、<code>ASK</code>、<code>BLOCKED</code>、<code>SKIP</code> を確認します。この時点では何も変更されません。</p>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <h3>適用または復元</h3>
+            <p>5 個ずつのバッチで適用します。検証します。ジャーナルに記録された内容を正確に復元します。バックアップはフォールバックです。</p>
+          </li>
+        </ol>
+        <p class="section-note">任意の追加機能：プライベート DNS で多くのアプリ内広告をブロックし（YouTube は除く）、変更前後の空き RAM とパッケージ数を測定できます。 <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/ADS.md" rel="noopener">広告</a> · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/BENCH.md" rel="noopener">ベンチマーク</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="profiles">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">プロファイル</p>
+          <h2>根拠から始める。<br>掲示板の投稿ではなく。</h2>
+          <p>各プロファイルは、1 つのモデルとファームウェアに対応するパッケージリストです。<b>device</b> プロファイルは実機で検証済みです。<b>documented</b> プロファイルは一次ファームウェアダンプに基づき、確認を求めるだけです。</p>
+        </div>
+        <ul class="profile-grid">
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/google.png" alt="Google" height="24"><b>Google</b></div><span>5 プロファイル · Pixel 8 実機検証済み</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo brand-logo-samsung" src="assets/brands/samsung.png" alt="Samsung" height="24"></div><span>55 プロファイル · Galaxy S23 Ultra 実機検証済み</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/xiaomi.png" alt="Xiaomi" height="24"><b>Xiaomi</b></div><span>15 プロファイル · HyperOS ファミリー実機検証済み</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/redmi.png" alt="Redmi" height="24"></div><span>56 プロファイル · Note、K、A ファミリー · documented のみ</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/poco.png" alt="POCO" height="24"></div><span>16 プロファイル · F、X、M ファミリー · documented のみ</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/oneplus.png" alt="OnePlus" height="24"></div><span>8 プロファイル · OnePlus 6T 実機検証済み</span></li>
+        </ul>
+        <p class="section-note">検証済みビルドの <b>device</b> プロファイルだけが自動適用できます。それ以外はすべて、確認してから使う出発点です。 <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">156 個のプロファイルを見る ↗</a></p>
+        <p class="trademark-note">ブランド名およびロゴは、それぞれの所有者の商標です。</p>
+      </div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">安全性</p>
+          <h2>設計から安全。あえて地味に。</h2>
+        </div>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <h3>無効化のみ、アンインストールはしない</h3>
+            <p><code>pm disable-user --user 0</code> のみを使用します。アンインストール、非表示、データ消去、root 化は行いません。元に戻すのは <code>pm enable</code> です。</p>
+          </article>
+          <article class="safety-card">
+            <h3>まずバックアップ</h3>
+            <p>パッケージ、ロール、IME、設定、<code>getprop</code> は最初の変更前に保存されます。バックアップがなければ、変更もありません。</p>
+          </article>
+          <article class="safety-card">
+            <h3>保護リストとロール</h3>
+            <p>テレフォニー、Play Services、WebView、権限、緊急アラート、電話アプリ、SMS、ホーム、キーボードは拒否または確認の対象です。</p>
+          </article>
+          <article class="safety-card">
+            <h3>小さなバッチ、明確な取り消し</h3>
+            <p>5 個のパッケージを適用し、検証してから次のバッチへ進みます。ジャーナルは正確です。失われた場合でも、バックアップから変更を再構築できます。</p>
+          </article>
+        </div>
+        <p class="section-note">ローカルで動作します。CleanYourPhone がホストするサービス、アカウント、テレメトリーはありません。 <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md" rel="noopener">安全ルールを読む ↗</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">FAQ</p>
+          <h2>短い回答。</h2>
+        </div>
+        <div class="faq">
+          <details><summary>安全ですか？</summary><p>コピーしたパッケージリストよりは安全ですが、魔法ではありません。アンインストールは一切せず、最初にバックアップし、保護対象のパッケージと、ロールを保持するアプリを拒否し、小さなバッチで無効化し、CLI が記録した変更をすべて復元できます。それでも計画を確認し、通話、SMS、カメラ、キーボード、ホーム、通知をテストしてください。</p></details>
+          <details><summary>何かをアンインストールしますか？</summary><p>いいえ。状態を変更するのは <code>pm disable-user --user 0</code> のみです。アンインストール、非表示、データ消去、root 化は行いません。元に戻すのは <code>pm enable</code> です。</p></details>
+          <details><summary>問題が起きたらどうすればよいですか？</summary><p>停止してください。ADB がまだ端末を認識している場合は <code>restore</code> を実行します。取り消しジャーナルが失われた場合は、<code>restore --from-backup &lt;folder&gt;</code> を実行してリストを確認してください。端末が起動しない場合、リカバリガイドでセーフモード、ADB、リカバリを説明しています。工場出荷時リセットは最後の手段です。</p></details>
+          <details><summary>なぜアンインストールではなく無効化なのですか？</summary><p><code>pm uninstall --user 0</code> はメインユーザーからパッケージを削除し、OTA アップデート、工場出荷時リセット時の想定、OEM の復元フローを複雑にする可能性があります。<code>pm disable-user --user 0</code> はその場で凍結し、<code>pm enable</code> で元に戻せます。</p></details>
+          <details><summary>タブレットでも動きますか？</summary><p>はい、ADB が使える Android 8 以降で動作します。タブレット用プロファイルでは <code>form_factor: tablet</code> を設定します。電話アプリや SMS ロールが見つからない場合は警告であり、失敗ではありません。ホームとキーボードの確認は引き続き適用されます。</p></details>
+          <details><summary>無料ですか？</summary><p>はい。MIT ライセンスです。アカウント、サブスクリプション、テレメトリー、CleanYourPhone がホストするサービスはありません。</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">フィードバック</p>
+          <h2>バグ、アイデア、端末のチェックリストをお送りください。</h2>
+          <p>このフォームは、CleanYourPhone の Discord にメッセージを送信します。自動テレメトリーはありません。シリアル番号、IP アドレス、IMEI、MAC アドレスは記載しないでください。</p>
+        </div>
+        <form class="feedback-form" id="feedback-form" data-endpoint="https://cleanyourphone-feedback.subtitleme.workers.dev" novalidate>
+          <div class="feedback-grid">
+            <label>種類
+              <select name="kind" id="feedback-kind">
+                <option value="feedback">改善提案</option>
+                <option value="bug">バグ</option>
+                <option value="profile">端末プロファイルのリクエスト</option>
+              </select>
+            </label>
+            <label>連絡先（任意）
+              <input name="contact" id="feedback-contact" maxlength="200" autocomplete="off" placeholder="Discord、GitHub、メール">
+            </label>
+          </div>
+          <label>メッセージ
+            <textarea name="message" id="feedback-message" maxlength="4000" rows="5" placeholder="何を変えたいですか？何が失敗しましたか？"></textarea>
+          </label>
+          <label>端末チェックリスト（任意）
+            <textarea name="checklist" id="feedback-checklist" maxlength="6000" rows="6" placeholder="端末モデル：&#10;Android：&#10;ビルド：&#10;プロファイル：&#10;発生したこと："></textarea>
+          </label>
+          <label class="feedback-honeypot" aria-hidden="true">Website
+            <input name="website" id="feedback-website" tabindex="-1" autocomplete="off">
+          </label>
+          <label class="feedback-consent">
+            <input type="checkbox" id="feedback-consent">
+            このメッセージを CleanYourPhone の Discord に送信することに同意します。
+          </label>
+          <div class="feedback-actions">
+            <button class="button button-primary" type="submit" id="feedback-submit">フィードバックを送信</button>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <h2>計画を確認し、取り消し手段を手元に。</h2>
+        <p>スキルをエージェントに渡してください。アプリはまだ開発中です。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> スキルを開く</a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> Windows 版をダウンロード</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="" width="26" height="26">
+        <span>CleanYour<span class="wordmark-phone">Phone</span></span>
+      </div>
+      <nav class="footer-nav" aria-label="フッター">
+        <a href="https://github.com/jparedesDS/cleanyourphone-app" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg>アプリ</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cli"/></svg>CLI</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg>GitHub</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/tree/main/docs" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-docs"/></svg>ドキュメント</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/SECURITY.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg>セキュリティ</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/discussions" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>ディスカッション</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/LICENSE" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-license"/></svg>MIT</a>
+        <a href="es.html" hreflang="es" lang="es"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg>Español</a>
+      </nav>
+    </div>
+    <div class="container">
+      <p class="footer-note">Cookie は使用しません。アナリティクスもありません。フィードバックはフォームを送信したときだけ送られます。</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

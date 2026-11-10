@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanYourPhone — 專為 AI 代理打造的可還原 Android 系統精簡技能</title>
+  <meta name="description" content="開源的代理技能，透過 ADB 停用 Android 預載應用程式，不需 root，也不必解除安裝。它會先備份、保護核心應用程式與角色，並還原每一筆記錄下來的變更。另有選用的本機應用程式與 CLI。">
+  <meta name="author" content="Jose Paredes">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#121316">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-rx/wmTSCyfSprwzQLwpGWVDKFHzsvioOepXKr8g3Nu0='; connect-src https://cleanyourphone-feedback.subtitleme.workers.dev; font-src 'self'; upgrade-insecure-requests">
+  <link rel="canonical" href="https://jparedesds.github.io/cleanyourphone-web/zh-TW.html">
+  <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourphone-web/">
+  <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://jparedesds.github.io/cleanyourphone-web/pt-BR.html">
+  <link rel="alternate" hreflang="fr" href="https://jparedesds.github.io/cleanyourphone-web/fr.html">
+  <link rel="alternate" hreflang="de" href="https://jparedesds.github.io/cleanyourphone-web/de.html">
+  <link rel="alternate" hreflang="it" href="https://jparedesds.github.io/cleanyourphone-web/it.html">
+  <link rel="alternate" hreflang="ja" href="https://jparedesds.github.io/cleanyourphone-web/ja.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://jparedesds.github.io/cleanyourphone-web/zh-CN.html">
+  <link rel="alternate" hreflang="zh-TW" href="https://jparedesds.github.io/cleanyourphone-web/zh-TW.html">
+  <link rel="alternate" hreflang="ko" href="https://jparedesds.github.io/cleanyourphone-web/ko.html">
+  <link rel="alternate" hreflang="x-default" href="https://jparedesds.github.io/cleanyourphone-web/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CleanYourPhone">
+  <meta property="og:url" content="https://jparedesds.github.io/cleanyourphone-web/zh-TW.html">
+  <meta property="og:title" content="CleanYourPhone — 專為 AI 代理打造的可還原 Android 系統精簡技能">
+  <meta property="og:description" content="停用 Android 預載應用程式，不需 root，也不必解除安裝。先備份、保護核心應用程式，並還原每一筆記錄下來的變更。另有選用的本機應用程式與 CLI。">
+  <meta property="og:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="CleanYourPhone — 你的手機，減去多餘">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CleanYourPhone — 專為 AI 代理打造的可還原 Android 系統精簡技能">
+  <meta name="twitter:description" content="專為程式開發代理打造的開源 Android 系統精簡技能。只停用你核准的項目、先備份，並還原每一筆記錄下來的變更。">
+  <meta name="twitter:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
+  <meta name="twitter:image:alt" content="CleanYourPhone — 你的手機，減去多餘">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CleanYourPhone",
+    "description": "專為程式開發代理打造的開源技能，透過 ADB 停用 Android 預載應用程式。不需 root、不必解除安裝、可還原。",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "0.3.2",
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/jparedesDS/cleanyourphone",
+    "url": "https://jparedesds.github.io/cleanyourphone-web/zh-TW.html",
+    "inLanguage": "zh-TW",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Jose Paredes",
+      "url": "https://github.com/jparedesDS"
+    }
+  }
+  </script>
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></symbol>
+    <symbol id="i-skill" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"/></g></symbol>
+    <symbol id="i-app" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></g></symbol>
+    <symbol id="i-cli" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></g></symbol>
+    <symbol id="i-docs" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v4h4M9 11h6M9 15h6"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m9 12 2 2 4-4"/></g></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/></g></symbol>
+    <symbol id="i-license" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v4h4"/><circle cx="12" cy="14" r="2.5"/><path d="m10.5 16-1 3 2.5-1 2.5 1-1-3"/></g></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></g></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">跳至內容</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="CleanYourPhone 首頁">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>CleanYour<span class="wordmark-phone">Phone</span></span>
+      </a>
+      <nav class="nav" aria-label="主要導覽">
+        <a class="nav-start" href="#start">開始</a>
+        <a href="#how">運作方式</a>
+        <a href="#profiles">設定檔</a>
+        <a href="#safety">安全</a>
+        <a href="#faq">常見問題</a>
+        <a href="#feedback">意見回饋</a>
+        <a class="nav-mail" href="https://jparedesds.github.io/cleanyourmail-web">CleanYour<span class="wordmark-mail">Mail</span></a>
+        <a class="nav-github" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub <span aria-hidden="true">↗</span></a>
+        <label class="lang-select-wrap">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg>
+          <select class="lang-select" id="language-select" aria-label="語言">
+            <option value="index.html">English</option>
+            <option value="es.html">Español</option>
+            <option value="pt-BR.html">Português (BR)</option>
+            <option value="fr.html">Français</option>
+            <option value="de.html">Deutsch</option>
+            <option value="it.html">Italiano</option>
+            <option value="ja.html">日本語</option>
+            <option value="zh-CN.html">简体中文</option>
+            <option value="zh-TW.html" selected>繁體中文</option>
+            <option value="ko.html">한국어</option>
+          </select>
+        </label>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">開源 · 代理技能 · 本機應用程式</p>
+          <h1>你的手機，<br><em>減去多餘。</em></h1>
+          <p class="lede">CleanYourPhone 是本機執行的代理技能，透過 ADB 停用 Android 預載應用程式，並附有選用的應用程式。它會先備份、與你逐一檢視每個套件，並還原每一筆記錄下來的變更。不需 root、不解除安裝任何東西、沒有遙測。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 開啟技能</a>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> 下載 Windows 版</a>
+          </div>
+          <p class="trust-line">免費 · MIT · 不需 root · 無遙測 · 156 個設定檔 · 4 個經實機測試</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="app-window" aria-label="CleanYourPhone 技能提示詞預覽">
+            <div class="app-bar"><span></span><span></span><span></span><em>CleanYourPhone · 技能</em></div>
+            <div class="app-body">
+              <div class="app-head">
+                <span class="app-badge">代理技能</span>
+                <span class="app-step">主要產品</span>
+              </div>
+              <h3>交給你的 AI 代理。</h3>
+              <pre class="prompt-block"><code>從以下網址讀取 SKILL.md
+https://github.com/<wbr>jparedesDS/<wbr>cleanyourphone
+並完全遵照執行。
+只用 ADB。先備份。
+在變更任何東西之前，先給我看計畫。
+給我復原指令。</code></pre>
+              <div class="app-actions">
+                <button class="copy-button" type="button" data-copy="從以下網址讀取 SKILL.md&#10;https://github.com/jparedesDS/cleanyourphone&#10;並完全遵照執行。&#10;只用 ADB。先備份。&#10;在變更任何東西之前，先給我看計畫。&#10;給我復原指令。"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg><span class="copy-label">複製提示詞</span></button>
+              </div>
+              <p class="app-note">貼到 Claude Code、Cursor、OpenCode，或任何能存取 shell 的 AI 代理。</p>
+            </div>
+          </div>
+          <p class="hero-note">技能優先 · 應用程式選用 · CLI 在 GitHub</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="provider-strip" aria-hidden="true">
+      <div class="container provider-strip-viewport">
+        <div class="provider-strip-track">
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="start">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">選擇你的方式</p>
+          <h2>使用技能。應用程式仍在開發中。</h2>
+          <p>技能是主要產品：把它交給你的程式開發代理，並檢視計畫。應用程式則會是簡單的選擇，適合偏好按鈕操作的人。CLI 仍保留在 GitHub，供進階使用者使用。</p>
+        </div>
+        <div class="path-grid">
+          <article class="path-card path-card-primary">
+            <p class="path-label">技能 · 主要產品</p>
+            <h3>使用技能</h3>
+            <p>把它交給 Claude Code、Cursor、OpenCode 或其他能存取 shell 的 AI 代理。它會先備份、在變更任何東西之前顯示計畫，並給你復原指令。</p>
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 開啟技能</a>
+            <p class="path-note">或 <button class="copy-inline" type="button" data-copy="從以下網址讀取 SKILL.md&#10;https://github.com/jparedesDS/cleanyourphone&#10;並完全遵照執行。&#10;只用 ADB。先備份。&#10;在變更任何東西之前，先給我看計畫。&#10;給我復原指令。"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg><span class="copy-label">複製提示詞</span></button> 並貼到 Claude Code、Cursor 或 OpenCode。</p>
+          </article>
+          <article class="path-card">
+            <p class="path-label">應用程式 · 早期 MVP</p>
+            <h3>下載應用程式</h3>
+            <p>對偏好按鈕而非提示詞的人來說，應用程式是簡單的選擇。Windows 10/11 安裝程式，已在 OnePlus 6T 上測試。它會先備份，且只在受支援、經測試的手機上繼續。</p>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> 下載 Windows 版</a>
+            <p class="path-note">早期 MVP · Windows 10/11 · v0.2.0 · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CONNECT.md" rel="noopener">連線指南</a></p>
+          </article>
+        </div>
+        <p class="section-note">偏好終端機？<a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">CLI 仍保留在 GitHub。</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">運作方式</p>
+          <h2>三個步驟。主控權在你手上。</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-number">01</span>
+            <h3>在本機連線</h3>
+            <p>開啟儲存庫、啟用 USB 偵錯並連接手機。工具會在變更任何東西之前檢查 ADB 與裝置。</p>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <h3>檢視</h3>
+            <p>備份套件、角色與設定。逐一檢視每個套件的 <code>DISABLE</code>、<code>ASK</code>、<code>BLOCKED</code> 與 <code>SKIP</code>。此時還不會有任何變更。</p>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <h3>套用或還原</h3>
+            <p>每五個一批套用。驗證。完全依照日誌記錄的內容還原；備份是備援方案。</p>
+          </li>
+        </ol>
+        <p class="section-note">選用附加功能：用私人 DNS 封鎖許多應用程式內廣告（不含 YouTube），並測量變更前後的可用 RAM 與套件數量。 <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/ADS.md" rel="noopener">廣告</a> · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/BENCH.md" rel="noopener">效能測試</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="profiles">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">設定檔</p>
+          <h2>從實證出發。<br>不是論壇貼文。</h2>
+          <p>每個設定檔都是針對單一機型與韌體的一份套件清單。<b>device</b> 設定檔已在實機上測試；<b>documented</b> 設定檔來自第一手的韌體傾印，只會要求你確認。</p>
+        </div>
+        <ul class="profile-grid">
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/google.png" alt="Google" height="24"><b>Google</b></div><span>5 個設定檔 · Pixel 8 經實機測試</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo brand-logo-samsung" src="assets/brands/samsung.png" alt="Samsung" height="24"></div><span>55 個設定檔 · Galaxy S23 Ultra 經實機測試</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/xiaomi.png" alt="Xiaomi" height="24"><b>Xiaomi</b></div><span>15 個設定檔 · HyperOS 系列經實機測試</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/redmi.png" alt="Redmi" height="24"></div><span>56 個設定檔 · Note、K 與 A 系列 · 僅限 documented</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/poco.png" alt="POCO" height="24"></div><span>16 個設定檔 · F、X 與 M 系列 · 僅限 documented</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/oneplus.png" alt="OnePlus" height="24"></div><span>8 個設定檔 · OnePlus 6T 經實機測試</span></li>
+        </ul>
+        <p class="section-note">只有在已測試版本上的 <b>device</b> 設定檔才能自動套用。其餘一切都只是可供檢視的起點。 <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">瀏覽 156 個設定檔 ↗</a></p>
+        <p class="trademark-note">品牌名稱與標誌為其各自所有者的商標。</p>
+      </div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">安全</p>
+          <h2>設計上安全。刻意無聊。</h2>
+        </div>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <h3>停用，絕不解除安裝</h3>
+            <p>只用 <code>pm disable-user --user 0</code>。不解除安裝、不隱藏、不清除、不 root。<code>pm enable</code> 就是復原。</p>
+          </article>
+          <article class="safety-card">
+            <h3>先備份</h3>
+            <p>套件、角色、IME、設定與 <code>getprop</code> 都會在第一次變更前儲存。沒有備份，就不變更。</p>
+          </article>
+          <article class="safety-card">
+            <h3>受保護清單與角色</h3>
+            <p>電信功能、Play Services、WebView、權限、緊急警報、撥號程式、簡訊、Home 與鍵盤都會被拒絕或檢查。</p>
+          </article>
+          <article class="safety-card">
+            <h3>小批次，明確復原</h3>
+            <p>五個套件、驗證，再進行下一批。日誌精確；若日誌遺失，備份可重建該變更。</p>
+          </article>
+        </div>
+        <p class="section-note">在本機執行：沒有 CleanYourPhone 託管的服務、沒有帳號、沒有遙測。 <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md" rel="noopener">閱讀安全規則 ↗</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">常見問題</p>
+          <h2>簡短回答。</h2>
+        </div>
+        <div class="faq">
+          <details><summary>安全嗎？</summary><p>比複製來的套件清單安全，但不是魔法。它從不解除安裝、會先備份、拒絕受保護的套件與角色持有者、以小批次停用，並能還原 CLI 記錄的每一筆變更。你仍需檢視計畫，並測試通話、簡訊、相機、鍵盤、Home 與通知。</p></details>
+          <details><summary>會解除安裝任何東西嗎？</summary><p>不會。唯一的狀態變更是 <code>pm disable-user --user 0</code>。不解除安裝、不隱藏、不清除、不 root。<code>pm enable</code> 就是復原。</p></details>
+          <details><summary>如果出了問題怎麼辦？</summary><p>停下來。如果 ADB 仍能看到手機，執行 <code>restore</code>。如果復原日誌遺失，執行 <code>restore --from-backup &lt;folder&gt;</code> 並檢視清單。如果手機無法開機，復原指南涵蓋安全模式、ADB 與 recovery；出廠重置是最後手段。</p></details>
+          <details><summary>為什麼要停用而不是解除安裝？</summary><p><code>pm uninstall --user 0</code> 會為主使用者移除套件，並可能讓 OTA 更新、出廠重置的預期或 OEM 還原流程變得複雜。<code>pm disable-user --user 0</code> 則將其凍結在原處，並可用 <code>pm enable</code> 復原。</p></details>
+          <details><summary>平板電腦也能用嗎？</summary><p>可以，只要 Android 8 以上並具備 ADB。平板設定檔會設定 <code>form_factor: tablet</code>；缺少撥號程式或簡訊角色只是警告，不是失敗。Home 與鍵盤檢查仍然適用。</p></details>
+          <details><summary>免費嗎？</summary><p>是的。MIT 授權。沒有帳號、沒有訂閱、沒有遙測，也沒有 CleanYourPhone 託管的服務。</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">意見回饋</p>
+          <h2>送出錯誤回報、想法或手機檢查清單。</h2>
+          <p>此表單會將訊息傳送到 CleanYourPhone 的 Discord。沒有自動遙測。請勿包含序號、IP 位址、IMEI 或 MAC 位址。</p>
+        </div>
+        <form class="feedback-form" id="feedback-form" data-endpoint="https://cleanyourphone-feedback.subtitleme.workers.dev" novalidate>
+          <div class="feedback-grid">
+            <label>類型
+              <select name="kind" id="feedback-kind">
+                <option value="feedback">改進建議</option>
+                <option value="bug">錯誤</option>
+                <option value="profile">手機設定檔請求</option>
+              </select>
+            </label>
+            <label>聯絡方式（選填）
+              <input name="contact" id="feedback-contact" maxlength="200" autocomplete="off" placeholder="Discord、GitHub 或電子郵件">
+            </label>
+          </div>
+          <label>訊息
+            <textarea name="message" id="feedback-message" maxlength="4000" rows="5" placeholder="應該改變什麼？哪裡失敗了？"></textarea>
+          </label>
+          <label>手機檢查清單（選填）
+            <textarea name="checklist" id="feedback-checklist" maxlength="6000" rows="6" placeholder="手機型號：&#10;Android：&#10;版本號碼：&#10;設定檔：&#10;發生什麼事："></textarea>
+          </label>
+          <label class="feedback-honeypot" aria-hidden="true">Website
+            <input name="website" id="feedback-website" tabindex="-1" autocomplete="off">
+          </label>
+          <label class="feedback-consent">
+            <input type="checkbox" id="feedback-consent">
+            我同意將此訊息傳送到 CleanYourPhone 的 Discord。
+          </label>
+          <div class="feedback-actions">
+            <button class="button button-primary" type="submit" id="feedback-submit">送出意見回饋</button>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <h2>檢視計畫，保留復原。</h2>
+        <p>把技能交給你的 AI 代理。應用程式仍在開發中。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 開啟技能</a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> 下載 Windows 版</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="" width="26" height="26">
+        <span>CleanYour<span class="wordmark-phone">Phone</span></span>
+      </div>
+      <nav class="footer-nav" aria-label="頁尾導覽">
+        <a href="https://github.com/jparedesDS/cleanyourphone-app" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg>應用程式</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cli"/></svg>CLI</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg>GitHub</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/tree/main/docs" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-docs"/></svg>文件</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/SECURITY.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg>安全性</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/discussions" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>討論</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/LICENSE" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-license"/></svg>MIT</a>
+        <a href="es.html" hreflang="es" lang="es"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg>Español</a>
+      </nav>
+    </div>
+    <div class="container">
+      <p class="footer-note">沒有 Cookie。沒有流量分析。只有在送出表單時才會傳送意見回饋。</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

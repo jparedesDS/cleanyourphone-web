@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanYourPhone — Skill para desativar bloatware do Android</title>
+  <meta name="description" content="Skill de código aberto para agentes: desativa apps preinstaladas do Android via ADB, sem root e sem desinstalar. Faz backup antes, protege apps e roles essenciais e restaura cada alteração registrada. App local e CLI opcionais.">
+  <meta name="author" content="Jose Paredes">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#121316">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-qjqGDf0xFRFarO2cW4JjXooqKB3VLJvZJdXY6qQm8Go='; connect-src https://cleanyourphone-feedback.subtitleme.workers.dev; font-src 'self'; upgrade-insecure-requests">
+  <link rel="canonical" href="https://jparedesds.github.io/cleanyourphone-web/pt-BR.html">
+  <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourphone-web/">
+  <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourphone-web/es.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://jparedesds.github.io/cleanyourphone-web/pt-BR.html">
+  <link rel="alternate" hreflang="fr" href="https://jparedesds.github.io/cleanyourphone-web/fr.html">
+  <link rel="alternate" hreflang="de" href="https://jparedesds.github.io/cleanyourphone-web/de.html">
+  <link rel="alternate" hreflang="it" href="https://jparedesds.github.io/cleanyourphone-web/it.html">
+  <link rel="alternate" hreflang="ja" href="https://jparedesds.github.io/cleanyourphone-web/ja.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://jparedesds.github.io/cleanyourphone-web/zh-CN.html">
+  <link rel="alternate" hreflang="zh-TW" href="https://jparedesds.github.io/cleanyourphone-web/zh-TW.html">
+  <link rel="alternate" hreflang="ko" href="https://jparedesds.github.io/cleanyourphone-web/ko.html">
+  <link rel="alternate" hreflang="x-default" href="https://jparedesds.github.io/cleanyourphone-web/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CleanYourPhone">
+  <meta property="og:url" content="https://jparedesds.github.io/cleanyourphone-web/pt-BR.html">
+  <meta property="og:title" content="CleanYourPhone — Skill para desativar bloatware do Android">
+  <meta property="og:description" content="Desative apps preinstaladas do Android sem root e sem desinstalar. Backup antes, proteção de apps essenciais e restauração de cada alteração registrada.">
+  <meta property="og:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="CleanYourPhone — seu celular, sem o que sobra">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CleanYourPhone — Skill para desativar bloatware do Android">
+  <meta name="twitter:description" content="Skill reversível para limpar o Android, feita para agentes de código. Desative só o que você aprovar, faça backup antes e restaure cada alteração registrada.">
+  <meta name="twitter:image" content="https://jparedesds.github.io/cleanyourphone-web/assets/og.png">
+  <meta name="twitter:image:alt" content="CleanYourPhone — seu celular, sem o que sobra">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CleanYourPhone",
+    "description": "Skill de código aberto para agentes que desativam apps preinstaladas do Android via ADB. Sem root, sem desinstalar, reversível.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "0.3.2",
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/jparedesDS/cleanyourphone",
+    "url": "https://jparedesds.github.io/cleanyourphone-web/pt-BR.html",
+    "inLanguage": "pt-BR",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Jose Paredes",
+      "url": "https://github.com/jparedesDS"
+    }
+  }
+  </script>
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></symbol>
+    <symbol id="i-skill" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"/></g></symbol>
+    <symbol id="i-app" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></g></symbol>
+    <symbol id="i-cli" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></g></symbol>
+    <symbol id="i-docs" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v4h4M9 11h6M9 15h6"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m9 12 2 2 4-4"/></g></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/></g></symbol>
+    <symbol id="i-license" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v4h4"/><circle cx="12" cy="14" r="2.5"/><path d="m10.5 16-1 3 2.5-1 2.5 1-1-3"/></g></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></g></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./pt-BR.html" aria-label="Início do CleanYourPhone">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>CleanYour<span class="wordmark-phone">Phone</span></span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a class="nav-start" href="#start">Começar</a>
+        <a href="#how">Como funciona</a>
+        <a href="#profiles">Perfis</a>
+        <a href="#safety">Segurança</a>
+        <a href="#faq">FAQ</a>
+        <a href="#feedback">Feedback</a>
+        <a class="nav-mail" href="https://jparedesds.github.io/cleanyourmail-web">CleanYour<span class="wordmark-mail">Mail</span></a>
+        <a class="nav-github" href="https://github.com/jparedesDS/cleanyourphone" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub <span aria-hidden="true">↗</span></a>
+        <label class="lang-select-wrap">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg>
+          <select class="lang-select" id="language-select" aria-label="Idioma">
+            <option value="index.html">English</option>
+            <option value="es.html">Español</option>
+            <option value="pt-BR.html" selected>Português (BR)</option>
+            <option value="fr.html">Français</option>
+            <option value="de.html">Deutsch</option>
+            <option value="it.html">Italiano</option>
+            <option value="ja.html">日本語</option>
+            <option value="zh-CN.html">简体中文</option>
+            <option value="zh-TW.html">繁體中文</option>
+            <option value="ko.html">한국어</option>
+          </select>
+        </label>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Código aberto · Skill para agentes · App local</p>
+          <h1>Seu celular,<br><em>sem o que sobra.</em></h1>
+          <p class="lede">CleanYourPhone é uma skill local para agentes que desativa apps preinstaladas do Android via ADB, com um app opcional. Faz backup antes, revisa cada pacote com você e restaura cada alteração que registrou. Sem root, nada desinstalado, sem telemetria.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> Abrir a skill</a>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> Baixar para Windows</a>
+          </div>
+          <p class="trust-line">Grátis · MIT · Sem root · Sem telemetria · 156 perfis · 4 testados em dispositivo</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="app-window" aria-label="Prévia do prompt da skill CleanYourPhone">
+            <div class="app-bar"><span></span><span></span><span></span><em>CleanYourPhone · skill</em></div>
+            <div class="app-body">
+              <div class="app-head">
+                <span class="app-badge">SKILL PARA AGENTES</span>
+                <span class="app-step">Produto principal</span>
+              </div>
+              <h3>Passe para o seu agente.</h3>
+              <pre class="prompt-block"><code>Leia o SKILL.md de
+https://github.com/<wbr>jparedesDS/<wbr>cleanyourphone
+e siga exatamente.
+Somente ADB. Backup antes.
+Mostre o plano antes de mudar qualquer coisa.
+Me dê o comando de desfazer.</code></pre>
+              <div class="app-actions">
+                <button class="copy-button" type="button" data-copy="Leia o SKILL.md de&#10;https://github.com/jparedesDS/cleanyourphone&#10;e siga exatamente.&#10;Somente ADB. Backup antes.&#10;Mostre o plano antes de mudar qualquer coisa.&#10;Me dê o comando de desfazer."><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg><span class="copy-label">Copiar prompt</span></button>
+              </div>
+              <p class="app-note">Cole no Claude Code, Cursor, OpenCode ou em qualquer agente com acesso ao shell.</p>
+            </div>
+          </div>
+          <p class="hero-note">Skill primeiro · app opcional · CLI no GitHub</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="provider-strip" aria-hidden="true">
+      <div class="container provider-strip-viewport">
+        <div class="provider-strip-track">
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/brands/google.png" alt="" height="22">Google</span>
+            <span class="provider-strip-item"><img src="assets/brands/samsung.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/xiaomi.png" alt="" height="22">Xiaomi</span>
+            <span class="provider-strip-item"><img src="assets/brands/redmi.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/poco.png" alt="" height="22"></span>
+            <span class="provider-strip-item"><img src="assets/brands/oneplus.png" alt="" height="22"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="start">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Escolha seu caminho</p>
+          <h2>Use a skill. O app está em desenvolvimento.</h2>
+          <p>A skill é o produto principal: entregue ao seu agente de código e revise o plano. O app será o caminho simples para quem prefere botões. A CLI continua no GitHub para usuários avançados.</p>
+        </div>
+        <div class="path-grid">
+          <article class="path-card path-card-primary">
+            <p class="path-label">Skill · Produto principal</p>
+            <h3>Use a skill</h3>
+            <p>Entregue ao Claude Code, Cursor, OpenCode ou a outro agente com acesso ao shell. Ela faz backup antes, mostra o plano antes de mudar qualquer coisa e dá o comando de desfazer.</p>
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> Abrir a skill</a>
+            <p class="path-note">Ou <button class="copy-inline" type="button" data-copy="Leia o SKILL.md de&#10;https://github.com/jparedesDS/cleanyourphone&#10;e siga exatamente.&#10;Somente ADB. Backup antes.&#10;Mostre o plano antes de mudar qualquer coisa.&#10;Me dê o comando de desfazer."><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg><span class="copy-label">copie o prompt</span></button> e cole no Claude Code, Cursor ou OpenCode.</p>
+          </article>
+          <article class="path-card">
+            <p class="path-label">App · MVP inicial</p>
+            <h3>Baixe o app</h3>
+            <p>O app é o caminho simples para quem prefere botões a prompts. Instalador para Windows 10/11, testado em um OnePlus 6T. Ele faz backup antes e só continua em um celular compatível e testado.</p>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> Baixar para Windows</a>
+            <p class="path-note">MVP inicial · Windows 10/11 · v0.2.0 · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CONNECT.md" rel="noopener">Guia de conexão</a></p>
+          </article>
+        </div>
+        <p class="section-note">Prefere o terminal? <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener">A CLI continua no GitHub.</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Como funciona</p>
+          <h2>Três passos. Você no controle.</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-number">01</span>
+            <h3>Conecte localmente</h3>
+            <p>Abra o repositório, ative a depuração USB e conecte o celular. A ferramenta verifica o ADB e o dispositivo antes de qualquer alteração.</p>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <h3>Revise</h3>
+            <p>Faça backup de pacotes, roles e configurações. Revise <code>DISABLE</code>, <code>ASK</code>, <code>BLOCKED</code> e <code>SKIP</code> para cada pacote. Nada muda ainda.</p>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <h3>Aplique ou restaure</h3>
+            <p>Aplique em lotes de cinco. Verifique. Restaure exatamente o que o journal registrou; o backup é a alternativa.</p>
+          </li>
+        </ol>
+        <p class="section-note">Extras opcionais: bloqueie muitos anúncios dentro de apps com DNS privado (não o YouTube) e meça a RAM livre e a contagem de pacotes antes e depois. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/ADS.md" rel="noopener">Anúncios</a> · <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/BENCH.md" rel="noopener">Bench</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="profiles">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Perfis</p>
+          <h2>Comece pela evidência.<br>Não por um post de fórum.</h2>
+          <p>Cada perfil é uma lista de pacotes para um modelo e firmware. Um perfil <b>device</b> foi testado em um celular real; um perfil <b>documented</b> vem de um dump primário de firmware e apenas pergunta.</p>
+        </div>
+        <ul class="profile-grid">
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/google.png" alt="Google" height="24"><b>Google</b></div><span>5 perfis · Pixel 8 testado em dispositivo</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo brand-logo-samsung" src="assets/brands/samsung.png" alt="Samsung" height="24"></div><span>55 perfis · Galaxy S23 Ultra testado em dispositivo</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/xiaomi.png" alt="Xiaomi" height="24"><b>Xiaomi</b></div><span>15 perfis · família HyperOS testada em dispositivo</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/redmi.png" alt="Redmi" height="24"></div><span>56 perfis · famílias Note, K e A · apenas documentados</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/poco.png" alt="POCO" height="24"></div><span>16 perfis · famílias F, X e M · apenas documentados</span></li>
+          <li><div class="brand-logo-row"><img class="brand-logo" src="assets/brands/oneplus.png" alt="OnePlus" height="24"></div><span>8 perfis · OnePlus 6T testado em dispositivo</span></li>
+        </ul>
+        <p class="section-note">Só um perfil <b>device</b> em uma build testada pode ser aplicado automaticamente. Todo o resto é um ponto de partida revisável. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/profiles/README.md" rel="noopener">Ver os 156 perfis ↗</a></p>
+        <p class="trademark-note">Nomes e logotipos são marcas registradas de seus respectivos proprietários.</p>
+      </div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Segurança</p>
+          <h2>Seguro por design. Entediante de propósito.</h2>
+        </div>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <h3>Desativar, nunca desinstalar</h3>
+            <p>Somente <code>pm disable-user --user 0</code>. Sem desinstalar, ocultar, limpar dados ou root. <code>pm enable</code> é o desfazer.</p>
+          </article>
+          <article class="safety-card">
+            <h3>Backup primeiro</h3>
+            <p>Pacotes, roles, IME, configurações e <code>getprop</code> são salvos antes da primeira alteração. Sem backup, sem alterações.</p>
+          </article>
+          <article class="safety-card">
+            <h3>Lista protegida e roles</h3>
+            <p>Telefonia, Play Services, WebView, permissões, alertas de emergência, discador, SMS, Home e teclado são recusados ou verificados.</p>
+          </article>
+          <article class="safety-card">
+            <h3>Lotes pequenos, desfazer claro</h3>
+            <p>Cinco pacotes, verificação e depois o próximo lote. O journal é exato; se ele for perdido, o backup reconstrói a alteração.</p>
+          </article>
+        </div>
+        <p class="section-note">Roda localmente: nenhum serviço hospedado pelo CleanYourPhone, nenhuma conta, nenhuma telemetria. <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/SAFETY.md" rel="noopener">Leia as regras de segurança ↗</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">FAQ</p>
+          <h2>Respostas curtas.</h2>
+        </div>
+        <div class="faq">
+          <details><summary>É seguro?</summary><p>Mais seguro que uma lista de pacotes copiada, mas não é mágica. Nunca desinstala, faz backup antes, recusa pacotes protegidos e detentores de roles, desativa em lotes pequenos e pode restaurar cada alteração registrada pela CLI. Você ainda revisa o plano e testa chamadas, SMS, câmera, teclado, Home e notificações.</p></details>
+          <details><summary>Isso desinstala alguma coisa?</summary><p>Não. A única mudança de estado é <code>pm disable-user --user 0</code>. Sem desinstalar, ocultar, limpar dados ou root. <code>pm enable</code> é o desfazer.</p></details>
+          <details><summary>E se algo der errado?</summary><p>Pare. Execute <code>restore</code> se o ADB ainda enxergar o celular. Se o journal de desfazer for perdido, execute <code>restore --from-backup &lt;pasta&gt;</code> e revise a lista. Se o celular não ligar, o guia de recuperação cobre modo seguro, ADB e recovery; o reset de fábrica é o último recurso.</p></details>
+          <details><summary>Por que desativar em vez de desinstalar?</summary><p><code>pm uninstall --user 0</code> remove o pacote para o usuário principal e pode complicar atualizações OTA, expectativas de reset de fábrica ou fluxos de restauração do fabricante. <code>pm disable-user --user 0</code> o congela no lugar e reverte com <code>pm enable</code>.</p></details>
+          <details><summary>Funciona em tablets?</summary><p>Sim, no Android 8+ com ADB. Perfis de tablet definem <code>form_factor: tablet</code>; a ausência do role de discador ou SMS é um aviso, não uma falha. As verificações de Home e teclado continuam valendo.</p></details>
+          <details><summary>É grátis?</summary><p>Sim. Licença MIT. Sem conta, sem assinatura, sem telemetria e sem serviço hospedado pelo CleanYourPhone.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Feedback</p>
+          <h2>Envie um bug, uma ideia ou o checklist do seu celular.</h2>
+          <p>Este formulário envia uma mensagem para o Discord do CleanYourPhone. Sem telemetria automática. Não inclua números de série, endereços IP, IMEI ou endereços MAC.</p>
+        </div>
+        <form class="feedback-form" id="feedback-form" data-endpoint="https://cleanyourphone-feedback.subtitleme.workers.dev" novalidate>
+          <div class="feedback-grid">
+            <label>Tipo
+              <select name="kind" id="feedback-kind">
+                <option value="feedback">Melhoria</option>
+                <option value="bug">Bug</option>
+                <option value="profile">Pedido de perfil de celular</option>
+              </select>
+            </label>
+            <label>Contato (opcional)
+              <input name="contact" id="feedback-contact" maxlength="200" autocomplete="off" placeholder="Discord, GitHub ou email">
+            </label>
+          </div>
+          <label>Mensagem
+            <textarea name="message" id="feedback-message" maxlength="4000" rows="5" placeholder="O que deveria mudar? O que falhou?"></textarea>
+          </label>
+          <label>Checklist do celular (opcional)
+            <textarea name="checklist" id="feedback-checklist" maxlength="6000" rows="6" placeholder="Modelo do celular:&#10;Android:&#10;Build:&#10;Perfil:&#10;O que aconteceu:"></textarea>
+          </label>
+          <label class="feedback-honeypot" aria-hidden="true">Website
+            <input name="website" id="feedback-website" tabindex="-1" autocomplete="off">
+          </label>
+          <label class="feedback-consent">
+            <input type="checkbox" id="feedback-consent">
+            Aceito enviar esta mensagem para o Discord do CleanYourPhone.
+          </label>
+          <div class="feedback-actions">
+            <button class="button button-primary" type="submit" id="feedback-submit">Enviar feedback</button>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <h2>Revise o plano. Mantenha o desfazer.</h2>
+        <p>Entregue a skill ao seu agente. O app ainda está em desenvolvimento.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourphone/blob/main/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> Abrir a skill</a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourphone-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> Baixar para Windows</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="" width="26" height="26">
+        <span>CleanYour<span class="wordmark-phone">Phone</span></span>
+      </div>
+      <nav class="footer-nav" aria-label="Rodapé">
+        <a href="https://github.com/jparedesDS/cleanyourphone-app" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg>App</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/docs/CLI.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cli"/></svg>CLI</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg>GitHub</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/tree/main/docs" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-docs"/></svg>Docs</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/SECURITY.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg>Segurança</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/discussions" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Discussões</a>
+        <a href="https://github.com/jparedesDS/cleanyourphone/blob/main/LICENSE" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-license"/></svg>MIT</a>
+        <a href="index.html" hreflang="en" lang="en"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg>English</a>
+      </nav>
+    </div>
+    <div class="container">
+      <p class="footer-note">Sem cookies. Sem analytics. O feedback só é enviado ao usar o formulário.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
