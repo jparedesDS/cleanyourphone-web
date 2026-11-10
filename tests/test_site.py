@@ -99,7 +99,16 @@ class SiteTest(unittest.TestCase):
     def test_skill_first_hero_and_no_cli_section(self):
         text = (ROOT / "index.html").read_text(encoding="utf-8")
         hero = text.split('<section class="hero">', 1)[1].split("</section>", 1)[0]
-        self.assertLess(hero.index("Open the skill"), hero.index("Download the app"))
+        self.assertNotIn("Download the app", hero)
+        self.assertIn("App status", hero)
+        self.assertLess(hero.index("Open the skill"), hero.index("App status"))
+
+        spanish = (ROOT / "es.html").read_text(encoding="utf-8")
+        es_hero = spanish.split('<section class="hero">', 1)[1].split("</section>", 1)[0]
+        self.assertNotIn("Descargar la app", es_hero)
+        self.assertIn("Estado de la app", es_hero)
+        self.assertLess(es_hero.index("Abrir la skill"), es_hero.index("Estado de la app"))
+
         self.assertIn('class="app-window"', hero)
         self.assertIn('class="app-bar"', hero)
         self.assertEqual(hero.count("<span></span>"), 3)
@@ -122,7 +131,16 @@ class SiteTest(unittest.TestCase):
     def test_choose_path_puts_skill_before_app(self):
         text = (ROOT / "index.html").read_text(encoding="utf-8")
         path = text.split('id="start"', 1)[1].split("</section>", 1)[0]
-        self.assertLess(path.index("Use the skill"), path.index("Download the app"))
+        self.assertIn("App · Early MVP", path)
+        self.assertNotIn("Download the app", path)
+        self.assertLess(path.index("Use the skill"), path.index("App · Early MVP"))
+
+        spanish = (ROOT / "es.html").read_text(encoding="utf-8")
+        es_path = spanish.split('id="start"', 1)[1].split("</section>", 1)[0]
+        self.assertIn("App · MVP temprano", es_path)
+        self.assertNotIn("Descargar la app", es_path)
+        self.assertLess(es_path.index("Usa la skill"), es_path.index("App · MVP temprano"))
+
         self.assertIn("path-card-primary", path)
         self.assertIn("copy-inline", path)
         copy_control = path.split('class="copy-inline"', 1)[1].split("</button>", 1)[0]
@@ -132,7 +150,7 @@ class SiteTest(unittest.TestCase):
         text = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('class="icon-sprite"', text)
         for icon in (
-            "i-github", "i-skill", "i-app", "i-download", "i-cli",
+            "i-github", "i-skill", "i-app", "i-cli",
             "i-docs", "i-shield", "i-chat", "i-license", "i-globe",
         ):
             with self.subTest(icon=icon):
@@ -208,9 +226,17 @@ class SiteTest(unittest.TestCase):
                     self.assertEqual(strip.count(f"assets/brands/{brand}.png"), 4)
 
     def test_app_is_labelled_early_mvp(self):
-        text = (ROOT / "index.html").read_text(encoding="utf-8")
-        self.assertIn("Early MVP", text)
-        self.assertIn("cleanyourphone-app", text)
+        for name, label, note in (
+            ("index.html", "Early MVP", "no installer yet"),
+            ("es.html", "MVP temprano", "aún sin instalador"),
+        ):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn(label, text)
+                self.assertIn(note, text)
+                self.assertIn("cleanyourphone-app", text)
+                self.assertNotIn("Download the app", text)
+                self.assertNotIn("Descargar la app", text)
 
     def test_no_unrelated_project_reference(self):
         """The site must not claim an unrelated project as its inspiration."""
