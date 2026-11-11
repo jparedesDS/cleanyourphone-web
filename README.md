@@ -136,8 +136,8 @@ it is unreachable.
 ## Release sync
 
 - `softwareVersion` in all ten landing pages must match `VERSION` in `tools/phone.py` in the
-  skill repository. Current CLI: **`0.3.2`**.
-- The app card links to `releases/latest` and states the current app version: **`v0.2.0`**.
+  skill repository. Current CLI: **`0.3.3`**.
+- The app card links to `releases/latest` and states the current app version: **`v0.2.1`**.
 - The feedback endpoint is duplicated in the two HTML files (`data-endpoint`) and in the app
   (`FEEDBACK_ENDPOINT`). Change all three together.
 - When the JSON-LD block changes, recompute the CSP `sha256` hash in both pages and run the tests.
