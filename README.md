@@ -56,7 +56,7 @@ page-load third-party requests.
 - **Choose your path:** skill on the left as the main product, app on the right as an Early MVP, and
   the CLI as a small GitHub link.
 - **How it works:** connect, review, apply or restore.
-- **156 profiles:** official full-color logos for Google, Samsung, Xiaomi, Redmi, POCO and OnePlus.
+- **157 profiles:** official full-color logos for Google, Samsung, Xiaomi, Redmi, POCO and OnePlus.
 - **Safety and FAQ:** the guardrails, undo limits, warranty and YouTube caveats.
 - **Feedback:** a real form that posts to a Cloudflare Worker and then to the maintainer's Discord.
   No Discord account is needed to send.
