@@ -69,7 +69,7 @@ test("valid feedback reaches Discord without exposing the webhook", async () => 
         kind: "feedback",
         message: "Please explain the review screen",
         checklist: "Phone: Test\nAndroid: 14",
-        app_version: "CleanYourPhone app 0.2.0",
+        app_version: "CleanYourPhone app 0.2.1",
         website: "",
       }),
       makeEnv(),

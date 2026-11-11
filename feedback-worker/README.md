@@ -12,7 +12,7 @@ website.
   "message": "The review screen could explain ...",
   "checklist": "Phone: ...\nAndroid: ...\nBuild: ...",
   "contact": "optional Discord/GitHub/email",
-  "app_version": "CleanYourPhone app 0.2.0 / CLI 0.3.2",
+  "app_version": "CleanYourPhone app 0.2.1 / CLI 0.3.3",
   "website": ""
 }
 ```
