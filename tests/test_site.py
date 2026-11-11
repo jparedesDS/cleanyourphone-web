@@ -255,7 +255,7 @@ class SiteTest(unittest.TestCase):
             with self.subTest(page=name):
                 self.assertIn("Windows 10/11", text)
                 self.assertIn("OnePlus 6T", text)
-                self.assertIn("v0.2.1", text)
+                self.assertIn("v0.2.2", text)
                 self.assertIn("cleanyourphone-app/releases/latest", text)
                 self.assertIn("docs/CONNECT.md", text)
 
