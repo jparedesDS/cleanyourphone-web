@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://cleanyourphone.org/"><img src="https://img.shields.io/badge/live-GitHub%20Pages-a78bfa?labelColor=121316" alt="Live site"></a>
+  <a href="https://cleanyourphone.org/"><img src="https://img.shields.io/badge/live-cleanyourphone.org-a78bfa?labelColor=121316" alt="Live site"></a>
   <img src="https://img.shields.io/badge/license-MIT-a78bfa?labelColor=121316" alt="MIT">
   <img src="https://img.shields.io/badge/analytics-none-a78bfa?labelColor=121316" alt="No analytics">
   <img src="https://img.shields.io/badge/languages-10-a78bfa?labelColor=121316" alt="10 languages">
