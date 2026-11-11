@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://jparedesds.github.io/cleanyourphone-web/">
+  <a href="https://cleanyourphone.org/">
     <img src="assets/banner.png" alt="CleanYourPhone — your phone, minus the bloat" width="100%">
   </a>
 </p>
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://jparedesds.github.io/cleanyourphone-web/"><img src="https://img.shields.io/badge/live-GitHub%20Pages-a78bfa?labelColor=121316" alt="Live site"></a>
+  <a href="https://cleanyourphone.org/"><img src="https://img.shields.io/badge/live-GitHub%20Pages-a78bfa?labelColor=121316" alt="Live site"></a>
   <img src="https://img.shields.io/badge/license-MIT-a78bfa?labelColor=121316" alt="MIT">
   <img src="https://img.shields.io/badge/analytics-none-a78bfa?labelColor=121316" alt="No analytics">
   <img src="https://img.shields.io/badge/languages-10-a78bfa?labelColor=121316" alt="10 languages">
@@ -38,13 +38,13 @@ the open-source, reversible Android debloat skill for coding agents. The site pu
 first**, offers the optional **Windows app**, and lets anyone send a bug, improvement or phone
 checklist without needing Discord.
 
-Live: **<https://jparedesds.github.io/cleanyourphone-web/>**
+Live: **<https://cleanyourphone.org/>**
 
 Static HTML, CSS and JavaScript. No framework, no build step, no external fonts, no analytics and no
 page-load third-party requests.
 
 <p align="center">
-  <a href="https://jparedesds.github.io/cleanyourphone-web/">
+  <a href="https://cleanyourphone.org/">
     <img src="assets/landing.png" alt="CleanYourPhone landing page: skill prompt card and app download" width="900">
   </a>
 </p>
@@ -69,16 +69,16 @@ page-load third-party requests.
 
 | Language | Page |
 |---|---|
-| English | <https://jparedesds.github.io/cleanyourphone-web/> |
-| Español | <https://jparedesds.github.io/cleanyourphone-web/es.html> |
-| Português (BR) | <https://jparedesds.github.io/cleanyourphone-web/pt-BR.html> |
-| Français | <https://jparedesds.github.io/cleanyourphone-web/fr.html> |
-| Deutsch | <https://jparedesds.github.io/cleanyourphone-web/de.html> |
-| Italiano | <https://jparedesds.github.io/cleanyourphone-web/it.html> |
-| 日本語 | <https://jparedesds.github.io/cleanyourphone-web/ja.html> |
-| 简体中文 | <https://jparedesds.github.io/cleanyourphone-web/zh-CN.html> |
-| 繁體中文 | <https://jparedesds.github.io/cleanyourphone-web/zh-TW.html> |
-| 한국어 | <https://jparedesds.github.io/cleanyourphone-web/ko.html> |
+| English | <https://cleanyourphone.org/> |
+| Español | <https://cleanyourphone.org/es.html> |
+| Português (BR) | <https://cleanyourphone.org/pt-BR.html> |
+| Français | <https://cleanyourphone.org/fr.html> |
+| Deutsch | <https://cleanyourphone.org/de.html> |
+| Italiano | <https://cleanyourphone.org/it.html> |
+| 日本語 | <https://cleanyourphone.org/ja.html> |
+| 简体中文 | <https://cleanyourphone.org/zh-CN.html> |
+| 繁體中文 | <https://cleanyourphone.org/zh-TW.html> |
+| 한국어 | <https://cleanyourphone.org/ko.html> |
 
 Every page has the same canonical/hreflang set, its own Open Graph/JSON-LD locale, and the shared
 feedback endpoint.

@@ -3,7 +3,7 @@ const MAX_MESSAGE = 4000;
 const MAX_CHECKLIST = 6000;
 const MAX_CONTACT = 200;
 const MAX_APP_VERSION = 80;
-const DEFAULT_ORIGIN = "https://jparedesds.github.io";
+const DEFAULT_ORIGIN = "https://cleanyourphone.org";
 const KINDS = new Set(["feedback", "bug", "profile"]);
 const RATE_LIMIT_SECONDS = 300;
 

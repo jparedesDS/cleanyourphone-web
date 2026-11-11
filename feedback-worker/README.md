@@ -45,7 +45,7 @@ Do not put that URL in the website, the app, this repository or a chat message.
 6. In **Settings → Variables and Secrets** add:
    - Secret `DISCORD_WEBHOOK_URL`: the Discord webhook from above.
    - Secret `IP_SALT`: a long random string. Generate one with a password manager.
-   - Variable `ALLOWED_ORIGIN`: `https://jparedesds.github.io`
+   - Variable `ALLOWED_ORIGIN`: `https://cleanyourphone.org`
 7. Deploy again and copy the public URL, for example:
    `https://cleanyourphone-feedback.your-subdomain.workers.dev`
 
@@ -68,7 +68,7 @@ Set `ALLOWED_ORIGIN` in `wrangler.toml` under `[vars]` if you use the CLI:
 
 ```toml
 [vars]
-ALLOWED_ORIGIN = "https://jparedesds.github.io"
+ALLOWED_ORIGIN = "https://cleanyourphone.org"
 ```
 
 ## Test

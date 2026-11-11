@@ -24,7 +24,7 @@ LANGUAGES = {
 }
 PAGES_WITH_JSONLD = tuple(LANGUAGES)
 PAGES = (*PAGES_WITH_JSONLD, "404.html")
-BASE_URL = "https://jparedesds.github.io/cleanyourphone-web/"
+BASE_URL = "https://cleanyourphone.org/"
 
 
 def png_size(path: Path) -> tuple[int, int]:
